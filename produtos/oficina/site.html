@@ -1,0 +1,689 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Oficina: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Oficina — a assistência técnica sem bloco de papel</title>
+  <meta name="description"
+    content="A ordem de serviço do balcão à entrega: o aparelho com a história na loja, o orçamento que o cliente decide item por item, a garantia com o prazo da lei, a peça encomendada, o recibo e o laudo em PDF. Num servidor dentro da loja.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 656.5 656.5'%3E%3Cdefs%3E %3Cmask id%3D%22vao%22 maskUnits%3D%22userSpaceOnUse%22 x%3D%220%22 y%3D%220%22 width%3D%22656.5%22 height%3D%22600%22%3E %3Crect x%3D%220%22 y%3D%220%22 width%3D%22656.5%22 height%3D%22600%22 fill%3D%22%23fff%22 %2F%3E %3Ccircle cx%3D%22575%22 cy%3D%2218%22 r%3D%2240%22 fill%3D%22none%22 stroke%3D%22%23000%22 stroke-width%3D%2246%22 %2F%3E %3C%2Fmask%3E %3Cmask id%3D%22botoes%22 maskUnits%3D%22userSpaceOnUse%22 x%3D%22400%22 y%3D%22270%22 width%3D%22220%22 height%3D%22290%22%3E %3Crect x%3D%22400%22 y%3D%22270%22 width%3D%22220%22 height%3D%22290%22 fill%3D%22%23fff%22 %2F%3E %3Cg stroke%3D%22%23000%22 stroke-width%3D%2212%22 stroke-linecap%3D%22round%22 fill%3D%22none%22%3E %3Cpath d%3D%22M510%2C296 V388%22 %2F%3E %3Cpath d%3D%22M418%2C392 H602%22 %2F%3E %3C%2Fg%3E %3Crect x%3D%22499%22 y%3D%22314%22 width%3D%2222%22 height%3D%2248%22 rx%3D%2211%22 fill%3D%22%23000%22 %2F%3E %3C%2Fmask%3E %3C%2Fdefs%3E %3Cg fill%3D%22%23007cdc%22 transform%3D%22translate(0 59.25)%22%3E %3Cpath d%3D%22M0%2C0 H148.5 l6.62%2C3.14 c19.71%2C9.34 26.71%2C25.87 22.8%2C53.93 c-2.5%2C17.95 -12.08%2C41.18 -23.06%2C55.93 c-2.87%2C3.85 -38.88%2C40.75 -80.03%2C82 L0%2C270.5 Z%22 %2F%3E %3Cpath mask%3D%22url(%23vao)%22 d%3D%22M30.75%2C537 c-13.44%2C-3.4 -24.18%2C-13.42 -28.68%2C-26.78 C0.05%2C504.22 0%2C502.32 0%2C422.8 V341.5 L341.5%2C0 H594.5 L328%2C266.4 C67.78%2C526.5 61.36%2C532.84 55.5%2C535 c-6.75%2C2.48 -18.94%2C3.46 -24.75%2C2 Z%22 %2F%3E %3Cg class%3D%22pendurado%22%3E %3Cg fill%3D%22none%22 stroke%3D%22%23007cdc%22 stroke-width%3D%2220%22 stroke-linecap%3D%22round%22%3E %3Ccircle cx%3D%22575%22 cy%3D%2218%22 r%3D%2240%22 %2F%3E %3Cpath d%3D%22M603%2C46 C640%2C110 518%2C190 510%2C287%22 %2F%3E %3C%2Fg%3E %3Crect x%3D%22420%22 y%3D%22287%22 width%3D%22180%22 height%3D%22250%22 rx%3D%2290%22 mask%3D%22url(%23botoes)%22 %2F%3E %3C%2Fg%3E %3C%2Fg%3E%3C%2Fsvg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O Início desenhado, no lugar de uma captura */
+    .painel {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 18px;
+      font-size: .9rem;
+    }
+
+    .painel__titulo {
+      font-weight: 600;
+      color: var(--texto-2);
+      margin-bottom: 12px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2px 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--fundo-2);
+      margin-bottom: 8px;
+      border-left: 4px solid var(--cor, var(--marca));
+    }
+
+    .aviso:last-child {
+      margin-bottom: 0;
+    }
+
+    .aviso strong {
+      grid-column: 2;
+    }
+
+    .aviso span {
+      grid-column: 2;
+      color: var(--texto-2);
+    }
+
+    .aviso b {
+      grid-row: 1 / span 2;
+      align-self: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--cor, var(--marca));
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      min-width: 5.5em;
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./"><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <circle cx="575" cy="18" r="40" fill="none" stroke="#000" stroke-width="46" /> </mask> <mask id="botoes" maskUnits="userSpaceOnUse" x="400" y="270" width="220" height="290"> <rect x="400" y="270" width="220" height="290" fill="#fff" /> <g stroke="#000" stroke-width="12" stroke-linecap="round" fill="none"> <path d="M510,296 V388" /> <path d="M418,392 H602" /> </g> <rect x="499" y="314" width="22" height="48" rx="11" fill="#000" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path mask="url(#vao)" d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <g class="pendurado"> <g fill="none" stroke="#007cdc" stroke-width="20" stroke-linecap="round"> <circle cx="575" cy="18" r="40" /> <path d="M603,46 C640,110 518,190 510,287" /> </g> <rect x="420" y="287" width="180" height="250" rx="90" mask="url(#botoes)" /> </g> </g></svg> Kobi Oficina</a>
+      <nav>
+        <a href="#ordem">A ordem</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Para a assistência técnica multimarcas de bairro ou de centro</span>
+          <h1>Todo aparelho com dono, prazo e história. Sem bloco de papel.</h1>
+          <p class="chamada">O Kobi Oficina acompanha a ordem de serviço do balcão à entrega: o que o cliente deixou, o orçamento que ele decide item por item, a peça encomendada, a garantia com o prazo da lei. Ele roda num servidor <strong>dentro da loja</strong>: funciona com a internet caída.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#ordem">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="painel" role="img" aria-label="Desenho da tela de início do Kobi Oficina: a ordem atrasada, a peça que não chegou, o orçamento esperando o cliente e o aparelho esquecido.">
+          <div class="painel__titulo">Boa tarde, Bela. Na bancada:</div>
+          <div class="aviso" style="--cor: #c0392b"><b>Atrasada</b><strong>OS-000123: Notebook Acer</strong><span>A tela encomendada não chegou</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Cliente</b><strong>OS-000128: Computador Dell</strong><span>Orçamento esperando há 2 dias</span></div>
+          <div class="aviso"><b>Pronta</b><strong>OS-000131: Notebook Asus</strong><span>Avisar: R$ 180,00</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Esquecida</b><strong>OS-000097: Monitor LG</strong><span>Pronto há 100 dias, 2 avisos</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se a sua assistência vive isto, o Kobi foi feito para ela</h2>
+        <p class="introducao">A ordem em duas vias, o aparelho que ninguém lembra quando entrou, o cliente que liga três vezes para saber se está pronto.</p>
+        <div class="dores">
+          <div class="dor"><strong>"Vim buscar o carregador"</strong><span>A entrada anota o que veio junto e como chegou, com foto, e o cliente assina na tela. Ninguém discute na retirada.</span></div>
+          <div class="dor"><strong>O orçamento "aprovado por telefone"</strong><span>O cliente decide linha por linha, e a decisão fica registrada: aprovou a tela, recusou a bateria.</span></div>
+          <div class="dor"><strong>O notebook há quatro meses na prateleira</strong><span>O aparelho pronto que ninguém buscou aparece nos esquecidos, com cada aviso que a loja deu ao cliente.</span></div>
+          <div class="dor"><strong>"Ainda está na garantia?"</strong><span>A garantia conta da entrega, com o prazo de cada linha, e o retorno diz sozinho se ainda vale.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ordem" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>Do balcão à entrega</h2>
+          <p class="introducao">O balcão cuida do que o cliente diz e leva. A bancada cuida do conserto. A situação só muda por uma ação, com quem e quando.</p>
+          <ul class="lista">
+            <li><strong>A entrada</strong>: o defeito com as palavras do cliente, os acessórios, como chegou, a autorização para apagar os dados e a previsão.</li>
+            <li><strong>A senha</strong> do aparelho, que só o técnico vê, não sai no papel e some na entrega.</li>
+            <li><strong>O aparelho</strong> fica com o cliente: na segunda vez, a ficha mostra a história dele na loja.</li>
+            <li><strong>O termo de entrada</strong> assinado com o dedo, e as fotos anexadas.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>O orçamento por linha</strong>, em PDF e com a mensagem pronta no WhatsApp. A linha decidida não muda.</li>
+            <li><strong>O complemento</strong>: a peça que se achou ao abrir volta ao cliente sozinha, e o serviço segue com o aprovado.</li>
+            <li><strong>A retirada</strong>: o recibo, a conta no financeiro e o laudo com o termo de garantia.</li>
+            <li><strong>A taxa do diagnóstico</strong> no orçamento recusado, se a loja cobrar.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>O que mais ele faz</h2>
+        <div class="dores">
+          <div class="dor"><strong>Peças e estoque</strong><span>A entrada pela compra, a saída pela linha aprovada, o mínimo com o aviso de comprar. O custo, só o gerente vê.</span></div>
+          <div class="dor"><strong>A peça encomendada</strong><span>Do fornecedor, com a previsão de chegada. A ordem passa a "aguardando peça" e volta ao serviço quando a peça chega.</span></div>
+          <div class="dor"><strong>O sinal</strong><span>Combinado antes de encomendar a peça, abatido na entrega. A retirada com saldo em aberto pede o gerente.</span></div>
+          <div class="dor"><strong>As conferências</strong><span>A da entrada, com o cliente na frente, e o teste de saída na bancada, com os itens que a loja definir.</span></div>
+          <div class="dor"><strong>Os relatórios</strong><span>As ordens por situação, o tempo de cada etapa, os técnicos, a aprovação do orçamento, o faturado, a margem das peças e o retorno em garantia. Em PDF e planilha.</span></div>
+          <div class="dor"><strong>Os clientes e o funil</strong><span>A empresa que manda os aparelhos, o contrato de manutenção, a venda maior: o negócio com as etapas, as atividades, o orçamento em PDF e o contrato com o aceite assinado na tela.</span></div>
+          <div class="dor"><strong>Fatura e assinatura</strong><span>A fatura em parcelas, com a PIX da loja no PDF, e a cobrança que se repete (a manutenção do mês) emitida sozinha a cada período.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca" class="fundo-2">
+      <div class="largura">
+        <h2>Os dados ficam na loja</h2>
+        <p class="introducao">O nome do cliente, o que estava no aparelho, quanto ele pagou: nada disso passa pela nuvem de ninguém.</p>
+        <div class="dores">
+          <div class="dor"><strong>Funciona sem internet</strong><span>O sistema está na rede da loja. O WhatsApp e o backup de fora esperam a internet voltar.</span></div>
+          <div class="dor"><strong>Banco cifrado</strong><span>No servidor, os anexos também. Computador roubado ou pendrive perdido não abre os dados.</span></div>
+          <div class="dor"><strong>Cada um com o seu acesso</strong><span>Cada pessoa da equipe vê e faz só o que o papel dela permite.</span></div>
+          <div class="dor"><strong>Tudo fica registrado</strong><span>Quem mudou o quê, e quando: cada alteração fica na auditoria.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi Oficina não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loja: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Nota fiscal</strong><span>O recibo e o laudo não são nota: ela continua com a prefeitura ou o contador.</span></div>
+          <div class="dor"><strong>Robô no WhatsApp</strong><span>Ele abre a conversa com o texto pronto, e uma pessoa envia.</span></div>
+          <div class="dor"><strong>Portal do cliente</strong><span>O cliente não acompanha a ordem por um link: quem avisa é a loja.</span></div>
+          <div class="dor"><strong>Integração com o fabricante</strong><span>A garantia de fábrica continua sendo tratada com ele.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas</h2>
+        <div class="dores">
+          <div class="dor"><strong>Emite nota fiscal?</strong><span>Não. O recibo e o laudo não são nota: a nota continua com a prefeitura ou o contador.</span></div>
+          <div class="dor"><strong>Manda WhatsApp sozinho?</strong><span>Não. O Kobi abre a conversa com o texto pronto, e uma pessoa envia.</span></div>
+          <div class="dor"><strong>Serve para qualquer aparelho?</strong><span>Serve para quem conserta aparelhos de qualquer marca: a marca é escrita pela loja. A primeira versão não tem integração com fabricante nem rota para atendimento em casa.</span></div>
+          <div class="dor"><strong>O texto da garantia é pronto?</strong><span>É um ponto de partida com o prazo da lei. A loja ajusta com o advogado dela, nunca para menos que os 90 dias.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja a sua assistência no Kobi</h2>
+            <p>Uma demonstração de meia hora, na loja ou por vídeo, com uma assistência de exemplo cheia de dados. Sem compromisso.</p>
+            <a class="botao" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20Oficina.">Chamar no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Oficina<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Oficina: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+</body>
+
+</html>

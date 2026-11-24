@@ -1,0 +1,132 @@
+<!doctype html>
+<!--
+  O folder do Kobi Loteamento: uma folha A4, frente e verso. O folder.pdf ao lado sai deste
+  arquivo (Chrome, imprimir em A4 sem margens, com os gráficos de fundo).
+  Antes de imprimir, troque os campos "PARCEIRO" do verso.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Kobi Loteamento — folder</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9edf3; }
+  body { font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: #1f2733; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media print { html, body { background: #fff; } .folha { margin: 0; break-after: page; } }
+  h1, h2, h3 { margin: 0; line-height: 1.15; }
+  p { margin: 0; }
+
+  .capa { background: linear-gradient(160deg, #1a3566, #345996 60%, #007cdc); color: #fff; padding: 18mm 16mm 14mm; }
+  .marca { display: flex; align-items: center; gap: 4mm; font-size: 15pt; font-weight: 700; }
+  .marca svg { width: 13mm; height: 13mm; background: #fff; border-radius: 3mm; padding: 1.4mm; }
+  .capa h1 { font-size: 27pt; letter-spacing: -0.02em; margin: 12mm 0 5mm; max-width: 150mm; }
+  .capa p { font-size: 12.5pt; color: #dbe6fa; max-width: 160mm; }
+
+  .corpo { padding: 10mm 10mm; flex: 1; display: flex; flex-direction: column; gap: 7mm; }
+  .dores { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; }
+  .dor { border-left: 1.2mm solid #007cdc; padding-left: 4mm; }
+  .dor strong { display: block; font-size: 11pt; }
+  .dor span { color: #4a5566; }
+
+  h2 { font-size: 15pt; color: #1a3566; margin-bottom: 3mm; }
+  .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.2mm; }
+  .lista li { padding-left: 6mm; position: relative; color: #4a5566; }
+  .lista li strong { color: #1f2733; }
+  .lista li::before { content: ""; position: absolute; left: 0; top: 1.3mm; width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #007cdc; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  .faixa { background: #f3f6fb; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; text-align: center; }
+  .faixa strong { display: block; font-size: 17pt; color: #007cdc; }
+  .faixa span { color: #4a5566; font-size: 9.5pt; }
+
+  .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .modulo { border: 0.3mm solid #dbe2ee; border-radius: 3mm; padding: 4mm; }
+  .modulo h3 { font-size: 11pt; color: #345996; margin-bottom: 1.5mm; }
+  .modulo p { color: #4a5566; font-size: 9.5pt; }
+
+  .rodape { margin-top: auto; background: #1a3566; color: #fff; padding: 9mm 16mm; display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; align-items: center; }
+  .rodape h2 { color: #fff; }
+  .rodape p { color: #d6e0f2; }
+  .parceiro { background: rgb(255 255 255 / 10%); border-radius: 3mm; padding: 5mm; }
+  .parceiro strong { font-size: 12.5pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="folha">
+  <div class="capa">
+    <div class="marca"><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</div>
+    <h1>Cada lote no mapa, cada parcela no lugar.</h1>
+    <p>O mapa do empreendimento pintado pela situação, a tabela de preço com vigência, a reserva do corretor, o compromisso de compra e venda com o carnê inteiro, a correção, o acordo e o distrato. Num servidor dentro da sua loteadora.</p>
+  </div>
+  <div class="corpo">
+    <div class="dores">
+      <div class="dor"><strong>O mapa que se pinta sozinho</strong><span>Disponível, reservado, vendido, quitado: sai do que aconteceu com o lote.</span></div>
+      <div class="dor"><strong>Um lote, uma reserva</strong><span>O corretor segura o lote com prazo; vencida, cai sozinha.</span></div>
+      <div class="dor"><strong>O carnê feito pelo contrato</strong><span>Price ou SAC, com as intermediárias, cada parcela no financeiro.</span></div>
+      <div class="dor"><strong>Quem deve, quanto e desde quando</strong><span>O atraso por faixa, com a multa e a mora do dia.</span></div>
+    </div>
+    <div class="duas">
+      <div>
+        <h2>O estande</h2>
+        <ul class="lista"><li><strong>Mapa</strong> em grade ou sobre a planta.</li><li><strong>Espelho</strong> de vendas na TV, ao vivo.</li><li><strong>Tabela</strong> de preço com o m² por zona.</li><li><strong>Reserva</strong> com prazo, por corretor.</li><li><strong>Simulador</strong> em PDF para o cliente.</li><li><strong>Contrato</strong> com o quadro-resumo.</li></ul>
+      </div>
+      <div>
+        <h2>O escritório</h2>
+        <ul class="lista"><li><strong>Carnê</strong> inteiro, com as intermediárias.</li><li><strong>Correção</strong> no aniversário, pelo índice.</li><li><strong>Antecipação</strong> com o desconto dos juros.</li><li><strong>Acordo</strong> das parcelas vencidas.</li><li><strong>Notificação</strong> e distrato com a conta da lei.</li></ul>
+      </div>
+    </div>
+    <div class="faixa">
+      <div><strong>30</strong><span>dias da notificação para o comprador pagar, contados pelo sistema</span></div>
+      <div><strong>0</strong><span>dado do comprador na nuvem de ninguém: tudo no servidor da loteadora</span></div>
+      <div><strong>100 %</strong><span>das gravações registradas: quem, quando, o antes e o depois</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="folha">
+  <div class="corpo">
+    <div>
+      <h2>Os números, e o comprador até a escritura</h2>
+      <p style="color:#4a5566">O que a equipe já lança vira painel, e cada contrato tem a história inteira: as parcelas, as correções, os acordos e a cessão.</p>
+    </div>
+    <div class="modulos">
+      <div class="modulo"><h3>VGV e estoque</h3><p>O vendido pelo contrato e o resto pela tabela do dia.</p></div>
+      <div class="modulo"><h3>Velocidade</h3><p>Os lotes vendidos por mês e a venda sobre a oferta.</p></div>
+      <div class="modulo"><h3>Carteira</h3><p>O que entra mês a mês até o fim dos contratos.</p></div>
+      <div class="modulo"><h3>Inadimplência</h3><p>O vencido por faixa, do 1 ao mais de 90 dias.</p></div>
+      <div class="modulo"><h3>Previsto e recebido</h3><p>O que vencia contra o que entrou, mês a mês.</p></div>
+      <div class="modulo"><h3>Corretores</h3><p>As vendas e o valor de cada um.</p></div>
+      <div class="modulo"><h3>Cessão e quitação</h3><p>O termo de cessão, o termo de quitação e a escritura marcada.</p></div>
+      <div class="modulo"><h3>Obras e caução</h3><p>O cronograma, as medições e os lotes em garantia da prefeitura.</p></div>
+      <div class="modulo"><h3>Portal do comprador</h3><p>A segunda via com o PIX, o saldo e a obra, de casa.</p></div>
+      <div class="modulo"><h3>Parceiros de fora</h3><p>A imobiliária parceira reserva, propõe e vê a comissão.</p></div>
+    </div>
+    <div class="duas">
+      <div>
+        <h2>Os dados ficam na loteadora</h2>
+        <ul class="lista"><li><strong>Funciona sem internet</strong>: o sistema está na rede da loteadora.</li><li><strong>Banco cifrado</strong> no servidor, os anexos também.</li><li><strong>Cada um com o seu acesso</strong>: cada pessoa vê só o que o papel dela permite.</li><li><strong>Tudo registrado</strong>: quem mudou o quê, e quando, fica na auditoria.</li></ul>
+      </div>
+      <div>
+        <h2>Como começa</h2>
+        <ul class="lista"><li><strong>Demonstração</strong> com um loteamento de exemplo.</li><li><strong>Instalação</strong> do servidor e do backup pelo parceiro.</li><li><strong>Cadastro</strong> do empreendimento, das quadras, dos lotes e da tabela.</li><li><strong>Contratos antigos</strong> com as parcelas já pagas marcadas.</li><li><strong>Mensalidade</strong> com as atualizações e o suporte.</li></ul>
+      </div>
+    </div>
+    <p style="color:#4a5566; font-size: 9pt">O Kobi Loteamento não emite nota fiscal, não registra nada no cartório (o contrato, a notificação e a quitação saem em PDF) e não manda mensagem sozinho: abre a conversa com o texto pronto, e uma pessoa envia.</p>
+  </div>
+  <div class="rodape">
+    <div>
+      <h2>Veja o seu loteamento no Kobi</h2>
+      <p>Uma demonstração de meia hora, na loteadora ou por vídeo. Sem compromisso.</p>
+    </div>
+    <div class="parceiro">
+      <strong>[PARCEIRO: nome da empresa]</strong>
+      <p>Revenda autorizada Kobi Loteamento<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

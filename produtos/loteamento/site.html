@@ -1,0 +1,694 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Loteamento: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Loteamento — a loteadora com o mapa, o contrato e o carnê no mesmo lugar</title>
+  <meta name="description"
+    content="O loteamento no mapa, pintado pela situação de cada lote; a tabela de preço com vigência, a reserva com prazo, o simulador em PDF, o compromisso de compra e venda com o carnê inteiro, a correção anual, o acordo, a notificação e o distrato. Num servidor dentro da loteadora.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 656.5 656.5'%3E%3Cdefs%3E %3Cmask id%3D%22vao%22 maskUnits%3D%22userSpaceOnUse%22 x%3D%220%22 y%3D%220%22 width%3D%22656.5%22 height%3D%22600%22%3E %3Crect x%3D%220%22 y%3D%220%22 width%3D%22656.5%22 height%3D%22600%22 fill%3D%22%23fff%22 %2F%3E %3Cpath d%3D%22M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z%22 fill%3D%22%23000%22 stroke%3D%22%23000%22 stroke-width%3D%2240%22 stroke-linejoin%3D%22round%22 %2F%3E %3C%2Fmask%3E %3C%2Fdefs%3E %3Cg fill%3D%22%23007cdc%22 transform%3D%22translate(0 59.25)%22%3E %3Cpath d%3D%22M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z%22 %2F%3E %3Cpath d%3D%22M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z%22 %2F%3E %3Cpath d%3D%22M196,538 L334,538 L386.2,465 L274,465 Z%22 %2F%3E %3Cpath d%3D%22M357,538 L495,538 L517.1,465 L404.9,465 Z%22 %2F%3E %3Cpath d%3D%22M518,538 L656,538 L648,465 L535.8,465 Z%22 %2F%3E %3Cg mask%3D%22url(%23vao)%22%3E %3Cpath d%3D%22M294.3,446 L399.8,446 L438.4,392 L352,392 Z%22 %2F%3E %3Cpath d%3D%22M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z%22 %2F%3E %3Cpath d%3D%22M540.4,446 L645.9,446 L640,392 L553.6,392 Z%22 %2F%3E %3C%2Fg%3E %3Cpath class%3D%22alfinete%22 fill-rule%3D%22evenodd%22 d%3D%22M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z%22 %2F%3E %3C%2Fg%3E%3C%2Fsvg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O Início desenhado, no lugar de uma captura */
+    .painel {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 18px;
+      font-size: .9rem;
+    }
+
+    .painel__titulo {
+      font-weight: 600;
+      color: var(--texto-2);
+      margin-bottom: 12px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2px 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--fundo-2);
+      margin-bottom: 8px;
+      border-left: 4px solid var(--cor, var(--marca));
+    }
+
+    .aviso:last-child {
+      margin-bottom: 0;
+    }
+
+    .aviso strong {
+      grid-column: 2;
+    }
+
+    .aviso span {
+      grid-column: 2;
+      color: var(--texto-2);
+    }
+
+    .aviso b {
+      grid-row: 1 / span 2;
+      align-self: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--cor, var(--marca));
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      min-width: 5.5em;
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./"><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</a>
+      <nav>
+        <a href="#mapa">O mapa</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Para a loteadora que vende e financia o próprio lote</span>
+          <h1>Cada lote no mapa, cada parcela no lugar. Sem a planilha.</h1>
+          <p class="chamada">O Kobi Loteamento junta o mapa do empreendimento, a tabela de preço, a reserva do corretor, o contrato e o carnê. A situação de cada lote sai do que aconteceu com ele, e a parcela é conta a receber de verdade. Ele roda num servidor <strong>dentro da loteadora</strong>: funciona com a internet caída.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#mapa">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="painel" role="img" aria-label="Desenho da tela de início do Kobi Loteamento: o lote reservado que vence hoje, o contrato com a mora vencida, a parcela recebida e a correção do aniversário.">
+          <div class="painel__titulo">Bom dia, Leo. No loteamento:</div>
+          <div class="aviso" style="--cor: #e0a526"><b>Reserva</b><strong>Quadra A, lote 5</strong><span>Vence hoje às 18h, com a Rosa</span></div>
+          <div class="aviso" style="--cor: #c0392b"><b>Atraso</b><strong>Quadra C, lote 9</strong><span>Notificado: o prazo acabou ontem</span></div>
+          <div class="aviso"><b>Recebida</b><strong>Quadra A, lote 2</strong><span>Parcela 14 de 120: R$ 812,40</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Correção</b><strong>Quadra B, lote 4</strong><span>Aniversário: IPCA de 4,25 % aplicado</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se a sua loteadora vive isto, o Kobi foi feito para ela</h2>
+        <p class="introducao">A planilha que só uma pessoa entende, o mapa colorido à mão na parede do estande, o carnê feito no editor de texto.</p>
+        <div class="dores">
+          <div class="dor"><strong>"Esse lote ainda está livre?"</strong><span>O mapa mostra a situação de cada lote na hora: disponível, reservado, vendido, quitado, escriturado ou bloqueado. Ninguém pinta nada à mão.</span></div>
+          <div class="dor"><strong>Dois corretores, o mesmo lote</strong><span>A reserva segura o lote para um cliente, com prazo. Vencida, cai sozinha; só o gerente prorroga.</span></div>
+          <div class="dor"><strong>O carnê na planilha</strong><span>O contrato faz o carnê inteiro: a entrada, as mensais pela Price ou pela SAC e as intermediárias. Cada parcela vira conta a receber.</span></div>
+          <div class="dor"><strong>"Quanto ele me deve hoje?"</strong><span>A ficha do contrato traz o pago, o em aberto e os encargos do dia de cada parcela atrasada, com a multa e a mora calculadas.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mapa" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>Do mapa ao contrato</h2>
+          <p class="introducao">O empreendimento, as quadras e os lotes se cadastram uma vez. Daí em diante, o que muda o lote é o que acontece com ele.</p>
+          <ul class="lista">
+            <li><strong>O mapa</strong>: em grade, como a planilha, ou sobre a imagem da planta (PNG, JPG ou PDF), com cada lote desenhado por cima e a área conferida com a do cadastro.</li>
+            <li><strong>As camadas</strong>: a situação, a zona de preço e o atraso do comprador, do em dia ao mais de 90 dias.</li>
+            <li><strong>O espelho de vendas</strong> em tela cheia, para a TV do estande, que se atualiza sozinho.</li>
+            <li><strong>Unir e desmembrar</strong>: o lote de antes fica na história, e o novo diz de onde veio.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>A tabela de preço com vigência</strong>: o m² de cada zona, os fatores do lote (esquina, vista, declive) e as condições de venda. A tabela nova nunca muda o contrato assinado.</li>
+            <li><strong>O simulador</strong>: a entrada, o prazo e o sistema, com a correção estimada e a renda que cabe, em PDF para o cliente.</li>
+            <li><strong>O compromisso de compra e venda</strong> com o quadro-resumo, pelo modelo da loteadora, em PDF.</li>
+            <li><strong>O carnê inteiro</strong> nasce com o contrato, e o contrato de antes do sistema entra com as parcelas já pagas marcadas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>O que mais ele faz</h2>
+        <div class="dores">
+          <div class="dor"><strong>A correção no aniversário</strong><span>Sozinha, pelo IPCA, pelo INCC ou pelo IGP-M acumulado dos doze meses. O índice negativo não reduz a parcela.</span></div>
+          <div class="dor"><strong>Receber, antecipar, amortizar</strong><span>A baixa com o recibo; a antecipação com o desconto dos juros dos meses que faltam; a amortização que reduz as parcelas que faltam.</span></div>
+          <div class="dor"><strong>O acordo</strong><span>As parcelas vencidas viram um parcelamento novo. Se o acordo quebra, elas voltam ao atraso, abatido o que se pagou.</span></div>
+          <div class="dor"><strong>A notificação e o distrato</strong><span>A notificação do atraso em PDF, com os trinta dias para pagar. Sem pagamento, o distrato mostra a conta inteira da devolução antes de lançar.</span></div>
+          <div class="dor"><strong>Cessão, quitação e escritura</strong><span>A cessão para outro comprador com a taxa e o termo; o termo de quitação; a escritura marcada no lote.</span></div>
+          <div class="dor"><strong>O Painel do Loteamento</strong><span>O VGV, o vendido, o estoque, a carteira a receber, a inadimplência, a velocidade de vendas, o previsto contra o recebido e os corretores.</span></div>
+          <div class="dor"><strong>O informe e a DIMOB</strong><span>O que o comprador pagou no ano, para o imposto de renda dele, e a venda do lote no relatório da DIMOB.</span></div>
+          <div class="dor"><strong>As obras e a caução</strong><span>O cronograma que o registro exige, a medição do empreiteiro que vira conta a pagar, e os lotes em caução fora da venda até a prefeitura liberar.</span></div>
+          <div class="dor"><strong>O desenho do topógrafo</strong><span>O DXF, o KML ou o GeoJSON importados, o "Como chegar" de cada lote, o memorial descritivo e o loteamento no Google Earth.</span></div>
+          <div class="dor"><strong>O portal do comprador</strong><span>De casa ou do celular: o saldo do dia, a segunda via com o PIX, o pedido de antecipação, os documentos e o andamento da obra.</span></div>
+          <div class="dor"><strong>Os parceiros de fora</strong><span>A imobiliária e o corretor de fora veem o mapa ao vivo, reservam pelo prazo deles, mandam a proposta e acompanham a comissão.</span></div>
+          <div class="dor"><strong>Os clientes e a fatura</strong><span>O funil com o orçamento e o contrato de serviço, e a fatura com a PIX da loja, para o que não é venda de lote.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca" class="fundo-2">
+      <div class="largura">
+        <h2>Os dados ficam na loteadora</h2>
+        <p class="introducao">Quem comprou, quanto pagou, quem está devendo: nada disso passa pela nuvem de ninguém.</p>
+        <div class="dores">
+          <div class="dor"><strong>Funciona sem internet</strong><span>O sistema está na rede da loteadora. O WhatsApp e o backup de fora esperam a internet voltar.</span></div>
+          <div class="dor"><strong>Banco cifrado</strong><span>No servidor, os anexos também. Computador roubado ou pendrive perdido não abre os dados.</span></div>
+          <div class="dor"><strong>Cada um com o seu acesso</strong><span>Cada pessoa da equipe vê e faz só o que o papel dela permite.</span></div>
+          <div class="dor"><strong>Tudo fica registrado</strong><span>Quem mudou o quê, e quando: cada alteração fica na auditoria.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi Loteamento não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loteadora: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Nota fiscal</strong><span>O recibo não é nota: ela continua com a prefeitura ou o contador.</span></div>
+          <div class="dor"><strong>Registro no cartório</strong><span>O contrato, a notificação e a quitação saem em PDF; levá-los ao cartório continua com a loteadora. Não há registro eletrônico nem assinatura eletrônica.</span></div>
+          <div class="dor"><strong>Condomínio de lotes</strong><span>A taxa mensal da associação é outro negócio: fica de fora.</span></div>
+          <div class="dor"><strong>Robô no WhatsApp</strong><span>Ele abre a conversa com o texto pronto, e uma pessoa envia.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas</h2>
+        <div class="dores">
+          <div class="dor"><strong>O texto do contrato é pronto?</strong><span>É um ponto de partida, com o quadro-resumo que a lei pede. A loteadora põe o modelo dela, revisado pelo advogado, e o PDF sai com ele.</span></div>
+          <div class="dor"><strong>Preciso da planta desenhada?</strong><span>Não. Sem a planta, o mapa nasce em grade, quadra por quadra. A planta vem quando a loteadora quiser.</span></div>
+          <div class="dor"><strong>Tenho contratos antigos. E agora?</strong><span>O contrato de antes do sistema entra com as parcelas já pagas marcadas, e o carnê segue dali.</span></div>
+          <div class="dor"><strong>E se eu também alugo e vendo imóveis?</strong><span>Com o Kobi Imobiliária junto, os lotes disponíveis vão ao mesmo feed dos portais, como terreno.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja o seu loteamento no Kobi</h2>
+            <p>Uma demonstração de meia hora, na loteadora ou por vídeo, com um loteamento de exemplo cheio de dados. Sem compromisso.</p>
+            <a class="botao" href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20Loteamento.">Chamar no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Loteamento<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Loteamento: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<!--
+  O folder do Kobi Imobiliária: uma folha A4, frente e verso. O folder.pdf ao lado sai deste
+  arquivo (Chrome, imprimir em A4 sem margens, com os gráficos de fundo).
+  Antes de imprimir, troque os campos "PARCEIRO" do verso.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Kobi Imobiliária — folder</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9edf3; }
+  body { font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: #1f2733; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media print { html, body { background: #fff; } .folha { margin: 0; break-after: page; } }
+  h1, h2, h3 { margin: 0; line-height: 1.15; }
+  p { margin: 0; }
+
+  .capa { background: linear-gradient(160deg, #1a3566, #345996 60%, #007cdc); color: #fff; padding: 18mm 16mm 14mm; }
+  .marca { display: flex; align-items: center; gap: 4mm; font-size: 15pt; font-weight: 700; }
+  .marca svg { width: 13mm; height: 13mm; background: #fff; border-radius: 3mm; padding: 1.6mm; }
+  .capa h1 { font-size: 27pt; letter-spacing: -0.02em; margin: 12mm 0 5mm; max-width: 150mm; }
+  .capa p { font-size: 12.5pt; color: #dbe6fa; max-width: 160mm; }
+
+  .corpo { padding: 10mm 16mm; flex: 1; display: flex; flex-direction: column; gap: 7mm; }
+  .dores { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; }
+  .dor { border-left: 1.2mm solid #007cdc; padding-left: 4mm; }
+  .dor strong { display: block; font-size: 11pt; }
+  .dor span { color: #4a5566; }
+
+  h2 { font-size: 15pt; color: #1a3566; margin-bottom: 3mm; }
+  .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.2mm; }
+  .lista li { padding-left: 6mm; position: relative; color: #4a5566; }
+  .lista li strong { color: #1f2733; }
+  .lista li::before { content: ""; position: absolute; left: 0; top: 1.3mm; width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #007cdc; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  .faixa { background: #f3f6fb; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; text-align: center; }
+  .faixa strong { display: block; font-size: 17pt; color: #007cdc; }
+  .faixa span { color: #4a5566; font-size: 9.5pt; }
+
+  .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .modulo { border: 0.3mm solid #dbe2ee; border-radius: 3mm; padding: 4mm; }
+  .modulo h3 { font-size: 11pt; color: #345996; margin-bottom: 1.5mm; }
+  .modulo p { color: #4a5566; font-size: 9.5pt; }
+
+  .rodape { margin-top: auto; background: #1a3566; color: #fff; padding: 9mm 16mm; display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; align-items: center; }
+  .rodape h2 { color: #fff; }
+  .rodape p { color: #d6e0f2; }
+  .parceiro { background: rgb(255 255 255 / 10%); border-radius: 3mm; padding: 5mm; }
+  .parceiro strong { font-size: 12.5pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="folha">
+  <div class="capa">
+    <div class="marca">
+      <svg viewBox="0 0 656.5 656.5" aria-hidden="true"><g fill="#007cdc" transform="translate(0 59.25)"><path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z"/><path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z"/><path d="M235.5,431.1 c116.94,-116.8 111.79,-112.1 129.8,-118.16 c25.18,-8.45 51.48,-4.8 74.2,10.32 c3.82,2.54 44.4,42.34 111.5,109.35 L656.5,538 H402.5 L305.5,441 L208.5,538 H128.5 Z"/></g></svg>
+      Kobi Imobiliária
+    </div>
+    <h1>A temporada inteira numa tela. Mesmo com a internet caída.</h1>
+    <p>O sistema da imobiliária de praia: reservas, chaves, recibos, repasse ao proprietário, locação anual, vendas e vistoria, instalado num servidor dentro da sua loja.</p>
+  </div>
+
+  <div class="corpo">
+    <div class="dores">
+      <div class="dor"><strong>"Tem casa do dia 10 ao 17?"</strong><span>A consulta mostra só as casas livres que cabem, da mais barata à mais cara, com o total.</span></div>
+      <div class="dor"><strong>Nada de reserva dupla</strong><span>O sistema recusa a mesma casa na mesma noite, mesmo de duas máquinas ao mesmo tempo.</span></div>
+      <div class="dor"><strong>O repasse sai sozinho</strong><span>O check-out lança o que o proprietário tem a receber, com a taxa de administração.</span></div>
+      <div class="dor"><strong>A internet caiu? Tudo bem.</strong><span>O sistema está na loja. Computadores e celulares continuam pela rede da loja.</span></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>A temporada</h2>
+        <ul class="lista">
+          <li><strong>Mapa de ocupação</strong>: uma linha por casa, uma coluna por noite.</li>
+          <li><strong>Diária por estação</strong> e mínimo de noites.</li>
+          <li><strong>Pré-reserva</strong> de 24 h à espera do sinal.</li>
+          <li><strong>Voucher e recibo</strong> em PDF, com o seu CNPJ.</li>
+          <li><strong>WhatsApp</strong> com a mensagem pronta.</li>
+          <li><strong>Check-in e check-out</strong> com chaves, caução e limpeza.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>O dinheiro</h2>
+        <ul class="lista">
+          <li><strong>Repasse e extrato</strong> do proprietário em PDF.</li>
+          <li><strong>Várias moedas</strong>: dólar, euro, pesos e guarani, com troco em reais.</li>
+          <li><strong>Fechamento do caixa</strong>, com a diferença explicada.</li>
+          <li><strong>Comissões</strong> de corretor, captador e parceiro.</li>
+          <li><strong>Cobrança do aluguel</strong> com PIX copia e cola.</li>
+          <li><strong>Informe de rendimentos</strong> e relatório da DIMOB.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faixa">
+      <div><strong>1 hora</strong><span>entre um backup e o próximo, sempre cifrado</span></div>
+      <div><strong>0</strong><span>dependência da internet para trabalhar</span></div>
+      <div><strong>100 %</strong><span>das gravações registradas: quem, quando, o antes e o depois</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="folha">
+  <div class="corpo" style="padding-top: 14mm">
+    <div>
+      <h2>Não é só temporada</h2>
+      <p style="color:#4a5566">Locação anual, vendas e vistoria no mesmo sistema, com o mesmo cadastro de pessoas e imóveis.</p>
+    </div>
+    <div class="modulos">
+      <div class="modulo"><h3>Locação anual</h3><p>Contrato com fiador, caução ou seguro-fiança, aluguel todo mês, reajuste pelo IGP-M ou IPCA e repasse ao locador.</p></div>
+      <div class="modulo"><h3>Vendas</h3><p>Funil em quadro, os imóveis que servem a cada cliente, visitas com retorno, propostas e escritura.</p></div>
+      <div class="modulo"><h3>Vistoria no celular</h3><p>Ambiente por ambiente, com fotos. O laudo de saída marca em vermelho o que piorou.</p></div>
+      <div class="modulo"><h3>Painel do gerente</h3><p>O que vai virar problema, a ocupação do mês, o que a loja ganhou e cada corretor.</p></div>
+      <div class="modulo"><h3>Portal do proprietário</h3><p>O dono do imóvel vê de casa o que tem a receber, os repasses e o informe para o IR.</p></div>
+      <div class="modulo"><h3>ZAP, VivaReal e OLX</h3><p>Os anúncios saem da ficha do imóvel para os portais, só os completos e autorizados.</p></div>
+      <div class="modulo"><h3>Quadro de chaves</h3><p>Quem levou qual chave, para quê e até quando. A atrasada aparece primeiro.</p></div>
+      <div class="modulo"><h3>Corretor na rua</h3><p>Pelo 4G, com usuário e senha, quando a porta de fora está ligada.</p></div>
+      <div class="modulo"><h3>Cada um no seu papel</h3><p>Gerente, atendimento, corretor, financeiro e vistoriador: cada um vê o que é seu.</p></div>
+      <div class="modulo"><h3>Orçamento e contrato</h3><p>O funil de vendas, o orçamento em PDF e pelo WhatsApp, e o contrato com o aceite assinado na tela.</p></div>
+      <div class="modulo"><h3>Fatura e assinatura</h3><p>Parcelas com a PIX no PDF, e a cobrança que se repete emitida sozinha a cada período.</p></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>Os dados ficam na loja</h2>
+        <ul class="lista">
+          <li><strong>Banco cifrado</strong> no servidor da loja.</li>
+          <li><strong>Cada um com o seu acesso</strong>: cada pessoa vê só o que o papel dela permite.</li>
+          <li><strong>Atualização sozinha</strong>, que volta atrás se der errado.</li>
+          <li><strong>Tudo registrado</strong>: quem mudou o quê, e quando, fica na auditoria.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Como começa</h2>
+        <ul class="lista">
+          <li><strong>Demonstração</strong> com uma loja de exemplo em plena temporada.</li>
+          <li><strong>Instalação</strong> do servidor e do backup pelo parceiro.</li>
+          <li><strong>Cadastro</strong> das casas, das diárias e das reservas do caderno.</li>
+          <li><strong>Treinamento</strong> de cada papel, com a Ajuda dentro do sistema.</li>
+          <li><strong>Mensalidade</strong> com as atualizações e o suporte.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">
+    <div>
+      <h2>Veja a sua temporada no Kobi</h2>
+      <p>Uma demonstração de meia hora, na sua loja ou por vídeo. Sem compromisso.</p>
+      <p style="font-size: 8pt">Não emite nota fiscal, não conversa com Booking nem Airbnb, e não manda mensagem sozinho: uma pessoa envia.</p>
+    </div>
+    <div class="parceiro">
+      <strong>[PARCEIRO: nome da empresa]</strong>
+      <p>Revenda autorizada Kobi Imobiliária<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

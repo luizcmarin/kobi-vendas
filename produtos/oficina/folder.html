@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+  O folder do Kobi Oficina: uma folha A4, frente e verso. O folder.pdf ao lado sai deste
+  arquivo (Chrome, imprimir em A4 sem margens, com os gráficos de fundo).
+  Antes de imprimir, troque os campos "PARCEIRO" do verso.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Kobi Oficina — folder</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9edf3; }
+  body { font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: #1f2733; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media print { html, body { background: #fff; } .folha { margin: 0; break-after: page; } }
+  h1, h2, h3 { margin: 0; line-height: 1.15; }
+  p { margin: 0; }
+
+  .capa { background: linear-gradient(160deg, #1a3566, #345996 60%, #007cdc); color: #fff; padding: 18mm 16mm 14mm; }
+  .marca { display: flex; align-items: center; gap: 4mm; font-size: 15pt; font-weight: 700; }
+  .marca svg { width: 13mm; height: 13mm; background: #fff; border-radius: 3mm; padding: 1.4mm; }
+  .capa h1 { font-size: 27pt; letter-spacing: -0.02em; margin: 12mm 0 5mm; max-width: 150mm; }
+  .capa p { font-size: 12.5pt; color: #dbe6fa; max-width: 160mm; }
+
+  .corpo { padding: 10mm 16mm; flex: 1; display: flex; flex-direction: column; gap: 7mm; }
+  .dores { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; }
+  .dor { border-left: 1.2mm solid #007cdc; padding-left: 4mm; }
+  .dor strong { display: block; font-size: 11pt; }
+  .dor span { color: #4a5566; }
+
+  h2 { font-size: 15pt; color: #1a3566; margin-bottom: 3mm; }
+  .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.2mm; }
+  .lista li { padding-left: 6mm; position: relative; color: #4a5566; }
+  .lista li strong { color: #1f2733; }
+  .lista li::before { content: ""; position: absolute; left: 0; top: 1.3mm; width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #007cdc; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  .faixa { background: #f3f6fb; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; text-align: center; }
+  .faixa strong { display: block; font-size: 17pt; color: #007cdc; }
+  .faixa span { color: #4a5566; font-size: 9.5pt; }
+
+  .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .modulo { border: 0.3mm solid #dbe2ee; border-radius: 3mm; padding: 4mm; }
+  .modulo h3 { font-size: 11pt; color: #345996; margin-bottom: 1.5mm; }
+  .modulo p { color: #4a5566; font-size: 9.5pt; }
+
+  .rodape { margin-top: auto; background: #1a3566; color: #fff; padding: 9mm 16mm; display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; align-items: center; }
+  .rodape h2 { color: #fff; }
+  .rodape p { color: #d6e0f2; }
+  .parceiro { background: rgb(255 255 255 / 10%); border-radius: 3mm; padding: 5mm; }
+  .parceiro strong { font-size: 12.5pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="folha">
+  <div class="capa">
+    <div class="marca"><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <circle cx="575" cy="18" r="40" fill="none" stroke="#000" stroke-width="46" /> </mask> <mask id="botoes" maskUnits="userSpaceOnUse" x="400" y="270" width="220" height="290"> <rect x="400" y="270" width="220" height="290" fill="#fff" /> <g stroke="#000" stroke-width="12" stroke-linecap="round" fill="none"> <path d="M510,296 V388" /> <path d="M418,392 H602" /> </g> <rect x="499" y="314" width="22" height="48" rx="11" fill="#000" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path mask="url(#vao)" d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <g class="pendurado"> <g fill="none" stroke="#007cdc" stroke-width="20" stroke-linecap="round"> <circle cx="575" cy="18" r="40" /> <path d="M603,46 C640,110 518,190 510,287" /> </g> <rect x="420" y="287" width="180" height="250" rx="90" mask="url(#botoes)" /> </g> </g></svg> Kobi Oficina</div>
+    <h1>Todo aparelho com dono, prazo e história.</h1>
+    <p>A entrada com o termo assinado, o orçamento que o cliente decide item por item, a peça encomendada, a garantia com o prazo da lei e o laudo da entrega. Num servidor dentro da sua loja.</p>
+  </div>
+  <div class="corpo">
+    <div class="dores">
+      <div class="dor"><strong>Nada de discussão na retirada</strong><span>O que veio junto e como chegou, com foto e assinatura.</span></div>
+      <div class="dor"><strong>O orçamento registrado</strong><span>O cliente aprova a tela e recusa a bateria, e a decisão fica.</span></div>
+      <div class="dor"><strong>Nenhum aparelho esquecido</strong><span>O pronto que ninguém buscou aparece, com cada aviso dado.</span></div>
+      <div class="dor"><strong>A garantia na tela</strong><span>Conta da entrega, e o retorno diz sozinho se ainda vale.</span></div>
+    </div>
+    <div class="duas">
+      <div>
+        <h2>O balcão</h2>
+        <ul class="lista"><li><strong>Entrada</strong> com o defeito nas palavras do cliente.</li><li><strong>Termo</strong> assinado com o dedo, na tela.</li><li><strong>Recibo</strong> de entrada em PDF.</li><li><strong>Decisão</strong> do cliente, linha por linha.</li><li><strong>Sinal</strong> antes da peça encomendada.</li><li><strong>Retirada</strong> com o recibo e o laudo.</li></ul>
+      </div>
+      <div>
+        <h2>A bancada</h2>
+        <ul class="lista"><li><strong>Diagnóstico</strong> e linhas do orçamento.</li><li><strong>Complemento</strong> quando aparece mais uma coisa.</li><li><strong>Peças</strong> com a saída pela linha aprovada.</li><li><strong>Encomenda</strong> com a previsão de chegada.</li><li><strong>Teste de saída</strong> com os itens da loja.</li></ul>
+      </div>
+    </div>
+    <div class="faixa">
+      <div><strong>90</strong><span>dias de piso na garantia, o prazo da lei</span></div>
+      <div><strong>0</strong><span>dado do cliente na nuvem de ninguém: tudo no servidor da loja</span></div>
+      <div><strong>100 %</strong><span>das gravações registradas: quem, quando, o antes e o depois</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="folha">
+  <div class="corpo" style="padding-top: 14mm">
+    <div>
+      <h2>Os números, e o cliente depois da entrega</h2>
+      <p style="color:#4a5566">O que a equipe já lança vira relatório, e o cliente tem o orçamento, o contrato e a fatura no mesmo lugar.</p>
+    </div>
+    <div class="modulos">
+      <div class="modulo"><h3>Bancada</h3><p>As ordens por situação e o tempo médio de cada etapa.</p></div>
+      <div class="modulo"><h3>Técnicos</h3><p>As abertas, as prontas e as atrasadas de cada um.</p></div>
+      <div class="modulo"><h3>Orçamento</h3><p>O aprovado, o recusado e o valor médio.</p></div>
+      <div class="modulo"><h3>Faturado</h3><p>As ordens entregues, mês a mês.</p></div>
+      <div class="modulo"><h3>Margem</h3><p>O que as peças renderam, só para o gerente.</p></div>
+      <div class="modulo"><h3>Retorno</h3><p>Quantos voltaram, e quantos em garantia.</p></div>
+      <div class="modulo"><h3>Orçamento e contrato</h3><p>O funil de vendas, o orçamento em PDF e pelo WhatsApp, e o contrato com o aceite assinado na tela.</p></div>
+      <div class="modulo"><h3>Fatura e assinatura</h3><p>Parcelas com a PIX no PDF, e a cobrança que se repete emitida sozinha a cada período.</p></div>
+    </div>
+    <div class="duas">
+      <div>
+        <h2>Os dados ficam na loja</h2>
+        <ul class="lista"><li><strong>Funciona sem internet</strong>: o sistema está na rede da loja.</li><li><strong>Banco cifrado</strong> no servidor, os anexos também.</li><li><strong>Cada um com o seu acesso</strong>: cada pessoa vê só o que o papel dela permite.</li><li><strong>Tudo registrado</strong>: quem mudou o quê, e quando, fica na auditoria.</li></ul>
+      </div>
+      <div>
+        <h2>Como começa</h2>
+        <ul class="lista"><li><strong>Demonstração</strong> com uma assistência de exemplo.</li><li><strong>Instalação</strong> do servidor e do backup pelo parceiro.</li><li><strong>Cadastro</strong> das peças, dos serviços e dos parâmetros.</li><li><strong>Treinamento</strong> da equipe, com a Ajuda dentro do sistema.</li><li><strong>Mensalidade</strong> com as atualizações e o suporte.</li></ul>
+      </div>
+    </div>
+    <p style="color:#4a5566; font-size: 9pt">O Kobi Oficina não emite nota fiscal (o recibo e o laudo não são nota) e não manda mensagem sozinho: abre a conversa com o texto pronto, e uma pessoa envia.</p>
+  </div>
+  <div class="rodape">
+    <div>
+      <h2>Veja a sua assistência no Kobi</h2>
+      <p>Uma demonstração de meia hora, na loja ou por vídeo. Sem compromisso.</p>
+    </div>
+    <div class="parceiro">
+      <strong>[PARCEIRO: nome da empresa]</strong>
+      <p>Revenda autorizada Kobi Oficina<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

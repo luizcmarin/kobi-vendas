@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A marca do Kobi RH, irmã das do Kobi Imobiliária e do Kobi Pousada: o mesmo K no azul da marca kobi-kubo, numa caixa
+     quadrada para servir de ícone. A haste de cima e a diagonal são as dos irmãos; a perna de baixo, que no imob é um
+     telhado e na pousada o sol na linha do mar, aqui é uma pessoa (a cabeça e os ombros). O movimento (a cada 8 s a pessoa
+     se abaixa e torna a se erguer, e o resto do K corre no sentido da diagonal) começa e termina na marca parada: o quadro
+     zero é o que o favicon e o .ico mostram (rh/marca/). Quem pede menos movimento vê a marca parada, e o endereço com
+     #parada também (o :target; o painel das telas de conta pede). -->
+<svg id="parada" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656.5 656.5" width="656" height="656">
+  <title>Kobi RH</title>
+  <style>
+    .haste, .diagonal { animation: correr 8s ease-in-out infinite; }
+    .ombros { animation: erguer 8s infinite; }
+    .cabeca { animation: erguer 8s infinite; animation-delay: 0.12s; }
+    @keyframes correr {
+      0%, 4%, 18%, 100% { transform: translate(0, 0); }
+      11% { transform: translate(18px, -18px); }
+    }
+    @keyframes erguer {
+      0%, 4% { transform: translate(0, 0); animation-timing-function: ease-in; }
+      10% { transform: translate(0, 36px); animation-timing-function: ease-out; }
+      20%, 100% { transform: translate(0, 0); }
+    }
+    #parada:target :is(.haste, .diagonal, .ombros, .cabeca) { animation: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .haste, .diagonal, .ombros, .cabeca { animation: none; }
+    }
+  </style>
+  <g fill="#007cdc" transform="translate(0 59.25)">
+    <path class="haste" d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+    <path class="diagonal" d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+    <path class="ombros" d="M290,538 A176,176 0 0 1 642,538 Z" />
+    <circle class="cabeca" cx="466" cy="272" r="70" />
+  </g>
+</svg>

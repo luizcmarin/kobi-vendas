@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A marca do Kobi Oficina, irmã das do Kobi Imobiliária, do Kobi Pousada, do Kobi RH e do Kobi Náutica: o mesmo K no azul da
+     marca kobi-kubo, numa caixa quadrada para servir de ícone. A haste de cima e a diagonal são as dos irmãos; no lugar da perna
+     de baixo, um mouse pendurado pelo cabo, que dá uma laçada na ponta da perna de cima do K (o vão em volta do cabo, recortado
+     na perna, mostra por onde ele passa). O movimento (a cada 8 s o mouse balança no cabo e para) começa e termina na marca
+     parada: o quadro zero é o que o favicon e o .ico mostram. Quem pede menos movimento vê a marca parada, e o endereço com
+     #parada também (o :target). -->
+<svg id="parada" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656.5 656.5" width="656" height="656">
+  <title>Kobi Oficina</title>
+  <style>
+    .pendurado {
+      transform-box: view-box;
+      transform-origin: 575px 77.25px;
+      animation: balancar 8s ease-in-out infinite;
+    }
+    @keyframes balancar {
+      0%, 4%, 30%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(6deg); }
+      17% { transform: rotate(-4deg); }
+      23% { transform: rotate(1.5deg); }
+    }
+    #parada:target .pendurado { animation: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .pendurado { animation: none; }
+    }
+  </style>
+  <defs>
+    <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600">
+      <rect x="0" y="0" width="656.5" height="600" fill="#fff" />
+      <circle cx="575" cy="18" r="40" fill="none" stroke="#000" stroke-width="46" />
+    </mask>
+    <mask id="botoes" maskUnits="userSpaceOnUse" x="400" y="270" width="220" height="290">
+      <rect x="400" y="270" width="220" height="290" fill="#fff" />
+      <g stroke="#000" stroke-width="12" stroke-linecap="round" fill="none">
+        <path d="M510,296 V388" />
+        <path d="M418,392 H602" />
+      </g>
+      <rect x="499" y="314" width="22" height="48" rx="11" fill="#000" />
+    </mask>
+  </defs>
+  <g fill="#007cdc" transform="translate(0 59.25)">
+    <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+    <path mask="url(#vao)" d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+    <g class="pendurado">
+      <g fill="none" stroke="#007cdc" stroke-width="20" stroke-linecap="round">
+        <circle cx="575" cy="18" r="40" />
+        <path d="M603,46 C640,110 518,190 510,287" />
+      </g>
+      <rect x="420" y="287" width="180" height="250" rx="90" mask="url(#botoes)" />
+    </g>
+  </g>
+</svg>

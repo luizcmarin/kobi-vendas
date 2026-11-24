@@ -1,0 +1,542 @@
+<!doctype html>
+<!--
+  A apresentação de venda do Kobi Loteamento. Abra no navegador: F põe em tela cheia, as setas passam.
+  Antes de mostrar, troque os campos "PARCEIRO" do último slide.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kobi Loteamento — apresentação</title>
+<style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 1280px 720px;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: #0c1322;
+    }
+
+    body {
+      font: 24px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      color: #1f2733;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      padding: 64px 80px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .slide.atual {
+      display: flex;
+    }
+
+    @media screen {
+      .slide {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(var(--escala, 1));
+      }
+    }
+
+    @media print {
+      .slide {
+        display: flex;
+        break-after: page;
+      }
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.12;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 46px;
+      color: #1a3566;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .sub {
+      color: #4a5566;
+      font-size: 26px;
+      max-width: 980px;
+      margin-bottom: 36px;
+    }
+
+    .rodape {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: #8a96a8;
+    }
+
+    .rodape span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rodape svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .escura {
+      background: linear-gradient(150deg, #1a3566, #345996 60%, #007cdc);
+      color: #fff;
+    }
+
+    .escura h1,
+    .escura h2 {
+      color: #fff;
+    }
+
+    .escura .sub,
+    .escura p {
+      color: #dbe6fa;
+    }
+
+    .escura .rodape {
+      color: #b8ccff;
+    }
+
+    .capa {
+      justify-content: center;
+    }
+
+    .capa .logo {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 56px;
+    }
+
+    .capa .logo svg {
+      width: 96px;
+      height: 96px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 12px;
+    }
+
+    .capa h1 {
+      font-size: 68px;
+      letter-spacing: -0.02em;
+      max-width: 1050px;
+      margin-bottom: 28px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(var(--colunas, 2), 1fr);
+    }
+
+    .cartao {
+      background: #f3f6fb;
+      border-radius: 18px;
+      padding: 28px 30px;
+    }
+
+    .cartao strong {
+      display: block;
+      font-size: 27px;
+      color: #1f2733;
+      margin-bottom: 6px;
+    }
+
+    .cartao span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .escura .cartao {
+      background: rgb(255 255 255 / 10%);
+    }
+
+    .escura .cartao strong {
+      color: #fff;
+    }
+
+    .escura .cartao span {
+      color: #dbe6fa;
+    }
+
+    .dor {
+      border-left: 8px solid #007cdc;
+    }
+
+    .grande {
+      font-size: 40px;
+      font-weight: 700;
+      color: #1a3566;
+      max-width: 1080px;
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .pilares {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pilar {
+      border-top: 6px solid #007cdc;
+      padding-top: 18px;
+    }
+
+    .pilar strong {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pilar span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .avisos {
+      border: 1px solid #dbe2ee;
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 8px 30px rgb(16 32 64 / 10%);
+      display: grid;
+      gap: 10px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #f3f6fb;
+      border-left: 6px solid var(--cor, #007cdc);
+      font-size: 21px;
+    }
+
+    .aviso b {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--cor, #007cdc);
+    }
+
+    .aviso span {
+      color: #4a5566;
+      font-size: 19px;
+    }
+
+    .notas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .notas div {
+      font-size: 20px;
+      color: #4a5566;
+    }
+
+    .notas strong {
+      color: #1f2733;
+      display: block;
+      font-size: 22px;
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(var(--colunas, 3), 1fr);
+      gap: 20px;
+    }
+
+    .papel {
+      border: 2px solid #dbe2ee;
+      border-radius: 16px;
+      padding: 22px 24px;
+    }
+
+    .papel strong {
+      color: #345996;
+      font-size: 26px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .papel span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .destaque {
+      margin-top: 28px;
+      background: #fff6df;
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 22px;
+    }
+
+    table.comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 22px;
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #dbe2ee;
+    }
+
+    .comparacao thead th {
+      background: #1a3566;
+      color: #fff;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: #8a96a8;
+    }
+
+    .comparacao td:last-child {
+      font-weight: 600;
+      color: #1a3566;
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      counter-reset: passo;
+    }
+
+    .passo {
+      counter-increment: passo;
+    }
+
+    .passo::before {
+      content: counter(passo);
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #007cdc;
+      color: #fff;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .passo strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    .passo span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .lado {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 36px;
+    }
+
+    .lado h3 {
+      font-size: 26px;
+      color: #345996;
+      margin-bottom: 10px;
+    }
+
+    .lado ul {
+      margin: 0;
+      padding-left: 26px;
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .contato {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .contato h1 {
+      font-size: 58px;
+      margin-bottom: 20px;
+    }
+
+    .parceiro {
+      background: rgb(255 255 255 / 12%);
+      border-radius: 22px;
+      padding: 36px;
+      font-size: 24px;
+    }
+
+    .parceiro strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .dica {
+      position: fixed;
+      right: 16px;
+      bottom: 12px;
+      color: #8a96a8;
+      font-size: 13px;
+    }
+
+    @media print {
+      .dica {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="slide escura capa">
+    <div class="logo"><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</div><h1>Cada lote no mapa, cada parcela no lugar.</h1><p class="sub">A loteadora do estande ao carnê, num sistema só, instalado dentro do seu escritório.</p>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>1</span></div>
+  </section>
+  <section class="slide ">
+    <h2>A loteadora hoje</h2><p class="sub">A planilha de uma pessoa só, o mapa pintado à mão, o carnê feito no editor de texto.</p><div class="grade" style="--colunas:2"><div class="cartao dor"><strong>O lote vendido duas vezes</strong><span>Dois corretores, o mesmo cliente na mesma semana, e ninguém sabia da reserva do outro.</span></div>
+      <div class="cartao dor"><strong>O mapa da parede</strong><span>Pintado à mão no estande, sempre uma venda atrasado.</span></div>
+      <div class="cartao dor"><strong>O carnê na planilha</strong><span>A correção do aniversário feita à mão, parcela por parcela.</span></div>
+      <div class="cartao dor"><strong>“Quanto ele deve?”</strong><span>A multa e os juros calculados na calculadora, cada um de um jeito.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>2</span></div>
+  </section>
+  <section class="slide ">
+    <p class="grande">O Kobi Loteamento junta o mapa, a tabela de preço, a reserva, o contrato e o carnê num sistema só, num servidor dentro da sua loteadora.</p><div class="pilares"><div class="pilar"><strong>Na loteadora</strong><span>Funciona com a internet caída. O WhatsApp e o backup de fora esperam a internet voltar.</span></div><div class="pilar"><strong>A situação é fato</strong><span>O lote fica vendido porque tem contrato, e reservado porque tem reserva em vigor. Ninguém pinta nada.</span></div><div class="pilar"><strong>Com a lei</strong><span>O quadro-resumo da Lei 6.766, a multa no teto do CDC, os trinta dias da notificação e a conta do distrato.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>3</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O mapa</h2><div class="grade" style="--colunas:2"><div class="cartao "><strong>Em grade ou na planta</strong><span>Sem planta, as quadras em fileiras. Com ela (PNG, JPG ou PDF), cada lote desenhado por cima.</span></div>
+      <div class="cartao "><strong>As camadas</strong><span>A situação, a zona de preço e o atraso do comprador.</span></div>
+      <div class="cartao "><strong>O espelho na TV</strong><span>O mapa em tela cheia no estande, que se atualiza sozinho.</span></div>
+      <div class="cartao "><strong>O desenho do topógrafo</strong><span>O DXF, o KML ou o GeoJSON, o "Como chegar" e o memorial descritivo.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>4</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O preço e a reserva</h2><p class="sub">A tabela vale de um dia em diante, e nunca muda o contrato assinado.</p><div class="grade" style="--colunas:3"><div class="cartao "><strong>A tabela de preço</strong><span>O m² de cada zona, os fatores do lote e as condições de venda.</span></div>
+      <div class="cartao "><strong>A reserva</strong><span>O corretor segura o lote para um cliente, com prazo. Vencida, cai sozinha.</span></div>
+      <div class="cartao "><strong>O simulador</strong><span>A entrada, o prazo e o sistema, com a correção estimada, em PDF.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>5</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O contrato e o carnê</h2><div class="grade" style="--colunas:2"><div class="cartao "><strong>O compromisso</strong><span>Com o quadro-resumo, pelo modelo da loteadora, em PDF.</span></div>
+      <div class="cartao "><strong>O carnê inteiro</strong><span>A entrada, as mensais pela Price ou pela SAC e as intermediárias.</span></div>
+      <div class="cartao "><strong>O contrato antigo</strong><span>Entra com as parcelas já pagas marcadas.</span></div>
+      <div class="cartao "><strong>A correção</strong><span>No aniversário, sozinha, pelo IPCA, pelo INCC ou pelo IGP-M.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>6</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Receber</h2><div class="grade" style="--colunas:3"><div class="cartao "><strong>A baixa</strong><span>O recibo, com a multa e a mora do dia já calculadas.</span></div>
+      <div class="cartao "><strong>A antecipação</strong><span>As parcelas futuras com o desconto dos juros dos meses que faltam.</span></div>
+      <div class="cartao "><strong>A amortização</strong><span>Um valor solto que reduz as parcelas que faltam.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>7</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O atraso</h2><p class="sub">Cada contrato sabe se está em dia, atrasado, notificado ou com a mora vencida.</p><div class="grade" style="--colunas:3"><div class="cartao "><strong>O acordo</strong><span>As vencidas viram um parcelamento novo; quebrado, voltam ao atraso.</span></div>
+      <div class="cartao "><strong>A notificação</strong><span>Em PDF, para o cartório, com os trinta dias para pagar.</span></div>
+      <div class="cartao "><strong>O distrato</strong><span>A conta inteira da devolução antes de lançar, e o lote volta à venda.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>8</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Até a escritura</h2><div class="grade" style="--colunas:2"><div class="cartao "><strong>A cessão</strong><span>O contrato passa a outro comprador, com a taxa e o termo.</span></div>
+      <div class="cartao "><strong>A quitação</strong><span>O termo que, com o compromisso, serve de título para o registro.</span></div>
+      <div class="cartao "><strong>A escritura</strong><span>O dia e o cartório, e o lote fica escriturado no mapa.</span></div>
+      <div class="cartao "><strong>O portal do comprador</strong><span>A segunda via com o PIX, o saldo, o pedido de antecipação e a obra, de casa.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>9</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Os números</h2><div class="grade" style="--colunas:3"><div class="cartao "><strong>VGV e estoque</strong><span>O vendido pelo contrato e o resto pela tabela do dia.</span></div>
+      <div class="cartao "><strong>A velocidade</strong><span>Os lotes vendidos por mês e a venda sobre a oferta.</span></div>
+      <div class="cartao "><strong>A carteira</strong><span>O que entra mês a mês até o fim dos contratos.</span></div>
+      <div class="cartao "><strong>A inadimplência</strong><span>O vencido por faixa, do 1 ao mais de 90 dias.</span></div>
+      <div class="cartao "><strong>Previsto e recebido</strong><span>O que vencia contra o que entrou.</span></div>
+      <div class="cartao "><strong>As obras e os parceiros</strong><span>O cronograma com as medições, e a imobiliária parceira com a comissão dela.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>10</span></div>
+  </section>
+  <section class="slide escura">
+    <h2>Os dados ficam na loteadora</h2><p class="sub">Quem comprou e quanto pagou: nada disso passa pela nuvem de ninguém.</p><div class="grade" style="--colunas:3"><div class="cartao "><strong>Banco cifrado</strong><span>Os anexos também.</span></div>
+      <div class="cartao "><strong>Cada um com o seu acesso</strong><span>Cada pessoa da equipe vê e faz só o que o papel dela permite.</span></div>
+      <div class="cartao "><strong>Tudo fica registrado</strong><span>Quem mudou o quê, e quando: cada alteração fica na auditoria.</span></div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>11</span></div>
+  </section>
+  <section class="slide escura">
+    <div class="contato"><div><h1>Vamos ver o seu loteamento no Kobi?</h1><p style="font-size:26px">Meia hora, na loteadora ou por vídeo, com um loteamento de exemplo cheio de dados.</p></div><div class="parceiro"><strong>[PARCEIRO: nome da empresa]</strong>Revenda autorizada Kobi Loteamento<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</div></div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true"><defs> <mask id="vao" maskUnits="userSpaceOnUse" x="0" y="0" width="656.5" height="600"> <rect x="0" y="0" width="656.5" height="600" fill="#fff" /> <path d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z" fill="#000" stroke="#000" stroke-width="40" stroke-linejoin="round" /> </mask> </defs> <g fill="#007cdc" transform="translate(0 59.25)"> <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" /> <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" /> <path d="M196,538 L334,538 L386.2,465 L274,465 Z" /> <path d="M357,538 L495,538 L517.1,465 L404.9,465 Z" /> <path d="M518,538 L656,538 L648,465 L535.8,465 Z" /> <g mask="url(#vao)"> <path d="M294.3,446 L399.8,446 L438.4,392 L352,392 Z" /> <path d="M417.4,446 L522.8,446 L539.2,392 L452.8,392 Z" /> <path d="M540.4,446 L645.9,446 L640,392 L553.6,392 Z" /> </g> <path class="alfinete" fill-rule="evenodd" d="M446,500 L386.1,340.5 A64,64 0 1 1 505.9,340.5 Z M446,294 a24,24 0 1 0 0,48 a24,24 0 1 0 0,-48 Z" /> </g></svg> Kobi Loteamento</span><span>12</span></div>
+  </section>
+  <div class="dica">← → passam os slides · F tela cheia</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    let atual = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+    function mostrar(i) {
+      atual = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => {
+        s.classList.toggle('atual', n === atual);
+      });
+      history.replaceState(null, '', `#${atual + 1}`);
+    }
+    function ajustar() {
+      const escala = Math.min(innerWidth / 1280, innerHeight / 720);
+      document.documentElement.style.setProperty('--escala', escala);
+    }
+    addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) mostrar(atual + 1);
+      else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) mostrar(atual - 1);
+      else if (e.key === 'Home') mostrar(0);
+      else if (e.key === 'End') mostrar(slides.length - 1);
+      else if (e.key === 'f') document.documentElement.requestFullscreen?.();
+    });
+    addEventListener('click', (e) => mostrar(atual + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    addEventListener('resize', ajustar);
+    ajustar();
+    mostrar(atual);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,927 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi RH: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi RH — Gestão de equipes para pequenas empresas</title>
+  <meta name="description"
+    content="A ficha da equipe, as férias, o banco de horas, os exames, o EPI assinado, os acidentes e o custo real num sistema só, instalado dentro da empresa.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656.5 656.5'%3E%3Cg fill='%23007cdc' transform='translate%280 59.25%29'%3E%3Cpath d='M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z' /%3E%3Cpath d='M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z' /%3E%3Cpath d='M290,538 A176,176 0 0 1 642,538 Z' /%3E%3Ccircle cx='466' cy='272' r='70' /%3E%3C/g%3E%3C/svg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O Início desenhado, no lugar de uma captura */
+    .painel {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 18px;
+      font-size: .9rem;
+    }
+
+    .painel__titulo {
+      font-weight: 600;
+      color: var(--texto-2);
+      margin-bottom: 12px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2px 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--fundo-2);
+      margin-bottom: 8px;
+      border-left: 4px solid var(--cor, var(--marca));
+    }
+
+    .aviso:last-child {
+      margin-bottom: 0;
+    }
+
+    .aviso strong {
+      grid-column: 2;
+    }
+
+    .aviso span {
+      grid-column: 2;
+      color: var(--texto-2);
+    }
+
+    .aviso b {
+      grid-row: 1 / span 2;
+      align-self: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--cor, var(--marca));
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      min-width: 5.5em;
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./">
+        <svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>
+        Kobi RH
+      </a>
+      <nav>
+        <a href="#equipe">A equipe</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Para a empresa pequena, com a folha na contabilidade e o RH numa pessoa só</span>
+          <h1>A equipe inteira num lugar só. E o que vence é avisado antes.</h1>
+          <p class="chamada">O Kobi RH junta a ficha de cada colaborador, as férias, o banco de horas, os exames, o EPI
+            assinado, os acidentes e o custo real da equipe. Ele roda num servidor <strong>dentro da empresa</strong>: o
+            salário e o atestado de ninguém vão para a nuvem.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#equipe">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="painel" role="img"
+          aria-label="Desenho da tela de início do Kobi RH: a CAT por emitir, as férias que vencem, o banco de horas a pagar e o exame que vence.">
+          <div class="painel__titulo">Bom dia, Beatriz. O que pede atenção hoje:</div>
+          <div class="aviso" style="--cor: #c0392b"><b>CAT</b><strong>Acidente na cozinha, ontem</strong><span>Prazo da
+              comunicação: hoje</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Férias</b><strong>Rogério B., 2º período</strong><span>Gozar até
+              o fim do mês que vem, sem nada programado</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Banco</b><strong>Camila W., 6 h 30</strong><span>Crédito vence
+              em 9 dias: compensar ou pagar</span></div>
+          <div class="aviso"><b>ASO</b><strong>Jéssica M., periódico</strong><span>Vence em 18 dias</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se o RH da sua empresa vive isto, o Kobi foi feito para ele</h2>
+        <p class="introducao">A pasta de cada um no armário, a planilha das férias, o caderno das horas extras e o
+          lembrete do exame no calendário de alguém. Cada um funciona sozinho, e ninguém vê o que vence.</p>
+        <div class="dores">
+          <div class="dor"><strong>"Quando vencem as férias da Jéssica?"</strong><span>O Kobi conta o período desde a
+              admissão, mostra o saldo e avisa antes do prazo, quando as férias passariam a se pagar em dobro.</span>
+          </div>
+          <div class="dor"><strong>O exame que venceu sem ninguém ver</strong><span>O ASO, a CTPS e o certificado de NR
+              entram com a validade, e a tela mostra o que vence em 30, 60 e 90 dias.</span></div>
+          <div class="dor"><strong>"Cadê o papel do EPI assinado?"</strong><span>O colaborador assina na tela, com o
+              dedo. O termo vira PDF com a assinatura e fica na ficha dele.</span></div>
+          <div class="dor"><strong>"Quanto custa de verdade um garçom?"</strong><span>O custo real soma o salário, os
+              benefícios, os encargos e as provisões (férias, 13º, multa do FGTS), pelos percentuais da empresa.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="equipe" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>A ficha de cada um, com o que a CLT pede</h2>
+          <p class="introducao">Uma ficha por vínculo, com uma aba para cada assunto. O sistema confere as regras e
+            avisa; o RH registra o que aconteceu.</p>
+          <ul class="lista">
+            <li><strong>Colaboradores</strong>: o cargo (com os 2.694 títulos da CBO), o salário, os benefícios, a
+              jornada e o gestor. Quem sai não se apaga; quem volta ganha um vínculo novo.</li>
+            <li><strong>Férias</strong>: o período sai da admissão, as faltas encolhem o direito, e as partes, o aviso e
+              o abono seguem as regras da CLT, que a empresa pode ajustar.</li>
+            <li><strong>Banco de horas</strong>: o crédito, a folga que compensa e o que se pagou, com o prazo do acordo
+              e o aviso do que vai vencer.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>Ausências</strong>: a falta, o atestado e a folga combinada, em horas, que alimentam o
+              absenteísmo.</li>
+            <li><strong>Documentos com validade</strong>: o ASO (os cinco tipos), a CTPS, o contrato e os certificados,
+              guardados cifrados no servidor. O painel é o calendário dos exames.</li>
+            <li><strong>Admissão e desligamento por checklist</strong>: o modelo da empresa, e cada passo marcado na
+              ficha, para nada ficar para trás.</li>
+            <li><strong>Organograma</strong> desenhado pelo gestor de cada um.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>Da segurança do trabalho ao clima da equipe</h2>
+        <p class="introducao">O que costuma morar em cinco planilhas e três pastas, num sistema só, com os números
+          saindo
+          sozinhos do que o RH já anotou.</p>
+        <div class="grade">
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg></div>
+            <h3>EPI com termo assinado</h3>
+            <p>A entrega com o CA de cada item, e o colaborador assina na tela. O PDF leva a assinatura, o aparelho e
+              quem conduziu, e não se altera depois.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 9v4M12 17h.01" />
+                <path d="M10.3 3.9L2 18a2 2 0 0 0 1.7 3h16.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" />
+              </svg></div>
+            <h3>Acidente e CAT</h3>
+            <p>O registro do acidente, o prazo da CAT contado sozinho e o aviso quando atrasa. Na volta do afastamento,
+              a ficha mostra a garantia de doze meses.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18" />
+                <path d="M7 15l4-4 3 3 5-6" />
+              </svg></div>
+            <h3>Indicadores</h3>
+            <p>Rotatividade, absenteísmo, custo real e produtividade (a receita e a despesa por cabeça), mês a mês, sem
+              fórmula de planilha. A simulação diz quanto custa contratar mais um, e tudo sai em PDF ou na planilha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+              </svg></div>
+            <h3>Desempenho, 9-box e 360</h3>
+            <p>A avaliação por competência (o CHA), a 9-box do ciclo e a visão 360: o gestor, o colega, o liderado, o
+              cliente interno e a autoavaliação lado a lado. O plano de carreira diz quem já pode subir.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+              </svg></div>
+            <h3>Clima anônimo de verdade</h3>
+            <p>A resposta não guarda quem respondeu, por construção. A favorabilidade por dimensão e rodada a rodada
+              mostra
+              o que melhora e o que pede atenção.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="10" cy="10" r="6" />
+                <path d="M14.5 14.5L21 21" />
+              </svg></div>
+            <h3>Recrutamento e treinamentos</h3>
+            <p>O funil de cada vaga, o prazo e o custo por contratação; os treinamentos com as horas e o investimento,
+              que entram no custo sozinhos.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M9 10h6M9 14h6M9 18h3" />
+              </svg></div>
+            <h3>Orçamento, proposta e contrato</h3>
+            <p>Os clientes e o funil de vendas, com as atividades de cada negócio. O orçamento sai em PDF e pelo
+              WhatsApp, no idioma do cliente; o serviço que a casa vende para fora ganham a proposta com a carta da casa; o contrato
+              tem o aceite assinado na tela, com o dedo.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
+                <path d="M9 8h6M9 12h6" />
+              </svg></div>
+            <h3>Fatura e assinatura</h3>
+            <p>A fatura em parcelas, com a PIX da casa no PDF, sai com um clique do orçamento aceito ou do contrato. A
+              cobrança que se repete emite a de cada período sozinha. Cancela-se, nunca se apaga.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Cada um vê o que é seu</h2>
+        <p class="introducao">Salário, falta, atestado e avaliação são dados sensíveis. A permissão é por papel e vale
+          no
+          servidor, e toda gravação fica registrada: quem, quando, o antes e o depois.</p>
+        <div class="papeis">
+          <div class="papel"><strong>Gerente</strong><span>Vê tudo, cuida dos usuários, dos dados da empresa, do backup
+              e da licença.</span></div>
+          <div class="papel"><strong>RH</strong><span>A equipe inteira: a ficha, as férias, as horas, a segurança, os
+              indicadores e o desenvolvimento.</span></div>
+          <div class="papel"><strong>Financeiro</strong><span>As contas, o caixa e os recibos, sem ver salário nem
+              falta de ninguém.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca">
+      <div class="largura duas">
+        <div>
+          <h2>Os dados da sua equipe ficam na sua empresa</h2>
+          <p class="introducao">O RH guarda salário, atestado, acidente e avaliação. Por isso nada passa pela nuvem: o
+            banco fica no servidor da empresa, cifrado, e os documentos anexados também.</p>
+          <ul class="lista">
+            <li><strong>Backup duas vezes por dia</strong>, sete dias guardados no servidor e cada cópia levada ao pendrive ou
+              à pasta sincronizada, sempre cifrado.</li>
+            <li><strong>Funciona com a internet caída</strong>: o sistema está na rede da empresa.</li>
+            <li><strong>Atualização sozinha</strong>, na hora que o gerente escolher, e volta atrás se algo der errado.
+            </li>
+            <li><strong>Licença vencida nunca tranca a base</strong>: o sistema fica só para leitura e deixa exportar
+              tudo.</li>
+            <li><strong>O gestor vê só o time dele</strong>, sem salário nem diagnóstico. O CID do atestado, só se a
+              empresa quiser, e cada leitura fica na auditoria.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="comparacao">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Pasta e planilha</th>
+                <th>Kobi RH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Férias vencendo</th>
+                <td>Alguém faz a conta</td>
+                <td>Aviso no Início</td>
+              </tr>
+              <tr>
+                <th>Exame vencido</th>
+                <td>Descobre na fiscalização</td>
+                <td>Painel de 30, 60 e 90 dias</td>
+              </tr>
+              <tr>
+                <th>EPI entregue</th>
+                <td>Papel na pasta</td>
+                <td>Termo assinado na tela</td>
+              </tr>
+              <tr>
+                <th>Banco de horas</th>
+                <td>Caderno do encarregado</td>
+                <td>Saldo e o que vence</td>
+              </tr>
+              <tr>
+                <th>Custo da equipe</th>
+                <td>Só o salário</td>
+                <td>Com encargos e provisões</td>
+              </tr>
+              <tr>
+                <th>Quem mexeu?</th>
+                <td>Ninguém sabe</td>
+                <td>Tudo registrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Instalado e atendido perto de você</h2>
+        <p class="introducao">O Kobi é vendido, instalado e atendido por um parceiro da sua região. Ele leva o servidor,
+          prepara as máquinas, ensina o RH e é quem você chama quando precisa.</p>
+        <div class="grade">
+          <div class="cartao">
+            <h3>1. Demonstração</h3>
+            <p>O parceiro mostra o sistema com uma empresa de exemplo: um restaurante com um ano de equipe.</p>
+          </div>
+          <div class="cartao">
+            <h3>2. Instalação</h3>
+            <p>O servidor e as máquinas, montados na empresa.</p>
+          </div>
+          <div class="cartao">
+            <h3>3. Começo</h3>
+            <p>A equipe, os documentos e as férias entram. O RH aprende com a Ajuda de cada papel, dentro do sistema.
+            </p>
+          </div>
+          <div class="cartao">
+            <h3>4. Mensalidade</h3>
+            <p>Uma mensalidade com as atualizações e o suporte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi RH não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loja: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Folha, holerite, INSS e IRRF</strong><span>Tudo isso continua com o contador.</span></div>
+          <div class="dor"><strong>eSocial e FGTS Digital</strong><span>O Kobi não envia nada ao governo.</span></div>
+          <div class="dor"><strong>Ponto homologado</strong><span>Ele não lê relógio de ponto e não substitui o registro de ponto da empresa.</span></div>
+          <div class="dor"><strong>Emitir a CAT</strong><span>O Kobi registra o acidente e conta o prazo; a emissão é com a empresa.</span></div>
+          <div class="dor"><strong>Nota fiscal</strong><span>A fatura é a cobrança ao cliente: a nota continua com a prefeitura ou o contador.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas frequentes</h2>
+        <details>
+          <summary>O Kobi RH faz a folha de pagamento?</summary>
+          <p>Não. A folha, os impostos, o holerite e o eSocial continuam com a contabilidade. O Kobi RH cuida do que
+            fica antes e em volta dela: a ficha, as férias, as horas, os exames, a segurança, o custo e os indicadores.
+            A folha paga do mês entra nos indicadores.</p>
+        </details>
+        <details>
+          <summary>Substitui o relógio de ponto?</summary>
+          <p>Não. O banco de horas do Kobi é o controle do RH (o crédito, a compensação e o que se pagou), não o ponto
+            homologado.</p>
+        </details>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>Não para trabalhar. O sistema roda no servidor dentro da empresa, e as máquinas o abrem pela rede. A
+            internet serve para o backup externo, a atualização e o acesso de fora.</p>
+        </details>
+        <details>
+          <summary>O Kobi emite a CAT?</summary>
+          <p>Não: a CAT se comunica pelo eSocial ou pelo CAT Web. O Kobi registra o acidente, conta o prazo, avisa
+            quando atrasa e guarda o número da CAT emitida.</p>
+        </details>
+        <details>
+          <summary>Que computador precisa?</summary>
+          <p>Um PC com Windows como servidor, um nobreak e os computadores que a empresa
+            já tem, com Windows e um navegador. Para a assinatura, um tablet ou celular no Wi-Fi da empresa.</p>
+        </details>
+        <details>
+          <summary>Para que tamanho de empresa?</summary>
+          <p>Para a equipe pequena e média, em que o RH é uma pessoa (às vezes o próprio dono): o restaurante, a
+            clínica, a loja, a indústria pequena, a empresa de serviços.</p>
+        </details>
+        <details>
+          <summary>E se eu quiser parar de usar?</summary>
+          <p>Os dados são seus. Com a licença vencida o sistema não tranca: fica só para leitura e exporta tudo.</p>
+        </details>
+        <details>
+          <summary>Quem dá o suporte?</summary>
+          <p>O parceiro que instalou atende o primeiro chamado. O que ele não resolve vai direto ao autor do sistema.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja a sua equipe no Kobi</h2>
+            <p>Uma demonstração de meia hora, na empresa ou por vídeo, com uma empresa de exemplo cheia de dados. Sem
+              compromisso.</p>
+            <a class="botao"
+              href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20RH.">Chamar
+              no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi RH<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi RH: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

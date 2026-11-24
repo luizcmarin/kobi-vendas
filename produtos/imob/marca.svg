@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A marca do Kobi Imobiliária, no azul da marca kobi-kubo, numa caixa quadrada para servir de
+     ícone. O K tem três peças: a haste de cima, a haste de baixo com a diagonal, e a perna de baixo,
+     que é um telhado. O movimento (a cada 8 s o telhado sobe e assenta, e o resto do K corre no
+     sentido da diagonal) começa e termina na marca parada: o quadro zero é o que o favicon e o .ico
+     mostram (imob/marca/, magick). Quem pede menos movimento vê a marca parada, e o endereço com #parada
+     também (o :target; o painel das telas de conta pede). -->
+<svg id="parada" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656.5 656.5" width="656" height="656">
+  <title>Kobi Imobiliária</title>
+  <style>
+    .haste, .diagonal { animation: correr 8s ease-in-out infinite; }
+    .telhado { animation: assentar 8s infinite; }
+    @keyframes correr {
+      0%, 4%, 18%, 100% { transform: translate(0, 0); }
+      11% { transform: translate(18px, -18px); }
+    }
+    @keyframes assentar {
+      0%, 4% { transform: translate(0, 0); animation-timing-function: ease-out; }
+      11% { transform: translate(0, -56px); animation-timing-function: ease-in; }
+      16% { transform: translate(0, 0); animation-timing-function: ease-out; }
+      19% { transform: translate(0, -10px); animation-timing-function: ease-in; }
+      22%, 100% { transform: translate(0, 0); }
+    }
+    #parada:target :is(.haste, .diagonal, .telhado) { animation: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .haste, .diagonal, .telhado { animation: none; }
+    }
+  </style>
+  <g fill="#007cdc" transform="translate(0 59.25)">
+    <path class="haste" d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+    <path class="diagonal" d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+    <path class="telhado" d="M235.5,431.1 c116.94,-116.8 111.79,-112.1 129.8,-118.16 c25.18,-8.45 51.48,-4.8 74.2,10.32 c3.82,2.54 44.4,42.34 111.5,109.35 L656.5,538 H402.5 L305.5,441 L208.5,538 H128.5 Z" />
+  </g>
+</svg>

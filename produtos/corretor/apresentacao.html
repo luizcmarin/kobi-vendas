@@ -1,0 +1,624 @@
+<!doctype html>
+<!--
+  A apresentação de venda do Kobi Corretor: 16:9, sem nada de fora, na casca da da Pousada. Abra no
+  navegador e aperte F (tela cheia); as setas (ou o clique) passam os slides. Antes de apresentar,
+  troque os campos "PARCEIRO" do último slide (o Kobi Vendas troca sozinho).
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Corretor — apresentação</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 1280px 720px;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: #0c1322;
+    }
+
+    body {
+      font: 24px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      color: #1f2733;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      padding: 64px 80px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .slide.atual {
+      display: flex;
+    }
+
+    @media screen {
+      .slide {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(var(--escala, 1));
+      }
+    }
+
+    @media print {
+      .slide {
+        display: flex;
+        break-after: page;
+      }
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.12;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 46px;
+      color: #0b3a66;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .sub {
+      color: #4a5566;
+      font-size: 26px;
+      max-width: 980px;
+      margin-bottom: 36px;
+    }
+
+    .rodape {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: #8a96a8;
+    }
+
+    .rodape span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rodape svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .escura {
+      background: linear-gradient(150deg, #0b3a66, #1864ab 60%, #1971c2);
+      color: #fff;
+    }
+
+    .escura h1,
+    .escura h2 {
+      color: #fff;
+    }
+
+    .escura .sub,
+    .escura p {
+      color: #dbe6fa;
+    }
+
+    .escura .rodape {
+      color: #b8ccff;
+    }
+
+    .capa {
+      justify-content: center;
+    }
+
+    .capa .logo {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 56px;
+    }
+
+    .capa .logo svg {
+      width: 96px;
+      height: 96px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 12px;
+    }
+
+    .capa h1 {
+      font-size: 68px;
+      letter-spacing: -0.02em;
+      max-width: 1050px;
+      margin-bottom: 28px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(var(--colunas, 2), 1fr);
+    }
+
+    .cartao {
+      background: #f3f6fb;
+      border-radius: 18px;
+      padding: 28px 30px;
+    }
+
+    .cartao strong {
+      display: block;
+      font-size: 27px;
+      color: #1f2733;
+      margin-bottom: 6px;
+    }
+
+    .cartao span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .escura .cartao {
+      background: rgb(255 255 255 / 10%);
+    }
+
+    .escura .cartao strong {
+      color: #fff;
+    }
+
+    .escura .cartao span {
+      color: #dbe6fa;
+    }
+
+    .dor {
+      border-left: 8px solid #1971c2;
+    }
+
+    .grande {
+      font-size: 40px;
+      font-weight: 700;
+      color: #0b3a66;
+      max-width: 1080px;
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .pilares {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pilar {
+      border-top: 6px solid #1971c2;
+      padding-top: 18px;
+    }
+
+    .pilar strong {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pilar span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .mapa {
+      border: 1px solid #dbe2ee;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 30px rgb(16 32 64 / 10%);
+    }
+
+    .mapa table {
+      border-collapse: separate;
+      border-spacing: 5px;
+      width: 100%;
+      table-layout: fixed;
+      font-size: 19px;
+    }
+
+    .mapa th {
+      text-align: left;
+      font-weight: 500;
+      color: #4a5566;
+      width: 26%;
+      white-space: nowrap;
+    }
+
+    .mapa td {
+      height: 34px;
+      border-radius: 6px;
+      background: #eef2f8;
+    }
+
+    .mapa td.c {
+      background: #2f8f5b;
+    }
+
+    .mapa td.h {
+      background: #1971c2;
+    }
+
+    .mapa td.b {
+      background: #8b95a5;
+    }
+
+    .mapa td.p {
+      background: repeating-linear-gradient(45deg, #e0a526, #e0a526 6px, #f2c86a 6px, #f2c86a 12px);
+    }
+
+    .legenda {
+      display: flex;
+      gap: 28px;
+      margin-top: 16px;
+      font-size: 18px;
+      color: #4a5566;
+    }
+
+    .legenda span::before {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      margin-right: 8px;
+      vertical-align: -2px;
+      background: var(--cor);
+    }
+
+    .notas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .notas div {
+      font-size: 20px;
+      color: #4a5566;
+    }
+
+    .notas strong {
+      color: #1f2733;
+      display: block;
+      font-size: 22px;
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(var(--colunas, 3), 1fr);
+      gap: 20px;
+    }
+
+    .papel {
+      border: 2px solid #dbe2ee;
+      border-radius: 16px;
+      padding: 22px 24px;
+    }
+
+    .papel strong {
+      color: #1864ab;
+      font-size: 26px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .papel span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .destaque {
+      margin-top: 28px;
+      background: #fff6df;
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 22px;
+    }
+
+    table.comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 22px;
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #dbe2ee;
+    }
+
+    .comparacao thead th {
+      background: #0b3a66;
+      color: #fff;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: #8a96a8;
+    }
+
+    .comparacao td:last-child {
+      font-weight: 600;
+      color: #0b3a66;
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      counter-reset: passo;
+    }
+
+    .passo {
+      counter-increment: passo;
+    }
+
+    .passo::before {
+      content: counter(passo);
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1971c2;
+      color: #fff;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .passo strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    .passo span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .lado {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 36px;
+    }
+
+    .lado h3 {
+      font-size: 26px;
+      color: #1864ab;
+      margin-bottom: 10px;
+    }
+
+    .lado ul {
+      margin: 0;
+      padding-left: 26px;
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .contato {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .contato h1 {
+      font-size: 58px;
+      margin-bottom: 20px;
+    }
+
+    .parceiro {
+      background: rgb(255 255 255 / 12%);
+      border-radius: 22px;
+      padding: 36px;
+      font-size: 24px;
+    }
+
+    .parceiro strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .dica {
+      position: fixed;
+      right: 16px;
+      bottom: 12px;
+      color: #8a96a8;
+      font-size: 13px;
+    }
+
+    @media print {
+      .dica {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="slide escura capa">
+    <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</div>
+    <h1>O escritório inteiro no seu celular. Até sem sinal.</h1>
+    <p class="sub">A temporada, a locação anual, as vendas e a carteira do corretor autônomo.</p>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>1 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O corretor hoje</h2>
+    <p class="sub">Caderno para as reservas, planilha para os aluguéis e o WhatsApp como agenda.</p>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao dor"><strong>"Tem casa livre no feriado?"</strong><span>O cliente no telefone, e você folheando o caderno.</span></div>
+      <div class="cartao dor"><strong>A mesma casa, duas vezes</strong><span>A reserva anotada em dois lugares vira dois hóspedes na mesma porta.</span></div>
+      <div class="cartao dor"><strong>"Quanto eu levo disso?"</strong><span>A comissão, a parte do parceiro e o repasse ao dono, de cabeça.</span></div>
+      <div class="cartao dor"><strong>O aluguel esquecido</strong><span>O mês que ninguém cobrou, e o reajuste que passou.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>2 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <p class="grande">O Kobi Corretor junta a temporada, a locação, as vendas e a carteira num aplicativo que mora no seu celular.</p>
+    <div class="pilares">
+      <div class="pilar"><strong>No seu celular</strong><span>Funciona sem sinal depois da primeira abertura. Sem conta, sem nuvem.</span></div>
+      <div class="pilar"><strong>Tudo junto</strong><span>O imóvel, o negócio e o dinheiro conversam entre si.</span></div>
+      <div class="pilar"><strong>A conta na tela</strong><span>A comissão e o repasse antes de gravar, nunca de cabeça.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>3 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O mapa de ocupação</h2>
+    <p class="sub">Uma linha por imóvel, uma coluna por noite. E a consulta "tem casa livre?" em uma linha.</p>
+    <div class="mapa">
+      <table>
+        <tbody><tr><th>IM-1 · Casa pé na areia</th><td class="h"></td><td class="h"></td><td class="h"></td><td class="h"></td><td class="h"></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td><td class=""></td><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td></tr><tr><th>IM-2 · Apto com vista</th><td class=""></td><td class="p"></td><td class="p"></td><td class="p"></td><td class=""></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="h"></td><td class="h"></td></tr><tr><th>IM-3 · Chalé no morro</th><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td><td class=""></td><td class="h"></td><td class="h"></td><td class="h"></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class="p"></td><td class="p"></td><td class="p"></td><td class=""></td></tr><tr><th>IM-4 · Sobrado</th><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td></tr><tr><th>IM-5 · Casa 3 quartos</th><td class=""></td><td class=""></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td><td class="p"></td><td class="p"></td><td class="p"></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr></tbody>
+      </table>
+    </div>
+    <div class="legenda"><span style="--cor:#1971c2">Hospedada</span><span style="--cor:#2f8f5b">Confirmada</span><span style="--cor:#e0a526">Pré-reserva</span><span style="--cor:#8b95a5">Contrato anual</span></div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>4 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>A temporada, do telefone ao repasse</h2>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao "><strong>A proposta pronta</strong><span>As datas, a diária, o total e a limpeza, para o WhatsApp do cliente.</span></div>
+      <div class="cartao "><strong>A conta antes de gravar</strong><span>As noites com o preço de cada uma, o sinal, o saldo, a comissão e o repasse.</span></div>
+      <div class="cartao "><strong>Um botão por vez</strong><span>Confirmar, check-in, check-out. O check-out lança o repasse ao dono.</span></div>
+      <div class="cartao "><strong>O voucher em PDF</strong><span>O endereço, os horários e a conta, para o hóspede.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>5 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>A locação, a venda e a carteira</h2>
+    <div class="grade" style="--colunas:3">
+      <div class="cartao "><strong>Locação anual</strong><span>Cada aluguel lançado uma vez, com o repasse; o reajuste pelo índice que você leu.</span></div>
+      <div class="cartao "><strong>Vendas com parceria</strong><span>Da proposta à escritura, com a parte do parceiro sobre a comissão.</span></div>
+      <div class="cartao "><strong>A captação</strong><span>A autorização, o prazo, a chave, e o aviso antes de vencer.</span></div>
+      <div class="cartao "><strong>Clientes e match</strong><span>Os imóveis que servem a cada cliente, do que mais serve ao que menos.</span></div>
+      <div class="cartao "><strong>Visitas</strong><span>O que o cliente achou, e o relatório pronto para o dono.</span></div>
+      <div class="cartao "><strong>O painel</strong><span>A comissão do ano e o que vai virar problema.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>6 / 10</span></div>
+  </section>
+  <section class="slide escura">
+    <h2>Os dados dos clientes ficam com você</h2>
+    <p class="sub">Cliente e proprietário são dados de outras pessoas: nada passa pela nuvem.</p>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao "><strong>Banco cifrado</strong><span>No celular, trancado pela sua senha.</span></div>
+      <div class="cartao "><strong>Sem internet</strong><span>Depois da primeira abertura, funciona sem sinal.</span></div>
+      <div class="cartao "><strong>Backup em arquivo</strong><span>Leva tudo ao celular novo, a licença junto.</span></div>
+      <div class="cartao "><strong>Nunca tranca</strong><span>Licença vencida: só leitura, e o backup sai.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>7 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Antes e depois</h2>
+    <table class="comparacao">
+      <thead><tr><th></th><th>Caderno e planilha</th><th>Kobi Corretor</th></tr></thead>
+      <tbody>
+        <tr><th>Casa livre?</th><td>Folhear o caderno</td><td>Uma linha, com o preço</td></tr>
+        <tr><th>Duas reservas na mesma noite</th><td>Acontece</td><td>O mapa recusa</td></tr>
+        <tr><th>A comissão</th><td>De cabeça</td><td>Na tela, antes de gravar</td></tr>
+        <tr><th>O aluguel do mês</th><td>Esquecido</td><td>O aviso no painel</td></tr>
+        <tr><th>Sem sinal</th><td>O caderno ficou em casa</td><td>Funciona igual</td></tr>
+      </tbody>
+    </table>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>8 / 10</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Como começa</h2>
+    <div class="passos">
+      <div class="passo"><strong>Demonstração</strong><span>Uma carteira de exemplo, no celular.</span></div>
+      <div class="passo"><strong>Instalação</strong><span>Na tela inicial do seu celular.</span></div>
+      <div class="passo"><strong>Licença</strong><span>Ativada ali mesmo, sem internet.</span></div>
+      <div class="passo"><strong>Começo</strong><span>O Tutorial ensina cada tela.</span></div>
+    </div>
+    <div class="lado">
+      <div>
+        <h3>Você precisa de</h3>
+        <ul>
+          <li>Um celular Android ou um iPhone (iOS 15.4 ou mais novo)</li>
+          <li>Internet só na primeira abertura</li>
+          <li>Um lugar para guardar o backup</li>
+        </ul>
+      </div>
+      <div>
+        <h3>O Kobi Corretor não faz</h3>
+        <ul>
+          <li>Os portais de anúncio nem site de imóveis</li>
+          <li>A imobiliária com equipe: é o Kobi Imobiliária</li>
+          <li>O robô no WhatsApp: ele escreve, você envia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>9 / 10</span></div>
+  </section>
+  <section class="slide escura">
+    <div class="contato">
+      <div>
+        <h1>Vamos ver o Kobi Corretor no seu celular?</h1>
+        <p style="font-size:26px">Meia hora, com uma carteira de exemplo cheia de reservas, contratos e propostas.</p>
+      </div>
+      <div class="parceiro"><strong>[PARCEIRO: nome da empresa]</strong>Revenda autorizada Kobi Corretor<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</span><span>10 / 10</span></div>
+  </section>
+  <div class="dica">← → passam os slides · F tela cheia</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    let atual = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+    function mostrar(i) {
+      atual = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => {
+        s.classList.toggle('atual', n === atual);
+      });
+      history.replaceState(null, '', `#${atual + 1}`);
+    }
+    function ajustar() {
+      const escala = Math.min(innerWidth / 1280, innerHeight / 720);
+      document.documentElement.style.setProperty('--escala', escala);
+    }
+    addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) mostrar(atual + 1);
+      else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) mostrar(atual - 1);
+      else if (e.key === 'Home') mostrar(0);
+      else if (e.key === 'End') mostrar(slides.length - 1);
+      else if (e.key === 'f') document.documentElement.requestFullscreen?.();
+    });
+    addEventListener('click', (e) => mostrar(atual + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    addEventListener('resize', ajustar);
+    ajustar();
+    mostrar(atual);
+  </script>
+</body>
+
+</html>

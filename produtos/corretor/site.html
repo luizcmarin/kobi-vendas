@@ -1,0 +1,780 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Corretor: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive. A mesma casca do site da Pousada.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Corretor — o escritório do corretor no celular</title>
+  <meta name="description"
+    content="O mapa de ocupação da temporada, a locação anual, as vendas com o parceiro e a carteira de imóveis no celular do corretor autônomo, sem internet e sem nuvem.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='14' fill='%231971c2'/%3E%3Cpath d='M11 30.5 L32 13 L53 30.5' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z' fill='%23fff'/%3E%3Ccircle cx='32' cy='34.5' r='4.2' fill='%231971c2'/%3E%3Cpath d='M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z' fill='%231971c2'/%3E%3Cpath d='M14 54.5 q6 -3.6 12 0 t12 0 t12 0' fill='none' stroke='%23ffd43b' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --marca: #1971c2;
+      --primaria: #1864ab;
+      --profunda: #0b3a66;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O mapa de ocupação desenhado, no lugar de uma captura */
+    .mapa {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 16px;
+      font-size: .78rem;
+      overflow: hidden;
+    }
+
+    .mapa__titulo {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa table {
+      border-collapse: separate;
+      border-spacing: 3px;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .mapa th {
+      font-weight: 500;
+      color: var(--texto-2);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mapa th:first-child {
+      width: 28%;
+    }
+
+    .mapa td {
+      height: 22px;
+      border-radius: 4px;
+      background: var(--fundo-2);
+    }
+
+    .mapa td.c {
+      background: #2f8f5b;
+    }
+
+    .mapa td.h {
+      background: var(--marca);
+    }
+
+    .mapa td.p {
+      background: repeating-linear-gradient(45deg, #e0a526, #e0a526 4px, #f2c86a 4px, #f2c86a 8px);
+    }
+
+    .mapa td.b {
+      background: #8b95a5;
+    }
+
+    .mapa__legenda {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa__legenda span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: -1px;
+      background: var(--cor);
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</a>
+      <nav>
+        <a href="#temporada">Temporada</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Feito para o corretor autônomo de cidade de praia</span>
+          <h1>O escritório inteiro no seu celular. Até sem sinal.</h1>
+          <p class="chamada">O Kobi Corretor junta a temporada, a locação anual, as vendas e a carteira num aplicativo
+            que mora <strong>no seu celular</strong>. Ele responde "tem casa livre no feriado?" em uma linha, não deixa
+            a mesma casa ser alugada duas vezes e diz quanto da comissão fica com você.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Quero ver no meu celular</a>
+            <a class="botao botao--claro" href="#temporada">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="mapa" role="img"
+          aria-label="Desenho do mapa de ocupação: uma linha por imóvel, uma coluna por noite, com hóspedes, reservas confirmadas, pré-reservas e um contrato anual.">
+          <div class="mapa__titulo"><span>Mapa de ocupação</span><span>jan · 31 noites</span></div>
+          <table>
+            <tbody><tr><th>IM-1 · Casa pé na areia</th><td class="h"></td><td class="h"></td><td class="h"></td><td class="h"></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td></tr><tr><th>IM-2 · Apto com vista</th><td class=""></td><td class="p"></td><td class="p"></td><td class="p"></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td></tr><tr><th>IM-3 · Chalé no morro</th><td class="c"></td><td class="c"></td><td class=""></td><td class=""></td><td class="h"></td><td class="h"></td><td class="h"></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><th>IM-4 · Sobrado</th><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td><td class="b"></td></tr><tr><th>IM-5 · Casa 3 quartos</th><td class=""></td><td class=""></td><td class="c"></td><td class="c"></td><td class="c"></td><td class="c"></td><td class=""></td><td class="p"></td><td class="p"></td><td class="p"></td></tr></tbody>
+          </table>
+          <div class="mapa__legenda">
+            <span style="--cor: var(--marca)">Hospedada</span>
+            <span style="--cor: #2f8f5b">Confirmada</span>
+            <span style="--cor: #e0a526">Pré-reserva</span>
+            <span style="--cor: #8b95a5">Contrato anual</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se o seu dia é assim, o Kobi Corretor foi feito para você</h2>
+        <p class="introducao">Caderno para as reservas, planilha para os aluguéis, o WhatsApp como agenda e a cabeça
+          para lembrar quem procura o quê. Funciona até a primeira casa reservada duas vezes.</p>
+        <div class="dores">
+          <div class="dor"><strong>"Tem casa para seis no feriado?"</strong><span>Hoje você folheia o caderno com o cliente no telefone. No Kobi, a consulta responde em uma linha por casa: as livres primeiro, a mais barata na frente, com o total.</span></div>
+          <div class="dor"><strong>A mesma casa, duas vezes</strong><span>O mapa não aceita duas estadias na mesma noite do mesmo imóvel, e mostra o contrato anual que ocupa a casa.</span></div>
+          <div class="dor"><strong>"Quanto eu levo disso?"</strong><span>A comissão, a parte do parceiro e o repasse ao proprietário saem na tela antes de gravar.</span></div>
+          <div class="dor"><strong>O aluguel que ninguém lançou</strong><span>O app avisa o aluguel do mês por lançar, o reajuste devido e a autorização que está vencendo.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="temporada" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>A temporada, do telefone ao repasse</h2>
+          <p class="introducao">O mapa é uma linha por imóvel e uma coluna por noite. Tocou numa noite livre, a reserva
+            abre com a casa e a data.</p>
+          <ul class="lista">
+            <li><strong>Diária por temporada</strong>: a alta, o Réveillon, o Carnaval, cada uma com o período e o
+              mínimo de noites.</li>
+            <li><strong>A proposta pronta</strong> para o WhatsApp: as datas, a diária, o total e a limpeza.</li>
+            <li><strong>A conta antes de gravar</strong>: as noites com o preço de cada uma, o sinal, o saldo, a sua
+              comissão e o repasse ao dono.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>Confirmar, check-in e check-out</strong>: um botão por vez, e o diário de cada reserva.</li>
+            <li><strong>O sinal e o saldo</strong> lançados a receber, e a baixa ali mesmo.</li>
+            <li><strong>O repasse ao proprietário</strong> lançado no check-out, com o prazo de costume.</li>
+            <li><strong>O voucher em PDF</strong> para o hóspede, com o endereço, os horários e a conta.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>Os três negócios do corretor no mesmo lugar</h2>
+        <p class="introducao">A casa de praia que está à venda continua alugando no verão. No Kobi, ela é um imóvel só,
+          com as três finalidades.</p>
+        <div class="grade">
+          <div class="cartao"><h3>Locação anual</h3><p>O contrato com a taxa de administração, a garantia e o condomínio e o IPTU junto. Cada mês lançado uma vez só, com o repasse ao dono, e o reajuste pelo índice que você leu.</p></div>
+          <div class="cartao"><h3>Vendas com parceria</h3><p>Da proposta à escritura. A comissão e a parte do parceiro (sobre a comissão, nunca sobre o imóvel) na tela antes de gravar.</p></div>
+          <div class="cartao"><h3>A carteira</h3><p>Cada imóvel com a captação: a autorização exclusiva ou aberta, até quando vale, onde está a chave e as fotos por link.</p></div>
+          <div class="cartao"><h3>Clientes e match</h3><p>O que cada cliente procura, e os imóveis da carteira que servem, do que mais serve para o que menos serve.</p></div>
+          <div class="cartao"><h3>Visitas</h3><p>A agenda, o que o cliente achou e o relatório para o proprietário, pronto para o WhatsApp.</p></div>
+          <div class="cartao"><h3>O financeiro</h3><p>O que entra e o que sai, o atrasado primeiro, e o recibo em PDF de cada baixa.</p></div>
+          <div class="cartao"><h3>O painel</h3><p>A comissão do ano, o que está na mesa, a ocupação do mês e o que vai virar problema, com o atalho para cada um.</p></div>
+          <div class="cartao"><h3>Um cadastro só</h3><p>Clientes, proprietários, hóspedes, inquilinos e parceiros, cada um com os seus papéis.</p></div>
+          <div class="cartao"><h3>Tutorial dentro do app</h3><p>Cada tela explicada passo a passo, no próprio celular.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>Os dados dos seus clientes ficam no seu celular</h2>
+          <p class="introducao">Cliente e proprietário são dados de outras pessoas. Por isso nada passa pela nuvem: o
+            banco mora no aparelho, cifrado, trancado pela sua senha.</p>
+          <ul class="lista">
+            <li><strong>Sem internet</strong> depois da primeira abertura: na praia, na casa que você mostra, no
+              elevador.</li>
+            <li><strong>Sem conta nem nuvem</strong>: o que sai do celular sai pelo backup, na sua mão.</li>
+            <li><strong>Backup em arquivo</strong>, que traz tudo de volta num celular novo.</li>
+            <li><strong>Licença vencida não tranca</strong>: o app fica só para leitura, e o backup sai.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="comparacao">
+            <thead>
+              <tr><th></th><th>Caderno e planilha</th><th>Kobi Corretor</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Casa livre?</th><td>Folhear o caderno</td><td>Uma linha, com o preço</td></tr>
+              <tr><th>Duas reservas na mesma noite</th><td>Acontece</td><td>O mapa recusa</td></tr>
+              <tr><th>A comissão</th><td>Conta de cabeça</td><td>Na tela, antes de gravar</td></tr>
+              <tr><th>O aluguel do mês</th><td>Esquecido</td><td>O aviso no painel</td></tr>
+              <tr><th>O relatório do dono</th><td>Escrito à mão</td><td>Pronto para o WhatsApp</td></tr>
+              <tr><th>Sem sinal</th><td>O caderno ficou em casa</td><td>Funciona igual</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Atendido perto de você</h2>
+        <p class="introducao">O Kobi Corretor é vendido e atendido por um parceiro da sua região. Ele mostra o app,
+          instala no seu celular, ativa a licença e é quem você chama quando precisa.</p>
+        <div class="grade">
+          <div class="cartao"><h3>1. Demonstração</h3><p>O parceiro mostra o app com uma carteira de exemplo, cheia de reservas e contratos.</p></div>
+          <div class="cartao"><h3>2. Instalação</h3><p>O app vai para a tela inicial do seu celular, e a licença é ativada ali mesmo.</p></div>
+          <div class="cartao"><h3>3. Começo</h3><p>Os seus dados, os proprietários e os imóveis entram. O Tutorial ensina cada tela.</p></div>
+          <div class="cartao"><h3>4. Licença</h3><p>A licença anual, com as atualizações e o suporte.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz" class="fundo-2">
+      <div class="largura">
+        <h2>O que o Kobi Corretor não faz</h2>
+        <p>Melhor saber agora.</p>
+        <div class="dores">
+          <div class="dor"><strong>Portal de anúncios</strong><span>Ele não publica nos portais nem tem site de imóveis: as fotos são links.</span></div>
+          <div class="dor"><strong>Equipe e imobiliária</strong><span>É do corretor que trabalha sozinho, num aparelho. A imobiliária com equipe é outro produto, o Kobi Imobiliária.</span></div>
+          <div class="dor"><strong>Robô no WhatsApp</strong><span>Ele escreve a mensagem, e você envia.</span></div>
+          <div class="dor"><strong>Índice de reajuste sozinho</strong><span>Você lê o índice do período, e ele faz a conta.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas frequentes</h2>
+        <details><summary>Precisa de internet?</summary><p>Só na primeira abertura. Depois, o app funciona sem sinal:
+          os dados moram no celular.</p></details>
+        <details><summary>Funciona no iPhone e no Android?</summary><p>Nos dois, e também no computador. O app se
+          instala pelo navegador, sem loja: o Chrome no Android, o Safari no iPhone (iOS 15.4 ou mais novo).</p>
+        </details>
+        <details><summary>E se eu trocar de celular?</summary><p>O backup é um arquivo com tudo: restaurado no celular
+          novo, os dados e a licença voltam juntos.</p></details>
+        <details><summary>E se eu esquecer a senha?</summary><p>Ninguém consegue recuperá-la, nem nós: é ela que tranca
+          os dados. O caminho é apagar tudo e restaurar o último backup.</p></details>
+        <details><summary>E se a licença vencer?</summary><p>O app não tranca: fica só para leitura, e o backup sai.
+          Renovou, cola a licença nova e segue.</p></details>
+        <details><summary>Serve para imobiliária?</summary><p>É feito para o corretor autônomo, num aparelho só. A
+          imobiliária com equipe tem o Kobi Imobiliária.</p></details>
+        <details><summary>Quem dá o suporte?</summary><p>O parceiro que vendeu atende o primeiro chamado. O que ele não
+          resolve vai direto ao autor.</p></details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja o Kobi Corretor no seu celular</h2>
+            <p>Meia hora, com uma carteira de exemplo cheia de reservas, contratos e propostas. Sem compromisso.</p>
+            <a class="botao"
+              href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20o%20Kobi%20Corretor.">Chamar no
+              WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Corretor<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Corretor: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Um aplicativo Kobi.</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

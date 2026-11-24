@@ -1,0 +1,954 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Náutica: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Náutica — a operadora e a escola de mergulho num sistema só</title>
+  <meta name="description"
+    content="A agenda das saídas, as vagas com sinal, o termo e o questionário assinados na tela, o manifesto em três idiomas, o cilindro com o prazo em dia e a escola, num sistema só, instalado dentro da loja.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656.5 656.5'%3E%3Cg fill='%23007cdc' transform='translate%280 59.25%29'%3E%3Cpath d='M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z' /%3E%3Cpath d='M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z' /%3E%3Ccircle cx='455' cy='430' r='108' /%3E%3Ccircle cx='584' cy='246' r='62' /%3E%3Ccircle cx='520' cy='122' r='34' /%3E%3C/g%3E%3C/svg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O Início desenhado, no lugar de uma captura */
+    .painel {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 18px;
+      font-size: .9rem;
+    }
+
+    .painel__titulo {
+      font-weight: 600;
+      color: var(--texto-2);
+      margin-bottom: 12px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2px 12px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--fundo-2);
+      margin-bottom: 8px;
+      border-left: 4px solid var(--cor, var(--marca));
+    }
+
+    .aviso:last-child {
+      margin-bottom: 0;
+    }
+
+    .aviso strong {
+      grid-column: 2;
+    }
+
+    .aviso span {
+      grid-column: 2;
+      color: var(--texto-2);
+    }
+
+    .aviso b {
+      grid-row: 1 / span 2;
+      align-self: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--cor, var(--marca));
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      min-width: 5.5em;
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./">
+        <svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <g transform="translate(252.2 247.5) scale(19.5)">
+              <path fill-rule="evenodd"
+                d="M4 7h12a1 1 0 0 1 1 1v4.5a2.5 2.5 0 0 1 -2.5 2.5h-.5a2 2 0 0 1 -2 -2a2 2 0 1 0 -4 0a2 2 0 0 1 -2 2h-.5a2.5 2.5 0 0 1 -2.5 -2.5v-4.5a1 1 0 0 1 1 -1zM6.6 9.2h6.8a.8 .8 0 0 1 .8 .8v.3a1.3 1.3 0 0 1 -1.3 1.3h-5.8a1.3 1.3 0 0 1 -1.3 -1.3v-.3a.8 .8 0 0 1 .8 -.8z" />
+              <path fill="none" stroke="#007cdc" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"
+                d="M17 12h.5a2 2 0 0 0 2 -2v-8" />
+            </g>
+          </g>
+        </svg>
+        Kobi Náutica
+      </a>
+      <nav>
+        <a href="#saidas">As saídas</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Para a operadora e a escola de mergulho, do balcão ao barco</span>
+          <h1>A saída cheia, o termo assinado e o cilindro em dia. Antes de soltar a amarra.</h1>
+          <p class="chamada">O Kobi Náutica junta a agenda das saídas, as vagas com o sinal, a ficha do mergulhador com
+            o
+            termo e o questionário assinados na tela, o manifesto em três idiomas, o equipamento com os prazos e a
+            escola.
+            Ele roda num servidor <strong>dentro da loja</strong>: funciona com a internet caída, na alta temporada.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#saidas">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="painel" role="img"
+          aria-label="Desenho da tela de início do Kobi Náutica: a saída de hoje, quem a ficha segura, o cilindro bloqueado e o seguro do barco que vence.">
+          <div class="painel__titulo">Bom dia, Rosa. Hoje e amanhã:</div>
+          <div class="aviso"><b>8h</b><strong>Credenciados no Garoupa II</strong><span>9 de 12 vagas, 1 na espera</span>
+          </div>
+          <div class="aviso" style="--cor: #c0392b"><b>Embarque</b><strong>Lucía F., "sim" no
+              questionário</strong><span>Sem
+              atestado: a ficha segura o embarque</span></div>
+          <div class="aviso" style="--cor: #c0392b"><b>Cilindro</b><strong>C-10, teste hidrostático
+              vencido</strong><span>Bloqueado:
+              não vai ao kit nem recebe carga</span></div>
+          <div class="aviso" style="--cor: #e0a526"><b>Barco</b><strong>Garoupa II, seguro DPEM</strong><span>Vence em
+              19
+              dias</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se a sua operadora vive isto, o Kobi foi feito para ela</h2>
+        <p class="introducao">A planilha das vagas, o caderno do cilindro, o termo em folha solta e o aluno perdido
+          entre a
+          turma e a agenda. Cada um funciona sozinho, e ninguém vê o todo.</p>
+        <div class="dores">
+          <div class="dor"><strong>"Ainda tem vaga amanhã às 8h?"</strong><span>A agenda mostra as vagas de cada saída,
+              a
+              lista de espera e quem pagou o sinal. A saída não passa da lotação do barco, com a tripulação.</span>
+          </div>
+          <div class="dor"><strong>O termo que ficou no balcão</strong><span>O mergulhador lê e assina na tela, com o
+              dedo,
+              em português, inglês ou espanhol. O PDF fica na ficha e não muda depois.</span></div>
+          <div class="dor"><strong>O cilindro com o teste vencido</strong><span>O teste hidrostático, a inspeção visual
+              e a
+              revisão do regulador têm prazo. Vencido, a peça bloqueia: não vai ao kit nem recebe carga.</span></div>
+          <div class="dor"><strong>O mar virou e a manhã caiu</strong><span>A saída cancelada vira crédito para quem
+              tinha
+              vaga, com o que pagou guardado, e a remarcação leva a outra saída com lugar.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="saidas" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>Do balcão ao barco, com o que a norma pede</h2>
+          <p class="introducao">A saída, a vaga, o embarque e o manifesto, conferidos pelo sistema. A operação registra
+            o
+            que acontece; o dinheiro vai sozinho para o financeiro.</p>
+          <ul class="lista">
+            <li><strong>Agenda das saídas</strong>: o barco, o tipo (batismo, credenciados, curso, noturno), o roteiro
+              de
+              pontos e a equipe. O mesmo barco, guia ou instrutor em duas saídas na mesma hora é recusado.</li>
+            <li><strong>Vagas</strong> com o sinal e o saldo, a lista de espera, o crédito do mar ruim, a remarcação e o
+              pacote de mergulhos.</li>
+            <li><strong>Embarque</strong>: o termo e o questionário em dia, o atestado que o "sim" pede, a certificação,
+              o
+              lastro e o kit, antes de subir no barco.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>Manifesto</strong> em português, inglês ou espanhol: a tripulação, os mergulhadores com o
+              documento
+              e o contato de emergência, e o total a bordo contra a lotação.</li>
+            <li><strong>Voucher</strong> da vaga no idioma do mergulhador, com o ponto de encontro e o que ele pagou.
+            </li>
+            <li><strong>Diário da saída</strong>: o mar, a visibilidade, o combustível, as ocorrências e os mergulhos de
+              cada um.</li>
+            <li><strong>Embarcações</strong> com a documentação e a validade: o seguro e o título avisam antes de
+              vencer.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>Do cilindro à certificação do aluno</h2>
+        <p class="introducao">O que costuma morar em cadernos, planilhas e na memória do instrutor, num sistema só, com
+          os
+          números saindo sozinhos do que a operação já anotou.</p>
+        <div class="grade">
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="8" y="5" width="8" height="16" rx="3" />
+                <path d="M10 5V3h4v2M12 10v4" />
+              </svg></div>
+            <h3>Equipamento com prazo</h3>
+            <p>Cada peça com o código da casa. O cilindro com o teste hidrostático e a inspeção visual; o colete e o
+              regulador com a revisão por tempo ou por mergulhos. Vencido, bloqueia.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 3" />
+              </svg></div>
+            <h3>Recarga e compressor</h3>
+            <p>A carga com a pressão e o oxigênio analisado, o nitrox com a profundidade máxima, e o livro do compressor
+              com o filtro e a análise do ar. Compressor vencido não carrega.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 7h16v12H4z" />
+                <path d="M9 7V5h6v2" />
+              </svg></div>
+            <h3>Aluguel do kit</h3>
+            <p>O kit da vaga com as peças livres naquela saída, a devolução conferida peça por peça, a avaria cobrada e
+              a
+              ordem de conserto aberta sozinha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 9l10-5 10 5-10 5z" />
+                <path d="M6 11v5c3 2 9 2 12 0v-5" />
+              </svg></div>
+            <h3>Escola</h3>
+            <p>O curso com as habilidades, a turma com a teoria, a piscina e o mar sem conflito de agenda, e as
+              habilidades
+              assinadas pelo instrutor até a certificação ir à ficha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 3v18h18" />
+                <path d="M7 15l4-4 3 3 5-6" />
+              </svg></div>
+            <h3>Margem de cada saída</h3>
+            <p>A receita das vagas e do aluguel contra o combustível, a comissão e os outros custos. A ocupação de cada
+              barco, a escola e o uso do equipamento, em PDF ou na planilha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="8" r="3" />
+                <path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 11h5M18.5 8.5v5" />
+              </svg></div>
+            <h3>Comissão do guia e do instrutor</h3>
+            <p>Por saída com gente a bordo e pela parte do aluno certificado, pela tabela da casa. O financeiro lança o
+              mês
+              como conta a pagar.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M9 10h6M9 14h6M9 18h3" />
+              </svg></div>
+            <h3>Orçamento, proposta e contrato</h3>
+            <p>Os clientes e o funil de vendas, com as atividades de cada negócio. O orçamento sai em PDF e pelo
+              WhatsApp, no idioma do cliente; o pacote para o grupo, a escola de fora e a agência ganham a proposta com a carta da casa; o contrato
+              tem o aceite assinado na tela, com o dedo.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
+                <path d="M9 8h6M9 12h6" />
+              </svg></div>
+            <h3>Fatura e assinatura</h3>
+            <p>A fatura em parcelas, com a PIX da casa no PDF, sai com um clique do orçamento aceito ou do contrato. A
+              cobrança que se repete emite a de cada período sozinha. Cancela-se, nunca se apaga.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Cada um vê o que é seu</h2>
+        <p class="introducao">O questionário médico e o atestado são dado de saúde. A permissão é por papel e vale no
+          servidor, e toda gravação fica registrada: quem, quando, o antes e o depois.</p>
+        <div class="papeis">
+          <div class="papel"><strong>Gerente</strong><span>Vê tudo, cuida dos usuários, dos prazos da casa, do backup e
+              da
+              licença.</span></div>
+          <div class="papel"><strong>Operação</strong><span>As saídas, os mergulhadores, o equipamento e a
+              escola.</span></div>
+          <div class="papel"><strong>Financeiro</strong><span>As contas, o caixa, as comissões e os relatórios, sem ler
+              a
+              saúde de ninguém.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca">
+      <div class="largura duas">
+        <div>
+          <h2>Os dados dos seus mergulhadores ficam na sua loja</h2>
+          <p class="introducao">Passaporte, contato de emergência, questionário médico: nada passa pela nuvem. O banco
+            fica
+            no servidor da loja, cifrado, e os documentos anexados também.</p>
+          <ul class="lista">
+            <li><strong>Funciona com a internet caída</strong>: o sistema está na rede da loja, e o manifesto sai em PDF
+              antes do barco sair.</li>
+            <li><strong>Backup duas vezes por dia</strong>, sete dias guardados no servidor e cada cópia levada ao pendrive ou
+              à pasta sincronizada, sempre cifrado.</li>
+            <li><strong>Atualização sozinha</strong>, na hora que o gerente escolher, e volta atrás se algo der errado.
+            </li>
+            <li><strong>Licença vencida nunca tranca a base</strong>: o sistema fica só para leitura e deixa exportar
+              tudo.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="comparacao">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Caderno e planilha</th>
+                <th>Kobi Náutica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Vagas da saída</th>
+                <td>Planilha no celular de alguém</td>
+                <td>Agenda com espera e sinal</td>
+              </tr>
+              <tr>
+                <th>Termo do mergulhador</th>
+                <td>Folha solta no balcão</td>
+                <td>Assinado na tela, em 3 idiomas</td>
+              </tr>
+              <tr>
+                <th>Cilindro vencido</th>
+                <td>Descobre na hora da carga</td>
+                <td>Bloqueado antes</td>
+              </tr>
+              <tr>
+                <th>Manifesto</th>
+                <td>À mão, no trapiche</td>
+                <td>PDF com a lotação conferida</td>
+              </tr>
+              <tr>
+                <th>Mar ruim</th>
+                <td>Reembolso ou confusão</td>
+                <td>Crédito e remarcação</td>
+              </tr>
+              <tr>
+                <th>A saída deu lucro?</th>
+                <td>Ninguém sabe</td>
+                <td>Margem por saída</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Instalado e atendido perto de você</h2>
+        <p class="introducao">O Kobi é vendido, instalado e atendido por um parceiro da sua região. Ele leva o servidor,
+          prepara as máquinas e o tablet do balcão, ensina a equipe e é quem você chama quando precisa.</p>
+        <div class="grade">
+          <div class="cartao">
+            <h3>1. Demonstração</h3>
+            <p>O parceiro mostra o sistema com uma operadora de exemplo: dois barcos, dez mergulhadores e a agenda da
+              semana.</p>
+          </div>
+          <div class="cartao">
+            <h3>2. Instalação</h3>
+            <p>O servidor e as máquinas, montados na loja.</p>
+          </div>
+          <div class="cartao">
+            <h3>3. Começo</h3>
+            <p>Os barcos, os pontos, o equipamento e os termos entram. A equipe aprende com a Ajuda de cada papel,
+              dentro
+              do sistema.</p>
+          </div>
+          <div class="cartao">
+            <h3>4. Mensalidade</h3>
+            <p>Uma mensalidade com as atualizações e o suporte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi Náutica não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loja: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Reserva e pagamento pelo site</strong><span>A vaga se faz na loja, por quem atende.</span></div>
+          <div class="dor"><strong>Emitir certificação</strong><span>Quem certifica é a agência: o Kobi registra o número.</span></div>
+          <div class="dor"><strong>Tirar a responsabilidade da operadora</strong><span>Nenhum termo tira. O texto se ajusta com o advogado da loja.</span></div>
+          <div class="dor"><strong>Nota fiscal e robô no WhatsApp</strong><span>A nota continua com o contador; a conversa abre com o texto, e uma pessoa envia.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas frequentes</h2>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>Não para trabalhar. O sistema roda no servidor dentro da loja, e as máquinas e o tablet o abrem pela rede.
+            A
+            internet serve para o backup externo, a atualização e o acesso de fora.</p>
+        </details>
+        <details>
+          <summary>Funciona no barco?</summary>
+          <p>No barco não há sistema: o manifesto e a lista de quem embarca saem em PDF antes da saída, e o diário se
+            anota na volta, no balcão.</p>
+        </details>
+        <details>
+          <summary>O termo assinado na tela vale?</summary>
+          <p>O termo guarda o texto, a assinatura desenhada, o dia, o aparelho e quem conduziu, e não se altera depois.
+            Os
+            modelos do Kobi são um ponto de partida: a loja os ajusta com o advogado dela. Nenhum termo tira da
+            operadora a
+            responsabilidade pelo serviço.</p>
+        </details>
+        <details>
+          <summary>O Kobi emite a certificação do aluno?</summary>
+          <p>Não: quem certifica é a agência. O Kobi acompanha o curso, as habilidades assinadas pelo instrutor, e
+            registra
+            na ficha a certificação com o número que a agência deu.</p>
+        </details>
+        <details>
+          <summary>O manifesto atende a Capitania?</summary>
+          <p>Ele segue o modelo da norma da Marinha para as embarcações de esporte e recreio e confere a lotação do
+            título.
+            O que a Capitania da sua região pedir a mais, a loja acrescenta.</p>
+        </details>
+        <details>
+          <summary>Que computador precisa?</summary>
+          <p>Um PC com Windows como servidor, um nobreak e os computadores que a loja já
+            tem, com Windows e um navegador. Para a assinatura, um tablet ou celular no Wi-Fi da loja.</p>
+        </details>
+        <details>
+          <summary>E se eu quiser parar de usar?</summary>
+          <p>Os dados são seus. Com a licença vencida o sistema não tranca: fica só para leitura e exporta tudo.</p>
+        </details>
+        <details>
+          <summary>Quem dá o suporte?</summary>
+          <p>O parceiro que instalou atende o primeiro chamado. O que ele não resolve vai direto ao autor do sistema.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja a sua operadora no Kobi</h2>
+            <p>Uma demonstração de meia hora, na loja ou por vídeo, com uma operadora de exemplo cheia de dados. Sem
+              compromisso.</p>
+            <a class="botao"
+              href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20N%C3%A1utica.">Chamar
+              no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Náutica<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Náutica: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

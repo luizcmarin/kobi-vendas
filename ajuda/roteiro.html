@@ -1,0 +1,59 @@
+<h1>O guia do parceiro: instalar e manter</h1>
+<p>Este guia é para quem instala e cuida do programa na loja, sem precisar programar. Tudo é feito pelo <strong>instalador da marca da loja</strong> — um arquivo único que leva o nome da marca adquirida. Basta dar dois cliques, clicar em <strong>Sim</strong> na janela do Windows e o assistente abrirá no navegador.</p>
+<p>Imprima este documento e guarde-o na pasta da loja com a <strong>senha do backup</strong> anotada à mão e guardada em local seguro: quando o servidor para, a ajuda digital para junto com ele.</p>
+<blockquote>
+<p><strong>Aviso de segurança do Windows:</strong> O Windows pode alertar que o programa é desconhecido. Clique em <strong>Mais informações</strong> e escolha <strong>Executar assim mesmo</strong>.</p>
+</blockquote>
+<h2>O que a loja precisa</h2>
+<ul>
+<li><strong>Servidor:</strong> Um PC com Windows 10 ou 11, conectado a um nobreak e no cabo de rede.</li>
+<li><strong>Roteador:</strong> Acesso ao painel de configuração para fixar (reservar) o IP do servidor.</li>
+<li><strong>Arquivos de instalação:</strong> O instalador da marca desejada em um pendrive e o <strong>arquivo da licença</strong>, emitido pelo autor. A loja nasce vinculada à marca do instalador; a licença de outra marca não funciona.</li>
+</ul>
+<h2>Instalar o servidor</h2>
+<ol>
+<li>No servidor, abra o instalador e escolha a opção <strong>Instalar servidor</strong>.</li>
+<li>No painel do roteador, reserve o IP exibido na tela para o endereço MAC desta máquina. O servidor não pode mudar de IP.</li>
+<li>Confirme a marca e as portas e conclua a instalação. Tudo ficará em <code>C:\KobiGo</code>, junto com o serviço do Windows (<code>KobiGo</code>, que inicia sozinho com o PC), a regra no firewall, o certificado de segurança (CA) da loja e o atalho na área de trabalho.</li>
+<li>Abra o atalho no navegador: o primeiro acesso cria a conta do gerente, que deve carregar a licença e definir a <strong>senha do backup</strong>. Anote essa senha num lugar seguro — sem ela, não é possível restaurar nenhuma cópia — nem o autor consegue.</li>
+</ol>
+<p><strong>Conflito de portas:</strong> Se outro programa já estiver usando a porta, o instalador avisará. Para alterar depois, vá em <strong>Configurações › Aplicativos › Aplicativos instalados</strong> no Windows, encontre a marca da loja e clique em <strong>Modificar</strong>. O assistente abrirá com a opção <strong>Trocar as portas</strong> (mostrando pares livres) e desfará a mudança sozinho caso o sistema não responda nas portas novas.</p>
+<h2>Computadores e celulares</h2>
+<ul>
+<li><strong>Computadores da loja:</strong> Rode o mesmo instalador em cada máquina e escolha <strong>Instalar estação da loja</strong>. Ele encontra o servidor sozinho na rede, instala o certificado de segurança e registra o nome do computador no sistema.</li>
+<li><strong>Celulares (no Wi-Fi da loja):</strong> Acesse no navegador <code>http://[IP-do-servidor]/celular</code>. É a única página sem criptografia e serve para baixar o certificado de segurança (o arquivo do Android ou o perfil do iPhone) junto com a impressão digital para conferência. Após instalar o certificado, o endereço com <code>https://</code> abrirá sem avisos.</li>
+<li><strong>Kobi Campo:</strong> Se a licença incluir o módulo Campo, pareie o celular acessando <code>/campo/</code>. O gerente pode visualizar e revogar aparelhos em <strong>Gerência › O sistema › Aparelhos do Campo</strong>.</li>
+</ul>
+<h2>Backup</h2>
+<ul>
+<li><strong>O que o programa faz:</strong> duas cópias por dia, cada uma um arquivo <code>kobigo-AAAAMMDD-N.zip</code> com o banco (criptografado), a licença, os anexos e a chave do banco protegida pela <strong>senha do backup</strong>. As dos últimos sete dias ficam no servidor, em <code>C:\KobiGo\backups</code>, e cada uma vai também à <strong>pasta de fora</strong> que o gerente apontar em <strong>Gerência › O sistema › Backup</strong>: um pendrive, um segundo disco ou a pasta que o OneDrive ou o Google Drive sincroniza (as cópias ficam em <code>Kobi\go</code> dentro dela, também sete dias).</li>
+<li><strong>O registro do backup</strong> (<code>registro-do-backup.txt</code>, ao lado das cópias e dentro de cada uma) anota cada cópia, com a hora, o tamanho e o SHA-256, e se ela chegou à pasta de fora, ou que não havia pasta de fora apontada.</li>
+<li><strong>O que é da loja:</strong> o programa oferece uma ferramenta auxiliar. Guardar uma cópia <strong>fora da máquina e fora da loja</strong> (o pendrive que vai para casa, o disco guardado em outro lugar, a pasta sincronizada), guardar a senha do backup e conferir de tempos em tempos que a cópia restaura são responsabilidade da loja. Diga isso ao cliente na instalação, com a tela Backup aberta.</li>
+<li><strong>Teste a restauração antes de precisar dela</strong>, numa máquina de teste, uma vez por mês.</li>
+</ul>
+<h2>Restaurar uma cópia (e substituir o servidor em caso de pane)</h2>
+<p>Cada cópia leva este passo a passo no arquivo <code>COMO-RESTAURAR.txt</code>.</p>
+<ol>
+<li>Na máquina que vai ser o servidor (a nova, ou a mesma depois do conserto), abra o instalador da marca da loja e escolha <strong>Restaurar uma cópia</strong>.</li>
+<li>Em <strong>A cópia</strong>, escreva o caminho do <code>.zip</code> (como <code>E:\Kobi\go\kobigo-20261123-2.zip</code>) ou só a pasta (<code>E:\</code>): vale a cópia mais nova dela.</li>
+<li>Escreva a <strong>senha do backup</strong> e clique em <strong>Restaurar</strong>. O instalador confere a senha antes de mexer nos dados (errada, o programa volta como estava), guarda os dados de agora em <code>dados.antes-&lt;data&gt;</code> e sobe o programa com a cópia. O que se gravou depois da cópia não volta.</li>
+<li><strong>Máquina nova:</strong> no painel do roteador, associe o IP fixo ao endereço MAC dela.</li>
+</ol>
+<p><em>(Nota: Sempre que um certificado de segurança novo for gerado, será preciso reconfigurar os computadores e celulares da loja).</em></p>
+<h2>Atualizar e reverter versão</h2>
+<p>O servidor busca atualizações a cada seis horas e permite que o gerente escolha instalar <strong>agora ou à noite</strong>. O instalador guarda a versão anterior e uma cópia do banco; se a atualização falhar ou não responder, ele reverte tudo automaticamente.</p>
+<p>Caso precise voltar atrás manualmente, abra o instalador e escolha <strong>Voltar à versão anterior</strong>. Em lojas sem internet, leve o instalador novo no pendrive (o da marca da loja ou o instalador geral de atualização) e escolha <strong>Atualizar</strong>.</p>
+<h2>Acesso externo (Porta de fora)</h2>
+<p>O acesso de fora da loja é um recurso adicional da licença. A opção <strong>Configurar acesso externo</strong> ativa um túnel seguro, fazendo com que o programa escute essa porta apenas dentro do próprio servidor. Se a internet da loja cair, o acesso externo para, mas a operação interna continua funcionando normalmente.</p>
+<h2>Loja de demonstração</h2>
+<p>A opção <strong>Loja de exemplo</strong> instala o sistema com dados fictícios para demonstração, na marca do instalador que você usou (cada marca tem o seu). Ela é isolada da operação real, mas <strong>nunca a instale no servidor de produção de um cliente</strong> pois destruirá os dados reais do cliente.</p>
+<h2>Desinstalar</h2>
+<p>A remoção pode ser feita pelo painel <strong>Aplicativos instalados</strong> do Windows ou pelo próprio instalador. O sistema faz uma cópia de segurança e mantém os dados no disco — eles só são excluídos se você digitar <code>APAGAR</code> quando solicitado.</p>
+<h2>O que enviar ao suporte (autor)</h2>
+<p>Se precisar reportar um problema, envie:</p>
+<ul>
+<li>A <strong>versão</strong> e o <strong>pacote</strong> (exibidos no rodapé do sistema).</li>
+<li>O que estava sendo feito na loja e o <strong>horário exato</strong> do ocorrido.</li>
+<li>A <strong>mensagem de erro</strong> exata.</li>
+<li>O <strong>arquivo de registro (log) do dia</strong>, que fica dentro da pasta do programa (<code>C:\KobiGo</code>).</li>
+</ul>

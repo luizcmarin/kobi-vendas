@@ -1,0 +1,818 @@
+<!doctype html>
+<!--
+  A apresentação de venda do Kobi RH: 16:9, sem nada de fora. Abra no navegador e aperte F (tela
+  cheia); as setas (ou o clique) passam os slides. O apresentacao.pdf ao lado sai deste arquivo
+  (Chrome, imprimir). Antes de apresentar, troque os campos "PARCEIRO" do último slide.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi RH — apresentação</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    @page {
+      size: 1280px 720px;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: #0c1322;
+    }
+
+    body {
+      font: 24px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      color: #1f2733;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .slide {
+      width: 1280px;
+      height: 720px;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      padding: 64px 80px;
+      display: none;
+      flex-direction: column;
+    }
+
+    .slide.atual {
+      display: flex;
+    }
+
+    @media screen {
+      .slide {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(var(--escala, 1));
+      }
+    }
+
+    @media print {
+      .slide {
+        display: flex;
+        break-after: page;
+      }
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.12;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 46px;
+      color: #1a3566;
+      letter-spacing: -0.01em;
+      margin-bottom: 18px;
+    }
+
+    .sub {
+      color: #4a5566;
+      font-size: 26px;
+      max-width: 980px;
+      margin-bottom: 36px;
+    }
+
+    .rodape {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      color: #8a96a8;
+    }
+
+    .rodape span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rodape svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .escura {
+      background: linear-gradient(150deg, #1a3566, #345996 60%, #007cdc);
+      color: #fff;
+    }
+
+    .escura h1,
+    .escura h2 {
+      color: #fff;
+    }
+
+    .escura .sub,
+    .escura p {
+      color: #dbe6fa;
+    }
+
+    .escura .rodape {
+      color: #b8ccff;
+    }
+
+    .capa {
+      justify-content: center;
+    }
+
+    .capa .logo {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 56px;
+    }
+
+    .capa .logo svg {
+      width: 96px;
+      height: 96px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 12px;
+    }
+
+    .capa h1 {
+      font-size: 68px;
+      letter-spacing: -0.02em;
+      max-width: 1050px;
+      margin-bottom: 28px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(var(--colunas, 2), 1fr);
+    }
+
+    .cartao {
+      background: #f3f6fb;
+      border-radius: 18px;
+      padding: 28px 30px;
+    }
+
+    .cartao strong {
+      display: block;
+      font-size: 27px;
+      color: #1f2733;
+      margin-bottom: 6px;
+    }
+
+    .cartao span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .escura .cartao {
+      background: rgb(255 255 255 / 10%);
+    }
+
+    .escura .cartao strong {
+      color: #fff;
+    }
+
+    .escura .cartao span {
+      color: #dbe6fa;
+    }
+
+    .dor {
+      border-left: 8px solid #007cdc;
+    }
+
+    .grande {
+      font-size: 40px;
+      font-weight: 700;
+      color: #1a3566;
+      max-width: 1080px;
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .pilares {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pilar {
+      border-top: 6px solid #007cdc;
+      padding-top: 18px;
+    }
+
+    .pilar strong {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .pilar span {
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .avisos {
+      border: 1px solid #dbe2ee;
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: 0 8px 30px rgb(16 32 64 / 10%);
+      display: grid;
+      gap: 10px;
+    }
+
+    .aviso {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: #f3f6fb;
+      border-left: 6px solid var(--cor, #007cdc);
+      font-size: 21px;
+    }
+
+    .aviso b {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--cor, #007cdc);
+    }
+
+    .aviso span {
+      color: #4a5566;
+      font-size: 19px;
+    }
+
+    .notas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .notas div {
+      font-size: 20px;
+      color: #4a5566;
+    }
+
+    .notas strong {
+      color: #1f2733;
+      display: block;
+      font-size: 22px;
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(var(--colunas, 3), 1fr);
+      gap: 20px;
+    }
+
+    .papel {
+      border: 2px solid #dbe2ee;
+      border-radius: 16px;
+      padding: 22px 24px;
+    }
+
+    .papel strong {
+      color: #345996;
+      font-size: 26px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .papel span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .destaque {
+      margin-top: 28px;
+      background: #fff6df;
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 22px;
+    }
+
+    table.comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 22px;
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #dbe2ee;
+    }
+
+    .comparacao thead th {
+      background: #1a3566;
+      color: #fff;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: #8a96a8;
+    }
+
+    .comparacao td:last-child {
+      font-weight: 600;
+      color: #1a3566;
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      counter-reset: passo;
+    }
+
+    .passo {
+      counter-increment: passo;
+    }
+
+    .passo::before {
+      content: counter(passo);
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #007cdc;
+      color: #fff;
+      font-weight: 700;
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .passo strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    .passo span {
+      color: #4a5566;
+      font-size: 20px;
+    }
+
+    .lado {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 36px;
+    }
+
+    .lado h3 {
+      font-size: 26px;
+      color: #345996;
+      margin-bottom: 10px;
+    }
+
+    .lado ul {
+      margin: 0;
+      padding-left: 26px;
+      color: #4a5566;
+      font-size: 21px;
+    }
+
+    .contato {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .contato h1 {
+      font-size: 58px;
+      margin-bottom: 20px;
+    }
+
+    .parceiro {
+      background: rgb(255 255 255 / 12%);
+      border-radius: 22px;
+      padding: 36px;
+      font-size: 24px;
+    }
+
+    .parceiro strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .dica {
+      position: fixed;
+      right: 16px;
+      bottom: 12px;
+      color: #8a96a8;
+      font-size: 13px;
+    }
+
+    @media print {
+      .dica {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="slide escura capa">
+    <div class="logo"><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+        <g fill="#007cdc" transform="translate(0 59.25)">
+          <path
+            d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+          <path
+            d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+          <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+          <circle cx="466" cy="272" r="70" />
+        </g>
+      </svg>Kobi RH</div>
+    <h1>A equipe inteira num lugar só. E o que vence é avisado antes.</h1>
+    <p class="sub">Gestão de equipes para pequenas empresas, instalado dentro da sua casa.</p>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>1 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O RH hoje</h2>
+    <p class="sub">A pasta no armário, a planilha das férias, o caderno das horas e o lembrete do exame na agenda de
+      alguém.</p>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao dor"><strong>As férias em dobro</strong><span>O período venceu, ninguém fez a conta, e a
+          empresa paga em dobro.</span></div>
+      <div class="cartao dor"><strong>O exame vencido</strong><span>O ASO periódico venceu há dois meses, e só a
+          fiscalização viu.</span></div>
+      <div class="cartao dor"><strong>O EPI sem papel</strong><span>A luva foi entregue, mas o termo assinado não está
+          em lugar nenhum.</span></div>
+      <div class="cartao dor"><strong>O custo que ninguém sabe</strong><span>O salário todo mundo sabe. Com os encargos
+          e as provisões, ninguém.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>2 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <p class="grande">O Kobi RH junta a ficha da equipe, as férias, o banco de horas, a segurança do trabalho e os
+      indicadores num sistema só, num servidor dentro da sua empresa.</p>
+    <div class="pilares">
+      <div class="pilar"><strong>Na empresa</strong><span>O salário e o atestado de ninguém vão para a nuvem. A internet
+          só serve ao backup de fora e à atualização.</span></div>
+      <div class="pilar"><strong>Avisa antes</strong><span>As férias, o exame, o banco de horas e a CAT que vencem
+          aparecem no Início.</span></div>
+      <div class="pilar"><strong>Cada um no seu</strong><span>O financeiro não vê salário nem falta, e toda gravação
+          fica
+          registrada.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>3 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>O Início do RH</h2>
+    <p class="sub">O que pede atenção hoje, numa tela só. Cada aviso leva à tela onde se resolve.</p>
+    <div class="avisos">
+      <div class="aviso" style="--cor:#c0392b"><b>CAT</b><strong>Acidente na cozinha, ontem</strong><span>prazo:
+          hoje</span></div>
+      <div class="aviso" style="--cor:#e0a526"><b>Férias</b><strong>Rogério B., 2º período, nada
+          programado</strong><span>vence no mês que vem</span></div>
+      <div class="aviso" style="--cor:#e0a526"><b>Banco</b><strong>Camila W., 6 h 30 de crédito</strong><span>vence em 9
+          dias</span></div>
+      <div class="aviso"><b>ASO</b><strong>Jéssica M., periódico</strong><span>vence em 18 dias</span></div>
+    </div>
+    <div class="notas">
+      <div><strong>As férias</strong>O período sai da admissão; as partes, o aviso e o abono seguem a CLT.</div>
+      <div><strong>O banco de horas</strong>O crédito mais antigo se compensa primeiro, e o que passa do prazo vence.
+      </div>
+      <div><strong>Os documentos</strong>O que vence em 30, 60 e 90 dias, só de quem está na casa.</div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>4 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>A ficha de cada um</h2>
+    <p class="sub">Uma ficha por vínculo, com uma aba para cada assunto. O sistema confere as regras e avisa.</p>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao"><strong>O vínculo</strong><span>O cargo da CBO (2.694 títulos), o salário, os benefícios, a
+          jornada e o gestor.</span></div>
+      <div class="cartao"><strong>As férias</strong><span>As faltas encolhem o direito; a parte fora da regra é
+          recusada, e a tardia, avisada.</span></div>
+      <div class="cartao"><strong>As ausências e as horas</strong><span>A falta, o atestado e a folga combinada; o
+          crédito, a compensação e o pago.</span></div>
+      <div class="cartao"><strong>Os documentos e os checklists</strong><span>O ASO, a CTPS e o contrato com validade; a
+          admissão e o desligamento passo a passo.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>5 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>A segurança do trabalho</h2>
+    <p class="sub">O que a lei pede que se guarde, guardado, e o prazo contado pelo sistema.</p>
+    <div class="grade" style="--colunas:2">
+      <div class="cartao"><strong>A entrega de EPI</strong><span>Os itens com o CA e o termo assinado na tela, com o
+          dedo. Assinada, não muda mais.</span></div>
+      <div class="cartao"><strong>Os termos da casa</strong><span>O regulamento interno e o acordo do banco de horas,
+          assinados do mesmo jeito.</span></div>
+      <div class="cartao"><strong>O acidente e a CAT</strong><span>O prazo da comunicação contado sozinho, e o aviso
+          quando atrasa.</span></div>
+      <div class="cartao"><strong>A garantia de doze meses</strong><span>Na volta do afastamento, a ficha mostra até
+          quando o contrato está garantido.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>6 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Os números e o desenvolvimento</h2>
+    <div class="grade" style="--colunas:3">
+      <div class="cartao"><strong>Rotatividade</strong><span>Quem entrou e saiu, mês a mês.</span></div>
+      <div class="cartao"><strong>Absenteísmo</strong><span>As horas não planejadas e quem mais faltou.</span></div>
+      <div class="cartao"><strong>Custo real</strong><span>Encargos e provisões, e quanto custa contratar mais
+          um.</span></div>
+      <div class="cartao"><strong>Desempenho e carreira</strong><span>A avaliação por competência, a 9-box e quem já
+          pode subir.</span></div>
+      <div class="cartao"><strong>Avaliação 360</strong><span>O gestor, o colega, o liderado e a autoavaliação lado a
+          lado.</span></div>
+      <div class="cartao"><strong>Clima anônimo</strong><span>Sem quem respondeu, por construção; a favorabilidade
+          rodada a rodada.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>7 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Cada um vê o que é seu</h2>
+    <p class="sub">Salário, falta, atestado e avaliação são dados sensíveis. A permissão vale no servidor.</p>
+    <div class="papeis" style="--colunas:3">
+      <div class="papel"><strong>Gerente</strong><span>Tudo, os usuários, a empresa, o backup e a licença.</span></div>
+      <div class="papel"><strong>RH</strong><span>A equipe inteira, a segurança, os indicadores e o
+          desenvolvimento.</span></div>
+      <div class="papel"><strong>Financeiro</strong><span>As contas, o caixa e os recibos, sem ver salário nem
+          falta.</span></div>
+    </div>
+    <div class="destaque"><strong>Auditoria:</strong> toda gravação registra quem, quando, o antes e o depois.</div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>8 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Do orçamento à fatura</h2>
+    <div class="grade" style="--colunas:3">
+      <div class="cartao "><strong>O funil</strong><span>Cada vendedor com os seus negócios; o gerente vê tudo.</span></div>
+      <div class="cartao "><strong>O orçamento</strong><span>Em PDF e pelo WhatsApp, no idioma do cliente.</span></div>
+      <div class="cartao "><strong>O contrato</strong><span>O aceite assinado na tela, com o dedo.</span></div>
+      <div class="cartao "><strong>A fatura</strong><span>Em parcelas, com um clique, e a PIX no PDF.</span></div>
+      <div class="cartao "><strong>A assinatura</strong><span>A cobrança do mês emitida sozinha.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>9 / 13</span></div>
+  </section>
+  <section class="slide escura">
+    <h2>Os dados da equipe ficam na empresa</h2>
+    <p class="sub">Salário, atestado, acidente e avaliação: nada disso passa pela nuvem.</p>
+    <div class="grade" style="--colunas:3">
+      <div class="cartao"><strong>Banco cifrado</strong><span>Os documentos anexados também. Computador roubado ou
+          pendrive perdido não entregam ninguém.</span></div>
+      <div class="cartao"><strong>Cada um com o seu acesso</strong><span>Cada pessoa da equipe vê e faz só o que o papel dela permite.</span></div>
+      <div class="cartao"><strong>Tudo fica registrado</strong><span>Quem mudou o quê, e quando: cada alteração fica na auditoria.</span></div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>10 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Antes e depois</h2>
+    <table class="comparacao">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Pasta e planilha</th>
+          <th>Kobi RH</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Férias vencendo</th>
+          <td>Alguém faz a conta</td>
+          <td>Aviso no Início</td>
+        </tr>
+        <tr>
+          <th>Exame vencido</th>
+          <td>Descobre na fiscalização</td>
+          <td>Painel de 30, 60 e 90 dias</td>
+        </tr>
+        <tr>
+          <th>EPI entregue</th>
+          <td>Papel na pasta</td>
+          <td>Termo assinado na tela</td>
+        </tr>
+        <tr>
+          <th>Banco de horas</th>
+          <td>Caderno do encarregado</td>
+          <td>Saldo e o que vence</td>
+        </tr>
+        <tr>
+          <th>Custo da equipe</th>
+          <td>Só o salário</td>
+          <td>Com encargos e provisões</td>
+        </tr>
+        <tr>
+          <th>Quem mexeu?</th>
+          <td>Ninguém sabe</td>
+          <td>Tudo registrado</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>11 / 13</span></div>
+  </section>
+  <section class="slide ">
+    <h2>Como começa</h2>
+    <div class="passos">
+      <div class="passo"><strong>Demonstração</strong><span>Uma empresa de exemplo com um ano de equipe.</span></div>
+      <div class="passo"><strong>Instalação</strong><span>Servidor e máquinas da loja, pelo parceiro.</span>
+      </div>
+      <div class="passo"><strong>Cadastro</strong><span>A equipe, os documentos e as férias.</span></div>
+      <div class="passo"><strong>Treinamento</strong><span>O RH com o seu roteiro na Ajuda.</span></div>
+    </div>
+    <div class="lado">
+      <div>
+        <h3>A empresa precisa de</h3>
+        <ul>
+          <li>Um PC com Windows e um nobreak</li>
+          <li>Os computadores que já tem, e um tablet para as assinaturas</li>
+        </ul>
+      </div>
+      <div>
+        <h3>O Kobi RH não faz</h3>
+        <ul>
+          <li>A folha, os impostos e o eSocial: continuam com a contabilidade</li>
+          <li>O ponto homologado</li>
+          <li>A emissão da CAT: ele conta o prazo e guarda o número</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>12 / 13</span></div>
+  </section>
+  <section class="slide escura">
+    <div class="contato">
+      <div>
+        <h1>Vamos ver a sua equipe no Kobi?</h1>
+        <p style="font-size:26px">Meia hora, na empresa ou por vídeo, com uma empresa de exemplo cheia de dados.</p>
+      </div>
+      <div class="parceiro"><strong>[PARCEIRO: nome da empresa]</strong>Revenda autorizada Kobi RH<br>[PARCEIRO:
+        cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</div>
+    </div>
+    <div class="rodape"><span><svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M290,538 A176,176 0 0 1 642,538 Z" />
+            <circle cx="466" cy="272" r="70" />
+          </g>
+        </svg>Kobi RH</span><span>13 / 13</span></div>
+  </section>
+  <div class="dica">← → passam os slides · F tela cheia</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    let atual = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+    function mostrar(i) {
+      atual = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, n) => {
+        s.classList.toggle('atual', n === atual);
+      });
+      history.replaceState(null, '', `#${atual + 1}`);
+    }
+    function ajustar() {
+      const escala = Math.min(innerWidth / 1280, innerHeight / 720);
+      document.documentElement.style.setProperty('--escala', escala);
+    }
+    addEventListener('keydown', (e) => {
+      if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) mostrar(atual + 1);
+      else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) mostrar(atual - 1);
+      else if (e.key === 'Home') mostrar(0);
+      else if (e.key === 'End') mostrar(slides.length - 1);
+      else if (e.key === 'f') document.documentElement.requestFullscreen?.();
+    });
+    addEventListener('click', (e) => mostrar(atual + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    addEventListener('resize', ajustar);
+    ajustar();
+    mostrar(atual);
+  </script>
+</body>
+
+</html>

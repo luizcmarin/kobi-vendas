@@ -1,0 +1,165 @@
+<!doctype html>
+<!--
+  O folder do Kobi Pousada: uma folha A4, frente e verso. O folder.pdf ao lado sai deste
+  arquivo (Chrome, imprimir em A4 sem margens, com os gráficos de fundo).
+  Antes de imprimir, troque os campos "PARCEIRO" do verso.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Kobi Pousada — folder</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9edf3; }
+  body { font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: #1f2733; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media print { html, body { background: #fff; } .folha { margin: 0; break-after: page; } }
+  h1, h2, h3 { margin: 0; line-height: 1.15; }
+  p { margin: 0; }
+
+  .capa { background: linear-gradient(160deg, #1a3566, #345996 60%, #007cdc); color: #fff; padding: 18mm 16mm 14mm; }
+  .marca { display: flex; align-items: center; gap: 4mm; font-size: 15pt; font-weight: 700; }
+  .marca svg { width: 13mm; height: 13mm; background: #fff; border-radius: 3mm; padding: 1.6mm; }
+  .capa h1 { font-size: 27pt; letter-spacing: -0.02em; margin: 12mm 0 5mm; max-width: 150mm; }
+  .capa p { font-size: 12.5pt; color: #dbe6fa; max-width: 160mm; }
+
+  .corpo { padding: 10mm 16mm; flex: 1; display: flex; flex-direction: column; gap: 7mm; }
+  .dores { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; }
+  .dor { border-left: 1.2mm solid #007cdc; padding-left: 4mm; }
+  .dor strong { display: block; font-size: 11pt; }
+  .dor span { color: #4a5566; }
+
+  h2 { font-size: 15pt; color: #1a3566; margin-bottom: 3mm; }
+  .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.2mm; }
+  .lista li { padding-left: 6mm; position: relative; color: #4a5566; }
+  .lista li strong { color: #1f2733; }
+  .lista li::before { content: ""; position: absolute; left: 0; top: 1.3mm; width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #007cdc; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  .faixa { background: #f3f6fb; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; text-align: center; }
+  .faixa strong { display: block; font-size: 17pt; color: #007cdc; }
+  .faixa span { color: #4a5566; font-size: 9.5pt; }
+
+  .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .modulo { border: 0.3mm solid #dbe2ee; border-radius: 3mm; padding: 4mm; }
+  .modulo h3 { font-size: 11pt; color: #345996; margin-bottom: 1.5mm; }
+  .modulo p { color: #4a5566; font-size: 9.5pt; }
+
+  .rodape { margin-top: auto; background: #1a3566; color: #fff; padding: 9mm 16mm; display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; align-items: center; }
+  .rodape h2 { color: #fff; }
+  .rodape p { color: #d6e0f2; }
+  .parceiro { background: rgb(255 255 255 / 10%); border-radius: 3mm; padding: 5mm; }
+  .parceiro strong { font-size: 12.5pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="folha">
+  <div class="capa">
+    <div class="marca">
+      <svg viewBox="0 0 656.5 656.5" aria-hidden="true"><g fill="#007cdc" transform="translate(0 59.25)"><path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z"/><path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z"/><path d="M236.5,538 A210,210 0 0 1 656.5,538 Z"/></g></svg>
+      Kobi Pousada
+    </div>
+    <h1>A pousada inteira numa tela. Até com a internet caída.</h1>
+    <p>Reservas, a ficha de cada hóspede (FNRH), o consumo na conta, a arrumação dos quartos e o caixa, instalados num servidor dentro da sua pousada.</p>
+  </div>
+
+  <div class="corpo">
+    <div class="dores">
+      <div class="dor"><strong>A FNRH no check-in</strong><span>A ficha de cada hóspede, crianças inclusive, com os campos da norma. O check-in só sai com todas.</span></div>
+      <div class="dor"><strong>O frigobar na conta</strong><span>O consumo vai para a conta do quarto na hora, e o extrato sai antes do acerto.</span></div>
+      <div class="dor"><strong>"O 08 está pronto?"</strong><span>A camareira marca no celular, e a recepção vê na tela.</span></div>
+      <div class="dor"><strong>A internet caiu? Tudo bem.</strong><span>O sistema está na pousada. Computadores e celulares continuam pela rede da casa.</span></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>A recepção</h2>
+        <ul class="lista">
+          <li><strong>Mapa dos quartos</strong>: uma linha por quarto, uma coluna por noite.</li>
+          <li><strong>Diária por estação</strong> e mínimo de noites.</li>
+          <li><strong>Pré-reserva</strong> de 24 h à espera do sinal.</li>
+          <li><strong>Reserva em grupo</strong>: vários quartos, uma conta, um voucher.</li>
+          <li><strong>Menor sem os pais</strong>: autorização conferida e termo (ECA, art. 82).</li>
+          <li><strong>Voucher e recibo</strong> em PDF, e o WhatsApp com a mensagem pronta.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>O dinheiro</h2>
+        <ul class="lista">
+          <li><strong>Cardápio da casa</strong>: frigobar, restaurante, lavanderia, passeio.</li>
+          <li><strong>Extrato da conta</strong>: diárias, consumo e pagamentos.</li>
+          <li><strong>Várias moedas</strong>: dólar, euro, pesos e guarani, com troco em reais.</li>
+          <li><strong>Contas a pagar e a receber</strong>, com recibo.</li>
+          <li><strong>Fechamento do caixa</strong>, com a diferença explicada.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faixa">
+      <div><strong>1 hora</strong><span>entre um backup e o próximo, sempre cifrado</span></div>
+      <div><strong>0</strong><span>dependência da internet para trabalhar</span></div>
+      <div><strong>100 %</strong><span>das gravações registradas: quem, quando, o antes e o depois</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="folha">
+  <div class="corpo" style="padding-top: 14mm">
+    <div>
+      <h2>A casa toda no mesmo sistema</h2>
+      <p style="color:#4a5566">Recepção, governança e financeiro olham para os mesmos dados. Ninguém copia nada de uma planilha para outra.</p>
+    </div>
+    <div class="modulos">
+      <div class="modulo"><h3>Governança no celular</h3><p>Um cartão por quarto, na ordem do dia: vago limpo, vago sujo, ocupado, inspecionado, interditado.</p></div>
+      <div class="modulo"><h3>FNRH completa</h3><p>Os grupos da Portaria MTur nº 41/2025, enviada sozinha à Plataforma FNRH Digital, e a impressa para conferência.</p></div>
+      <div class="modulo"><h3>O dia da recepção</h3><p>Quem entra, quem sai, as limpezas e as pré-reservas à espera do sinal.</p></div>
+      <div class="modulo"><h3>Check-in e check-out</h3><p>A ficha de todos, a caução, o acerto, e o quarto que sai vai para a governança como sujo.</p></div>
+      <div class="modulo"><h3>Quarto interditado</h3><p>O quarto em obra sai do mapa e recusa reserva até ser liberado.</p></div>
+      <div class="modulo"><h3>O gerente de casa</h3><p>Pelo celular, com usuário e senha, quando a porta de fora está ligada.</p></div>
+      <div class="modulo"><h3>Tempo real</h3><p>A reserva feita numa máquina aparece nas outras na hora.</p></div>
+      <div class="modulo"><h3>Ajuda por papel</h3><p>Cada um tem o seu roteiro dentro do sistema: recepção, governança, financeiro, gerente.</p></div>
+      <div class="modulo"><h3>Cada um no seu papel</h3><p>Só o gerente mexe em preço. A governança vê os quartos; o financeiro, o caixa.</p></div>
+      <div class="modulo"><h3>Orçamento e contrato</h3><p>O funil de vendas, o orçamento em PDF e pelo WhatsApp, e o contrato com o aceite assinado na tela.</p></div>
+      <div class="modulo"><h3>Fatura e assinatura</h3><p>Parcelas com a PIX no PDF, e a cobrança que se repete emitida sozinha a cada período.</p></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>Os dados ficam na pousada</h2>
+        <ul class="lista">
+          <li><strong>Banco cifrado</strong> no servidor da pousada.</li>
+          <li><strong>Cada um com o seu acesso</strong>: cada pessoa vê só o que o papel dela permite.</li>
+          <li><strong>Atualização sozinha</strong>, que volta atrás se der errado.</li>
+          <li><strong>Tudo registrado</strong>: quem mudou o quê, e quando, fica na auditoria.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Como começa</h2>
+        <ul class="lista">
+          <li><strong>Demonstração</strong> com uma pousada de exemplo cheia de hóspedes.</li>
+          <li><strong>Instalação</strong> do servidor e do backup pelo parceiro.</li>
+          <li><strong>Cadastro</strong> dos quartos, das diárias e do cardápio.</li>
+          <li><strong>Treinamento</strong> de cada papel, com a Ajuda dentro do sistema.</li>
+          <li><strong>Mensalidade</strong> com as atualizações e o suporte.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">
+    <div>
+      <h2>Veja a sua pousada no Kobi</h2>
+      <p>Uma demonstração de meia hora, na pousada ou por vídeo. Sem compromisso.</p>
+      <p style="font-size: 8pt">Não emite nota fiscal, não conversa com Booking nem Airbnb, e não manda mensagem sozinho: uma pessoa envia.</p>
+    </div>
+    <div class="parceiro">
+      <strong>[PARCEIRO: nome da empresa]</strong>
+      <p>Revenda autorizada Kobi Pousada<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

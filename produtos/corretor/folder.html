@@ -1,0 +1,155 @@
+<!doctype html>
+<!--
+  O folder do Kobi Corretor: uma folha A4, frente e verso, na casca do folder da Pousada. O folder.pdf
+  sai deste arquivo (Chrome, imprimir em A4 sem margens, com os gráficos de fundo); o Kobi Vendas o
+  imprime sozinho, sem o quadro do parceiro. Antes de imprimir à mão, troque os campos "PARCEIRO" do verso.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Kobi Corretor — folder</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #e9edf3; }
+  body { font: 10.5pt/1.45 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: #1f2733; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .folha { width: 210mm; height: 297mm; margin: 10mm auto; background: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  @media print { html, body { background: #fff; } .folha { margin: 0; break-after: page; } }
+  h1, h2, h3 { margin: 0; line-height: 1.15; }
+  p { margin: 0; }
+
+  .capa { background: linear-gradient(160deg, #0b3a66, #1864ab 60%, #1971c2); color: #fff; padding: 18mm 16mm 14mm; }
+  .marca { display: flex; align-items: center; gap: 4mm; font-size: 15pt; font-weight: 700; }
+  .marca svg { width: 13mm; height: 13mm; }
+  .capa h1 { font-size: 27pt; letter-spacing: -0.02em; margin: 12mm 0 5mm; max-width: 150mm; }
+  .capa p { font-size: 12.5pt; color: #dbe6fa; max-width: 160mm; }
+
+  .corpo { padding: 10mm 16mm; flex: 1; display: flex; flex-direction: column; gap: 7mm; }
+  .dores { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; }
+  .dor { border-left: 1.2mm solid #1971c2; padding-left: 4mm; }
+  .dor strong { display: block; font-size: 11pt; }
+  .dor span { color: #4a5566; }
+
+  h2 { font-size: 15pt; color: #0b3a66; margin-bottom: 3mm; }
+  .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 2.2mm; }
+  .lista li { padding-left: 6mm; position: relative; color: #4a5566; }
+  .lista li strong { color: #1f2733; }
+  .lista li::before { content: ""; position: absolute; left: 0; top: 1.3mm; width: 3.2mm; height: 3.2mm; border-radius: 50%; background: #1971c2; }
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+
+  .faixa { background: #f3f6fb; border-radius: 4mm; padding: 6mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; text-align: center; }
+  .faixa strong { display: block; font-size: 17pt; color: #1971c2; }
+  .faixa span { color: #4a5566; font-size: 9.5pt; }
+
+  .modulos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; }
+  .modulo { border: 0.3mm solid #dbe2ee; border-radius: 3mm; padding: 4mm; }
+  .modulo h3 { font-size: 11pt; color: #1864ab; margin-bottom: 1.5mm; }
+  .modulo p { color: #4a5566; font-size: 9.5pt; }
+
+  .rodape { margin-top: auto; background: #0b3a66; color: #fff; padding: 9mm 16mm; display: grid; grid-template-columns: 1.4fr 1fr; gap: 8mm; align-items: center; }
+  .rodape h2 { color: #fff; }
+  .rodape p { color: #d6e0f2; }
+  .parceiro { background: rgb(255 255 255 / 10%); border-radius: 3mm; padding: 5mm; }
+  .parceiro strong { font-size: 12.5pt; display: block; margin-bottom: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="folha">
+  <div class="capa">
+    <div class="marca"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1971c2"/><path d="M11 30.5 L32 13 L53 30.5" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 28 L32 15.2 L47 28 L47 47.5 Q47 49 45.5 49 L18.5 49 Q17 49 17 47.5 Z" fill="#fff"/><circle cx="32" cy="34.5" r="4.2" fill="#1971c2"/><path d="M29.6 37 L34.4 37 L35.8 45 L28.2 45 Z" fill="#1971c2"/><path d="M14 54.5 q6 -3.6 12 0 t12 0 t12 0" fill="none" stroke="#ffd43b" stroke-width="3.4" stroke-linecap="round"/></svg>Kobi Corretor</div>
+    <h1>O escritório inteiro no seu celular. Até sem sinal.</h1>
+    <p>A temporada com o mapa de ocupação, a locação anual, as vendas com o parceiro e a carteira, num aplicativo que mora no seu celular, sem nuvem.</p>
+  </div>
+
+  <div class="corpo">
+    <div class="dores">
+      <div class="dor"><strong>"Tem casa livre no feriado?"</strong><span>A resposta em uma linha por casa, as livres primeiro, com o total.</span></div>
+      <div class="dor"><strong>A mesma casa, duas vezes</strong><span>O mapa não aceita duas estadias na mesma noite do mesmo imóvel.</span></div>
+      <div class="dor"><strong>"Quanto eu levo?"</strong><span>A comissão, a parte do parceiro e o repasse ao dono na tela, antes de gravar.</span></div>
+      <div class="dor"><strong>Sem sinal? Tudo bem.</strong><span>Os dados moram no celular: na praia, na casa que você mostra, no elevador.</span></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>A temporada</h2>
+        <ul class="lista">
+          <li><strong>Mapa de ocupação</strong>: uma linha por imóvel, uma coluna por noite</li>
+          <li><strong>Diária por temporada</strong>: e o mínimo de noites de cada uma</li>
+          <li><strong>A proposta pronta</strong>: para o WhatsApp do cliente</li>
+          <li><strong>Sinal, saldo e repasse</strong>: lançados sozinhos, com a baixa</li>
+          <li><strong>Voucher em PDF</strong>: para o hóspede</li>
+        </ul>
+      </div>
+      <div>
+        <h2>A locação e a venda</h2>
+        <ul class="lista">
+          <li><strong>Contrato anual</strong>: com a taxa, a garantia e os encargos</li>
+          <li><strong>Os aluguéis</strong>: lançados uma vez por mês, com o repasse</li>
+          <li><strong>O reajuste</strong>: pelo índice que você leu, com a conta</li>
+          <li><strong>Proposta e escritura</strong>: com a divisão do parceiro</li>
+          <li><strong>Recibo em PDF</strong>: de cada baixa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="faixa">
+      <div><strong>0</strong><span>dependência da internet para trabalhar</span></div>
+      <div><strong>3</strong><span>negócios no mesmo imóvel: temporada, locação e venda</span></div>
+      <div><strong>1</strong><span>aparelho: o seu, com os dados cifrados</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="folha">
+  <div class="corpo" style="padding-top: 14mm">
+    <div>
+      <h2>A carteira e o dia a dia</h2>
+      <p style="color:#4a5566">Os imóveis, os clientes, as visitas e o dinheiro conversam entre si. Nada se copia de um caderno para uma planilha.</p>
+    </div>
+    <div class="modulos">
+      <div class="modulo"><h3>A captação</h3><p>A autorização exclusiva ou aberta, até quando vale, onde está a chave e o aviso antes de vencer.</p></div>
+      <div class="modulo"><h3>Clientes e match</h3><p>O que cada um procura, e os imóveis que servem, do que mais serve ao que menos.</p></div>
+      <div class="modulo"><h3>Visitas</h3><p>A agenda, o que o cliente achou e o motivo que mais derruba negócio.</p></div>
+      <div class="modulo"><h3>Relatório do dono</h3><p>As visitas e o que disseram, prontos para o WhatsApp do proprietário.</p></div>
+      <div class="modulo"><h3>O financeiro</h3><p>A receber e a pagar, o atrasado primeiro, e o recibo de cada baixa.</p></div>
+      <div class="modulo"><h3>O painel</h3><p>A comissão do ano, o que está na mesa e o que vai virar problema.</p></div>
+    </div>
+
+    <div class="duas">
+      <div>
+        <h2>Os dados ficam com você</h2>
+        <ul class="lista">
+          <li><strong>Banco cifrado</strong>: no celular, trancado pela sua senha</li>
+          <li><strong>Sem conta nem nuvem</strong>: nada sai sem você mandar</li>
+          <li><strong>Backup em arquivo</strong>: que leva tudo ao celular novo</li>
+          <li><strong>Licença vencida não tranca</strong>: só leitura, e o backup sai</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Como começa</h2>
+        <ul class="lista">
+          <li><strong>Demonstração</strong>: com uma carteira de exemplo</li>
+          <li><strong>Instalação</strong>: na tela inicial do seu celular</li>
+          <li><strong>Licença</strong>: ativada ali mesmo, sem internet</li>
+          <li><strong>Tutorial</strong>: cada tela explicada, dentro do app</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="rodape">
+    <div>
+      <h2>Veja no seu celular</h2>
+      <p>Uma demonstração de meia hora, pessoalmente ou por vídeo. Sem compromisso.</p>
+      <p style="font-size: 8pt">Não publica nos portais de anúncio, não é para equipe de imobiliária e não manda mensagem sozinho: você envia.</p>
+    </div>
+    <div class="parceiro">
+      <strong>[PARCEIRO: nome da empresa]</strong>
+      <p>Revenda autorizada Kobi Corretor<br>[PARCEIRO: cidade]<br>WhatsApp [PARCEIRO: (DDD) número]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

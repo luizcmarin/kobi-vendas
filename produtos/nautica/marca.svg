@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A marca do Kobi Náutica, irmã das do Kobi Imobiliária, do Kobi Pousada e do Kobi RH: o mesmo K no azul da marca kobi-kubo,
+     numa caixa quadrada para servir de ícone. A haste de cima e a diagonal são as dos irmãos; a perna de baixo, que no imob é um
+     telhado, na pousada o sol na linha do mar e no RH uma pessoa, aqui é uma máscara de mergulho com o snorkel (eram três
+     bolhas até 29/10/2026; a máscara é a do glifo scuba-mask, o mesmo do acordeão no Kobi Dev, cheia e com o visor vazado).
+     O movimento (a cada 8 s a máscara sobe um pouco, como quem respira, e volta) começa e termina na marca parada: o quadro zero é o que o
+     favicon e o .ico mostram (nautica/marca/). Quem pede menos movimento vê a marca parada, e o endereço com #parada também
+     (o :target; o painel das telas de conta pede). -->
+<svg id="parada" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 656.5 656.5" width="656" height="656">
+  <title>Kobi Náutica</title>
+  <style>
+    .mascara { animation: subir 8s ease-in-out infinite; }
+    @keyframes subir {
+      0%, 4%, 22%, 100% { transform: translate(0, 0); }
+      12% { transform: translate(0, -24px); }
+    }
+    #parada:target .mascara { animation: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .mascara { animation: none; }
+    }
+  </style>
+  <g fill="#007cdc" transform="translate(0 59.25)">
+    <path d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+    <path d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+    <g class="mascara">
+      <g transform="translate(252.2 247.5) scale(19.5)">
+        <path fill-rule="evenodd" d="M4 7h12a1 1 0 0 1 1 1v4.5a2.5 2.5 0 0 1 -2.5 2.5h-.5a2 2 0 0 1 -2 -2a2 2 0 1 0 -4 0a2 2 0 0 1 -2 2h-.5a2.5 2.5 0 0 1 -2.5 -2.5v-4.5a1 1 0 0 1 1 -1zM6.6 9.2h6.8a.8 .8 0 0 1 .8 .8v.3a1.3 1.3 0 0 1 -1.3 1.3h-5.8a1.3 1.3 0 0 1 -1.3 -1.3v-.3a.8 .8 0 0 1 .8 -.8z" />
+        <path fill="none" stroke="#007cdc" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="M17 12h.5a2 2 0 0 0 2 -2v-8" />
+      </g>
+    </g>
+  </g>
+</svg>

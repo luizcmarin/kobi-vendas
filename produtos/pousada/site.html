@@ -1,0 +1,1011 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Pousada: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Pousada — o sistema da pousada</title>
+  <meta name="description"
+    content="Reservas, FNRH, consumo na conta, governança e caixa num sistema só, instalado dentro da pousada: funciona com a internet caída.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656.5 656.5'%3E%3Cg fill='%23007cdc' transform='translate(0 59.25)'%3E%3Cpath d='M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z'/%3E%3Cpath d='M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z'/%3E%3Cpath d='M236.5,538 A210,210 0 0 1 656.5,538 Z'/%3E%3C/g%3E%3C/svg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O mapa de ocupação desenhado, no lugar de uma captura */
+    .mapa {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 16px;
+      font-size: .78rem;
+      overflow: hidden;
+    }
+
+    .mapa__titulo {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa table {
+      border-collapse: separate;
+      border-spacing: 3px;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .mapa th {
+      font-weight: 500;
+      color: var(--texto-2);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mapa th:first-child {
+      width: 28%;
+    }
+
+    .mapa td {
+      height: 22px;
+      border-radius: 4px;
+      background: var(--fundo-2);
+    }
+
+    .mapa td.c {
+      background: #2f8f5b;
+    }
+
+    .mapa td.h {
+      background: var(--marca);
+    }
+
+    .mapa td.p {
+      background: repeating-linear-gradient(45deg, #e0a526, #e0a526 4px, #f2c86a 4px, #f2c86a 8px);
+    }
+
+    .mapa td.b {
+      background: #8b95a5;
+    }
+
+    .mapa__legenda {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa__legenda span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: -1px;
+      background: var(--cor);
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./">
+        <svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path d="M236.5,538 A210,210 0 0 1 656.5,538 Z" />
+          </g>
+        </svg>
+        Kobi Pousada
+      </a>
+      <nav>
+        <a href="#recepcao">Recepção</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Feito para a pousada de verdade, com recepção, camareira e frigobar</span>
+          <h1>A pousada inteira numa tela. Até com a internet caída.</h1>
+          <p class="chamada">O Kobi Pousada junta num sistema só as reservas, a ficha de cada hóspede (FNRH), o consumo
+            na conta, a arrumação dos quartos e o caixa. Ele roda num servidor <strong>dentro da pousada</strong>: se a
+            internet cair no feriado, a recepção continua fazendo check-in.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#recepcao">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="mapa" role="img"
+          aria-label="Desenho do mapa de ocupação: uma linha por quarto, uma coluna por noite, com hóspedes, reservas confirmadas, pré-reservas e um quarto interditado.">
+          <div class="mapa__titulo"><span>Mapa dos quartos</span><span>jan · 35 noites</span></div>
+          <table>
+            <tbody>
+              <tr>
+                <th>01 · Standard</th>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td></td>
+                <td></td>
+                <td class="c"></td>
+              </tr>
+              <tr>
+                <th>02 · Standard</th>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>05 · Luxo</th>
+                <td></td>
+                <td class="p"></td>
+                <td class="p"></td>
+                <td class="p"></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>08 · Suíte</th>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+              </tr>
+              <tr>
+                <th>10 · Chalé</th>
+                <td class="b"></td>
+                <td class="b"></td>
+                <td class="b"></td>
+                <td class="b"></td>
+                <td></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mapa__legenda">
+            <span style="--cor: var(--marca)">Hospedado</span>
+            <span style="--cor: #2f8f5b">Confirmada</span>
+            <span style="--cor: #e0a526">Pré-reserva</span>
+            <span style="--cor: #8b95a5">Interditado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se a sua pousada vive isto, o Kobi foi feito para ela</h2>
+        <p class="introducao">Planilha para as reservas, papel para a ficha do hóspede, caderninho para o frigobar e
+          grito no corredor para saber se o quarto está limpo. Cada um funciona sozinho, e nenhum conversa com o outro.
+        </p>
+        <div class="dores">
+          <div class="dor"><strong>"Tem quarto para três pessoas no feriado?"</strong><span>Hoje alguém confere a
+              planilha. Com o Kobi, a consulta mostra só os quartos livres que cabem, do mais barato ao mais caro, com o
+              total.</span></div>
+          <div class="dor"><strong>A ficha do hóspede</strong><span>A FNRH digital é obrigatória desde 20/04/2026. O
+              Kobi preenche a ficha de cada hóspede no check-in e a manda sozinho à plataforma do governo.</span></div>
+          <div class="dor"><strong>O frigobar esquecido</strong><span>O consumo vai para a conta do quarto na hora, e o
+              extrato mostra diárias, consumo e pagamentos antes do acerto.</span></div>
+          <div class="dor"><strong>"O 08 já está pronto?"</strong><span>A camareira marca no celular, e a recepção vê na
+              tela: vago limpo, vago sujo, ocupado, inspecionado ou interditado.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recepcao" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>Da reserva ao check-out, sem papel solto</h2>
+          <p class="introducao">O mapa é uma linha por quarto e uma coluna por noite. Toda gravação aparece na hora em
+            todas as máquinas, e o sistema não aceita dois hóspedes na mesma noite do mesmo quarto.</p>
+          <ul class="lista">
+            <li><strong>Diária por estação</strong>: Baixa, Média, Alta, Réveillon, Carnaval (e as que a pousada criar),
+              com o mínimo de noites de cada uma.</li>
+            <li><strong>Pré-reserva</strong>: segura o quarto por 24 horas à espera do sinal. Pagou, confirma.</li>
+            <li><strong>Reserva em grupo</strong>: a família ou a excursão em vários quartos, com um responsável, uma
+              conta e um voucher só.</li>
+            <li><strong>Voucher e recibo em PDF</strong>, e a mensagem pronta no WhatsApp para o hóspede.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>Check-in com a FNRH</strong>: a ficha de cada hóspede, crianças inclusive. O check-in só sai com
+              todas preenchidas.</li>
+            <li><strong>Menor sem os pais</strong>: o sistema pede a autorização conferida (ECA, art. 82) e emite o
+              modelo da autorização e o termo de hospedagem do menor.</li>
+            <li><strong>Consumo na conta</strong>: frigobar, restaurante, lavanderia e passeio, do cardápio da casa, com
+              o preço.</li>
+            <li><strong>Turista estrangeiro</strong>: receba em dólar, euro, peso argentino, uruguaio ou chileno,
+              guarani, PIX ou cartão, tudo no mesmo recibo, com troco em reais.</li>
+            <li><strong>Check-out</strong>: o extrato da conta, o acerto, a caução devolvida, e o quarto passa a vago
+              sujo para a governança.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>A casa toda no mesmo sistema</h2>
+        <p class="introducao">Recepção, governança e financeiro olham para os mesmos dados. Ninguém copia nada de uma
+          planilha para outra.</p>
+        <div class="grade">
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="6" y="2" width="12" height="20" rx="2" />
+                <path d="M9 12l2 2 4-4" />
+              </svg></div>
+            <h3>Governança no celular</h3>
+            <p>Um cartão por quarto, na ordem do dia: o quarto sujo que recebe hóspede hoje vem primeiro. A saída suja o
+              quarto, e a limpeza feita o limpa sozinha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                <path d="M14 3v6h6M8 13h8M8 17h5" />
+              </svg></div>
+            <h3>FNRH completa</h3>
+            <p>Identificação, contato, residência, viagem, a estada e os menores: os grupos da Portaria MTur nº 41/2025.
+              A ficha impressa fica para conferência e guarda.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 2v4M16 2v4M3 10h18" />
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+              </svg></div>
+            <h3>O dia da recepção</h3>
+            <p>Quem entra, quem sai, as limpezas (as atrasadas também) e as pré-reservas à espera do sinal, numa tela
+              só.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 7h18v12H3z" />
+                <path d="M3 11h18M7 15h3" />
+              </svg></div>
+            <h3>Caixa que fecha</h3>
+            <p>Contas a pagar e a receber, recibos numerados e o fechamento do dia: o contado contra o esperado, por
+              moeda, e a diferença exige o porquê.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 21h8M12 17v4M5 3h14l-1 9a6 6 0 0 1-12 0z" />
+              </svg></div>
+            <h3>Cardápio da casa</h3>
+            <p>O gerente cadastra os produtos e serviços com o preço. O lançado fica com o nome e o preço do dia, mesmo
+              que o cardápio mude depois.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
+              </svg></div>
+            <h3>O gerente de casa</h3>
+            <p>Com a porta de fora ligada, o gerente acompanha a pousada pelo celular, com o usuário e a senha.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M9 10h6M9 14h6M9 18h3" />
+              </svg></div>
+            <h3>Orçamento, proposta e contrato</h3>
+            <p>Os clientes e o funil de vendas, com as atividades de cada negócio. O orçamento sai em PDF e pelo
+              WhatsApp, no idioma do cliente; a proposta para o grupo, a agência e a empresa ganham a proposta com a carta da casa; o contrato
+              tem o aceite assinado na tela, com o dedo.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
+                <path d="M9 8h6M9 12h6" />
+              </svg></div>
+            <h3>Fatura e assinatura</h3>
+            <p>A fatura em parcelas, com a PIX da casa no PDF, sai com um clique do orçamento aceito ou do contrato. A
+              cobrança que se repete emite a de cada período sozinha. Cancela-se, nunca se apaga.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Cada um vê o que é seu</h2>
+        <p class="introducao">A permissão é por papel e vale no servidor. Só o gerente mexe em preço. Toda gravação fica
+          registrada: quem, quando, o antes e o depois.</p>
+        <div class="papeis">
+          <div class="papel"><strong>Gerente</strong><span>Vê tudo, define as diárias, as estações, o cardápio e os
+              usuários.</span></div>
+          <div class="papel"><strong>Recepção</strong><span>Reserva, recebe, faz o check-in e o check-out, lança o
+              consumo.</span></div>
+          <div class="papel"><strong>Governança</strong><span>A situação dos quartos, no celular.</span></div>
+          <div class="papel"><strong>Financeiro</strong><span>As contas, o caixa e os recibos.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca">
+      <div class="largura duas">
+        <div>
+          <h2>Os dados dos seus hóspedes ficam na sua pousada</h2>
+          <p class="introducao">A ficha do hóspede tem documento, endereço e, às vezes, dados de criança. Por isso nada
+            passa pela nuvem: o banco fica no servidor da pousada, cifrado.</p>
+          <ul class="lista">
+            <li><strong>Backup duas vezes por dia</strong>, sete dias guardados no servidor e cada cópia levada ao pendrive ou
+              à pasta sincronizada, sempre cifrado.</li>
+            <li><strong>Conexão protegida</strong> na rede da pousada, inclusive no Wi-Fi dos hóspedes.</li>
+            <li><strong>Atualização sozinha</strong>, na hora que o gerente escolher, e volta atrás se algo der errado.
+            </li>
+            <li><strong>Licença vencida nunca tranca a base</strong>: o sistema fica só para leitura e deixa exportar
+              tudo.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="comparacao">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Planilha e papel</th>
+                <th>Kobi Pousada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Quarto livre?</th>
+                <td>Conferir a planilha</td>
+                <td>Uma consulta, com o preço</td>
+              </tr>
+              <tr>
+                <th>Ficha do hóspede</th>
+                <td>Papel na gaveta</td>
+                <td>FNRH no check-in</td>
+              </tr>
+              <tr>
+                <th>Frigobar</th>
+                <td>Anotado e esquecido</td>
+                <td>Na conta do quarto</td>
+              </tr>
+              <tr>
+                <th>Quarto pronto?</th>
+                <td>Perguntar no corredor</td>
+                <td>Na tela da recepção</td>
+              </tr>
+              <tr>
+                <th>Internet caiu</th>
+                <td>Para tudo</td>
+                <td>Continua funcionando</td>
+              </tr>
+              <tr>
+                <th>Quem mexeu?</th>
+                <td>Ninguém sabe</td>
+                <td>Tudo registrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Instalado e atendido perto de você</h2>
+        <p class="introducao">O Kobi é vendido, instalado e atendido por um parceiro da sua região. Ele leva o servidor,
+          prepara as máquinas e os celulares da equipe, ensina cada um e é quem você chama quando precisa.</p>
+        <div class="grade">
+          <div class="cartao">
+            <h3>1. Demonstração</h3>
+            <p>O parceiro mostra o sistema com uma pousada de exemplo, cheia de hóspedes.</p>
+          </div>
+          <div class="cartao">
+            <h3>2. Instalação</h3>
+            <p>O servidor e as máquinas, montados na pousada.</p>
+          </div>
+          <div class="cartao">
+            <h3>3. Começo</h3>
+            <p>Os quartos, as diárias e as reservas entram. A equipe aprende com a Ajuda de cada papel, dentro do
+              sistema.</p>
+          </div>
+          <div class="cartao">
+            <h3>4. Mensalidade</h3>
+            <p>Uma mensalidade com as atualizações e o suporte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi Pousada não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loja: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Nota fiscal</strong><span>A conta e o recibo não são nota: ela continua com a prefeitura ou o contador.</span></div>
+          <div class="dor"><strong>Booking, Airbnb e motor de reservas</strong><span>O Kobi não conversa com os sites de reserva, e a reserva não se faz pelo seu site.</span></div>
+          <div class="dor"><strong>Robô no WhatsApp</strong><span>Ele abre a conversa com o texto pronto, e uma pessoa envia.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas frequentes</h2>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>Não para trabalhar. O sistema roda no servidor dentro da pousada, e as máquinas e os celulares o abrem pela
+            rede da casa. A internet serve para o backup externo, a atualização, o WhatsApp e o acesso de fora.</p>
+        </details>
+        <details>
+          <summary>O Kobi manda a FNRH para o governo?</summary>
+          <p>Manda. A ficha de cada hóspede vai sozinha à Plataforma FNRH Digital no check-in, e a saída no checkout,
+            pela conta da pousada na plataforma. Sem internet, a ficha espera na fila e vai quando a rede voltar.</p>
+        </details>
+        <details>
+          <summary>Funciona no celular?</summary>
+          <p>Sim, pelo navegador, no Wi-Fi da pousada: é assim que a camareira marca os quartos. Com a porta de fora
+            ligada, também pelo 4G.</p>
+        </details>
+        <details>
+          <summary>Que computador precisa?</summary>
+          <p>Um PC com Windows como servidor, um nobreak e os computadores que a pousada
+            já tem, com Windows e um navegador.</p>
+        </details>
+        <details>
+          <summary>Serve para hotel pequeno, chalés ou hostel?</summary>
+          <p>Serve para quem hospeda por quarto ou por unidade: o quarto tem número, tipo (standard, luxo, chalé,
+            suíte), capacidade e andar ou bloco.</p>
+        </details>
+        <details>
+          <summary>E se eu quiser parar de usar?</summary>
+          <p>Os dados são seus. Com a licença vencida o sistema não tranca: fica só para leitura e exporta tudo.</p>
+        </details>
+        <details>
+          <summary>Quem dá o suporte?</summary>
+          <p>O parceiro que instalou atende o primeiro chamado. O que ele não resolve vai direto ao autor do sistema.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja a sua pousada no Kobi</h2>
+            <p>Uma demonstração de meia hora, na pousada ou por vídeo, com uma pousada de exemplo cheia de hóspedes. Sem
+              compromisso.</p>
+            <a class="botao"
+              href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20Pousada.">Chamar
+              no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Pousada<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Pousada: software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>

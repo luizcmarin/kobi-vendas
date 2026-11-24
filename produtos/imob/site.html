@@ -1,0 +1,1050 @@
+<!doctype html>
+<!--
+  O site de vendas do Kobi Imobiliária: uma página só, sem nada de fora (nem fonte, nem script),
+  para hospedar em qualquer lugar ou abrir do pendrive.
+  ANTES DE PUBLICAR, troque os três campos do parceiro (procure por "PARCEIRO"):
+  o nome, o WhatsApp (no texto e no link wa.me, só números com 55 e o DDD) e a cidade.
+-->
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kobi Imobiliária — o sistema da imobiliária de praia</title>
+  <meta name="description"
+    content="Temporada, locação, vendas, vistoria e repasse num sistema só, instalado dentro da imobiliária: funciona com a internet caída na alta temporada.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 656.5 656.5'%3E%3Cg fill='%23007cdc' transform='translate(0 59.25)'%3E%3Cpath d='M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z'/%3E%3Cpath d='M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z'/%3E%3Cpath d='M235.5,431.1 c116.94,-116.8 111.79,-112.1 129.8,-118.16 c25.18,-8.45 51.48,-4.8 74.2,10.32 c3.82,2.54 44.4,42.34 111.5,109.35 L656.5,538 H402.5 L305.5,441 L208.5,538 H128.5 Z'/%3E%3C/g%3E%3C/svg%3E">
+  <style>
+    :root {
+      --marca: #007cdc;
+      --primaria: #345996;
+      --profunda: #1a3566;
+      --fundo: #ffffff;
+      --fundo-2: #f3f6fb;
+      --texto: #1f2733;
+      --texto-2: #4a5566;
+      --borda: #dbe2ee;
+      --destaque: #fff6df;
+      --sombra: 0 1px 2px rgb(16 32 64 / 6%), 0 8px 24px rgb(16 32 64 / 8%);
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --marca: #4aa8ff;
+        --primaria: #7f9fd3;
+        --profunda: #b8ccff;
+        --fundo: #10151d;
+        --fundo-2: #171e29;
+        --texto: #eef2f8;
+        --texto-2: #b3bfd1;
+        --borda: #2a3444;
+        --destaque: #2b2614;
+        --sombra: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+    }
+
+    a {
+      color: var(--marca);
+    }
+
+    .largura {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 .5em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    /* O alto */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: color-mix(in srgb, var(--fundo) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .topo .largura {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    .logo svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .topo nav {
+      margin-left: auto;
+      display: flex;
+      gap: 20px;
+    }
+
+    .topo nav a {
+      color: var(--texto-2);
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .topo nav a:hover {
+      color: var(--texto);
+    }
+
+    @media (max-width: 760px) {
+      .topo nav a:not(.botao) {
+        display: none;
+      }
+    }
+
+    .botao {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 10px;
+      background: var(--marca);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: 0;
+    }
+
+    .botao:hover {
+      filter: brightness(1.08);
+    }
+
+    .botao--claro {
+      background: transparent;
+      color: var(--marca);
+      box-shadow: inset 0 0 0 2px var(--marca);
+    }
+
+    .topo .botao {
+      padding: 8px 16px;
+      color: #fff;
+    }
+
+    /* A abertura */
+    .abertura {
+      padding: 72px 0 56px;
+      background: linear-gradient(180deg, var(--fundo-2), var(--fundo));
+    }
+
+    .abertura .largura {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .abertura .largura {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chamada {
+      color: var(--texto-2);
+      font-size: 1.2rem;
+      max-width: 36em;
+    }
+
+    .acoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .selo {
+      display: inline-block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--primaria);
+      background: color-mix(in srgb, var(--marca) 12%, transparent);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    /* O mapa de ocupação desenhado, no lugar de uma captura */
+    .mapa {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      box-shadow: var(--sombra);
+      padding: 16px;
+      font-size: .78rem;
+      overflow: hidden;
+    }
+
+    .mapa__titulo {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa table {
+      border-collapse: separate;
+      border-spacing: 3px;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .mapa th {
+      font-weight: 500;
+      color: var(--texto-2);
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mapa th:first-child {
+      width: 28%;
+    }
+
+    .mapa td {
+      height: 22px;
+      border-radius: 4px;
+      background: var(--fundo-2);
+    }
+
+    .mapa td.c {
+      background: #2f8f5b;
+    }
+
+    .mapa td.h {
+      background: var(--marca);
+    }
+
+    .mapa td.p {
+      background: repeating-linear-gradient(45deg, #e0a526, #e0a526 4px, #f2c86a 4px, #f2c86a 8px);
+    }
+
+    .mapa td.b {
+      background: #8b95a5;
+    }
+
+    .mapa__legenda {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--texto-2);
+    }
+
+    .mapa__legenda span::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: -1px;
+      background: var(--cor);
+    }
+
+    /* As seções */
+    section {
+      padding: 72px 0;
+    }
+
+    .fundo-2 {
+      background: var(--fundo-2);
+    }
+
+    .introducao {
+      color: var(--texto-2);
+      max-width: 44em;
+      font-size: 1.08rem;
+      margin-bottom: 36px;
+    }
+
+    .grade {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .cartao {
+      background: var(--fundo);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .fundo-2 .cartao {
+      box-shadow: var(--sombra);
+      border-color: transparent;
+    }
+
+    .cartao p {
+      color: var(--texto-2);
+      margin: 0;
+    }
+
+    .icone {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: color-mix(in srgb, var(--marca) 14%, transparent);
+      color: var(--marca);
+      margin-bottom: 14px;
+    }
+
+    .icone svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .dores {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .dor {
+      border-left: 4px solid var(--marca);
+      padding: 4px 0 4px 18px;
+    }
+
+    .dor strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dor span {
+      color: var(--texto-2);
+    }
+
+    .lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .lista li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--texto-2);
+    }
+
+    .lista li strong {
+      color: var(--texto);
+    }
+
+    .lista li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .45em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--marca) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/16px no-repeat;
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .duas {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .papeis {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .papel {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .papel strong {
+      display: block;
+      color: var(--primaria);
+    }
+
+    .papel span {
+      color: var(--texto-2);
+      font-size: .93rem;
+    }
+
+    .comparacao {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--fundo);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+    }
+
+    .comparacao th,
+    .comparacao td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    .comparacao thead th {
+      background: var(--profunda);
+      color: #fff;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .comparacao thead th {
+        color: #10151d;
+      }
+    }
+
+    .comparacao td:last-child {
+      color: var(--texto);
+      font-weight: 500;
+    }
+
+    .comparacao td:nth-child(2) {
+      color: var(--texto-2);
+    }
+
+    @media (max-width: 640px) {
+      .comparacao {
+        font-size: .9rem;
+      }
+
+      .comparacao th,
+      .comparacao td {
+        padding: 10px;
+      }
+    }
+
+    details {
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    details p {
+      color: var(--texto-2);
+      margin: 10px 0 0;
+    }
+
+    .contato {
+      background: var(--profunda);
+      color: #fff;
+      border-radius: 20px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .contato {
+        background: #1d2c4a;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .contato {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+    }
+
+    .contato p {
+      color: #d6e0f2;
+    }
+
+    .contato .botao {
+      background: #25d366;
+      color: #0b2e18;
+      font-size: 1.05rem;
+    }
+
+    .contato__parceiro {
+      background: rgb(255 255 255 / 8%);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .contato__parceiro strong {
+      font-size: 1.15rem;
+      display: block;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--texto-2);
+      font-size: .9rem;
+    }
+
+    footer .largura {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topo">
+    <div class="largura">
+      <a class="logo" href="./">
+        <svg viewBox="0 0 656.5 656.5" aria-hidden="true">
+          <g fill="#007cdc" transform="translate(0 59.25)">
+            <path
+              d="M0,0 H148.5 l6.62,3.14 c19.71,9.34 26.71,25.87 22.8,53.93 c-2.5,17.95 -12.08,41.18 -23.06,55.93 c-2.87,3.85 -38.88,40.75 -80.03,82 L0,270.5 Z" />
+            <path
+              d="M30.75,537 c-13.44,-3.4 -24.18,-13.42 -28.68,-26.78 C0.05,504.22 0,502.32 0,422.8 V341.5 L341.5,0 H594.5 L328,266.4 C67.78,526.5 61.36,532.84 55.5,535 c-6.75,2.48 -18.94,3.46 -24.75,2 Z" />
+            <path
+              d="M235.5,431.1 c116.94,-116.8 111.79,-112.1 129.8,-118.16 c25.18,-8.45 51.48,-4.8 74.2,10.32 c3.82,2.54 44.4,42.34 111.5,109.35 L656.5,538 H402.5 L305.5,441 L208.5,538 H128.5 Z" />
+          </g>
+        </svg>
+        Kobi Imobiliária
+      </a>
+      <nav>
+        <a href="#temporada">Temporada</a>
+        <a href="#tudo">O que faz</a>
+        <a href="#seguranca">Segurança</a>
+        <a href="#perguntas">Perguntas</a>
+        <a class="botao" href="#contato">Quero ver</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="abertura">
+      <div class="largura">
+        <div>
+          <span class="selo">Feito para a imobiliária de cidade de praia</span>
+          <h1>A temporada inteira numa tela. Mesmo com a internet caída.</h1>
+          <p class="chamada">O Kobi Imobiliária troca o caderninho e os papeletes por um sistema só: reservas, chaves,
+            recibos, repasse ao proprietário, locação anual, vendas e vistoria. Ele roda num servidor <strong>dentro da
+              sua loja</strong> — quando a internet cai em janeiro, todas as máquinas continuam trabalhando.</p>
+          <div class="acoes">
+            <a class="botao" href="#contato">Agendar uma demonstração</a>
+            <a class="botao botao--claro" href="#temporada">Ver como funciona</a>
+          </div>
+        </div>
+        <div class="mapa" role="img"
+          aria-label="Desenho do mapa de ocupação: uma linha por casa, uma coluna por noite, com reservas confirmadas, hóspedes na casa, pré-reservas e bloqueios.">
+          <div class="mapa__titulo"><span>Mapa de ocupação</span><span>jan · 35 noites</span></div>
+          <table>
+            <tbody>
+              <tr>
+                <th>043 · Casa Mariscal</th>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+              </tr>
+              <tr>
+                <th>017 · Apto Bombas</th>
+                <td></td>
+                <td></td>
+                <td class="p"></td>
+                <td class="p"></td>
+                <td class="p"></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>052 · Sobrado Zimbros</th>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td class="h"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>008 · Casa Canto Grande</th>
+                <td class="b"></td>
+                <td class="b"></td>
+                <td class="b"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+              </tr>
+              <tr>
+                <th>031 · Cobertura Centro</th>
+                <td></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td class="c"></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mapa__legenda">
+            <span style="--cor: var(--marca)">Hospedada</span>
+            <span style="--cor: #2f8f5b">Confirmada</span>
+            <span style="--cor: #e0a526">Pré-reserva</span>
+            <span style="--cor: #8b95a5">Bloqueio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="largura">
+        <h2>Se a sua loja vive isto, o Kobi foi feito para ela</h2>
+        <p class="introducao">Na alta temporada o telefone não para, a internet trava e a mesma casa às vezes é
+          prometida duas vezes. Organização não é luxo: é o que separa a temporada boa da temporada de dor de cabeça.
+        </p>
+        <div class="dores">
+          <div class="dor"><strong>"Tem casa livre do dia 10 ao 17?"</strong><span>Hoje alguém folheia o caderno. Com o
+              Kobi, a resposta sai numa linha, da mais barata para a mais cara, com o total.</span></div>
+          <div class="dor"><strong>Reserva prometida duas vezes</strong><span>O banco do Kobi recusa duas reservas na
+              mesma noite da mesma casa, mesmo feitas em duas máquinas no mesmo segundo.</span></div>
+          <div class="dor"><strong>O proprietário quer saber quanto vai receber</strong><span>O check-out lança o
+              repasse sozinho, com a taxa de administração, e o extrato sai em PDF.</span></div>
+          <div class="dor"><strong>Internet caiu, a loja parou</strong><span>O sistema mora no servidor da loja. Sem
+              internet, todo mundo continua: no computador e no celular, pelo Wi-Fi.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="temporada" class="fundo-2">
+      <div class="largura duas">
+        <div>
+          <h2>A temporada, do primeiro telefonema ao repasse</h2>
+          <p class="introducao">O coração do Kobi é o mapa: uma linha por casa, uma coluna por noite, como o caderno que
+            a loja já conhece. Só que ele confere tudo sozinho e aparece igual, na hora, em todas as máquinas.</p>
+          <ul class="lista">
+            <li><strong>Diária por estação</strong> — Baixa, Média, Alta, Réveillon, Carnaval (e as que a loja criar),
+              com o mínimo de noites de cada uma.</li>
+            <li><strong>A pré-reserva é o lápis</strong> — segura a casa por 24 horas à espera do sinal. Pagou,
+              confirma.</li>
+            <li><strong>A diária fica congelada na reserva</strong> — mudar a tabela não muda o que já foi combinado.
+            </li>
+            <li><strong>Voucher e recibo em PDF</strong> — recibo em duas vias, com o valor por extenso e o CNPJ da
+              imobiliária.</li>
+            <li><strong>Mensagem pronta no WhatsApp</strong> — o botão Conversar abre a conversa com o hóspede já
+              escrita.</li>
+          </ul>
+        </div>
+        <div>
+          <ul class="lista">
+            <li><strong>Check-in e check-out</strong> — avisa o saldo e a caução pendentes, entrega e recebe as chaves
+              do quadro.</li>
+            <li><strong>Caução</strong> — devolvida no check-out, com o motivo do que ficou retido.</li>
+            <li><strong>Limpeza e enxoval</strong> — o check-out já pede a faxina, com quem limpa e a troca de enxoval.
+            </li>
+            <li><strong>Turista estrangeiro</strong> — receba em dólar, euro, peso argentino, uruguaio ou chileno,
+              guarani, PIX ou cartão, tudo no mesmo recibo, com troco em reais. A gaveta se conta por moeda.</li>
+            <li><strong>Fechamento do caixa</strong> — o contado contra o esperado, e a diferença exige o porquê.</li>
+            <li><strong>Repasse automático</strong> — o aluguel menos a taxa de administração vira conta a pagar ao
+              proprietário, com recibo assinado por ele.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="tudo">
+      <div class="largura">
+        <h2>Não é só temporada</h2>
+        <p class="introducao">Locação anual, vendas e vistoria moram no mesmo sistema, com o mesmo cadastro de pessoas e
+          de imóveis. O proprietário de uma casa pode ser hóspede de outra: uma pessoa, vários papéis.</p>
+        <div class="grade">
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                <path d="M14 3v6h6M8 13h8M8 17h5" />
+              </svg></div>
+            <h3>Locação anual</h3>
+            <p>Contrato com fiador, caução ou seguro-fiança; aluguel lançado todo mês; reajuste pelo IGP-M ou IPCA,
+              buscado no Banco Central; cobrança com PIX copia e cola e QR; repasse ao locador.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="5" height="16" rx="1" />
+                <rect x="10" y="4" width="5" height="10" rx="1" />
+                <rect x="17" y="4" width="4" height="13" rx="1" />
+              </svg></div>
+            <h3>Vendas</h3>
+            <p>O funil em quadro (contato, visita, proposta, escritura), os imóveis da carteira que servem a cada
+              cliente, a visita com o retorno do cliente, propostas e contrapropostas, e a comissão dividida com
+              corretor, captador e parceiro.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="6" y="2" width="12" height="20" rx="2" />
+                <circle cx="12" cy="13" r="3" />
+                <path d="M10 5h4" />
+              </svg></div>
+            <h3>Vistoria pelo celular</h3>
+            <p>Ambiente por ambiente, com fotos e a hora em que foram tiradas. Na saída, o laudo em PDF mostra o estado
+              de antes e marca em vermelho o que piorou — a conversa da caução fica fácil.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19V5M4 19h16" />
+                <path d="M8 15l3-4 3 2 5-6" />
+              </svg></div>
+            <h3>O painel do gerente</h3>
+            <p>No alto, o que vai virar problema: repasse vencido, hóspede devendo, aluguel atrasado, chave que não
+              voltou. Depois a ocupação do mês, a diária média, o que a loja ganhou e o resultado de cada corretor.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
+              </svg></div>
+            <h3>Portal do proprietário</h3>
+            <p>O dono do imóvel entra de casa e vê, sem ligar para a loja, o que tem a receber, os repasses pagos, as
+              estadias e o informe de rendimentos para o Imposto de Renda — sem o nome dos hóspedes.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" />
+              </svg></div>
+            <h3>ZAP, VivaReal e OLX</h3>
+            <p>Os anúncios saem da ficha do imóvel para os portais, pelo arquivo que eles leem algumas vezes por dia. Só
+              vai o imóvel completo e com a autorização do proprietário em dia.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16v12H4z" />
+                <path d="M8 20h8M12 16v4" />
+              </svg></div>
+            <h3>Declarações</h3>
+            <p>O informe de rendimentos de cada proprietário e o relatório da DIMOB, com o que falta preencher marcado
+              em vermelho antes de chegar a época.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                <rect x="4" y="11" width="16" height="10" rx="2" />
+              </svg></div>
+            <h3>Quadro de chaves</h3>
+            <p>Quem levou qual chave, para quê e até quando. O Início mostra as que estão fora, as atrasadas primeiro, e
+              a mesma chave não sai duas vezes.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
+              </svg></div>
+            <h3>Corretor na rua</h3>
+            <p>Com a porta de fora ligada, o corretor e o vistoriador trabalham pelo 4G, e o gerente de casa: com usuário e senha, quem ele liberar.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h9l3 3v15H6z" />
+                <path d="M9 10h6M9 14h6M9 18h3" />
+              </svg></div>
+            <h3>Orçamento, proposta e contrato</h3>
+            <p>Os clientes e o funil de vendas, com as atividades de cada negócio. O orçamento sai em PDF e pelo
+              WhatsApp, no idioma do cliente; a administração do imóvel e o serviço avulso ganham a proposta com a carta da casa; o contrato
+              tem o aceite assinado na tela, com o dedo.</p>
+          </div>
+          <div class="cartao">
+            <div class="icone"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
+                <path d="M9 8h6M9 12h6" />
+              </svg></div>
+            <h3>Fatura e assinatura</h3>
+            <p>A fatura em parcelas, com a PIX da casa no PDF, sai com um clique do orçamento aceito ou do contrato. A
+              cobrança que se repete emite a de cada período sozinha. Cancela-se, nunca se apaga.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Cada um vê o que é seu</h2>
+        <p class="introducao">O funcionário não vê tudo. A permissão é por tela e por dado: o corretor só vê os clientes
+          dele, e só o gerente mexe em preço. Toda gravação fica registrada — quem, quando, o antes e o depois.</p>
+        <div class="papeis">
+          <div class="papel"><strong>Gerente</strong><span>Vê tudo, define preços e estações, o painel e os
+              usuários.</span></div>
+          <div class="papel"><strong>Atendimento</strong><span>Reservas, check-in e check-out, recebimentos.</span>
+          </div>
+          <div class="papel"><strong>Corretor</strong><span>Os seus clientes, visitas, propostas e reservas.</span>
+          </div>
+          <div class="papel"><strong>Financeiro</strong><span>Contas, caixa, repasses e declarações.</span></div>
+          <div class="papel"><strong>Vistoriador</strong><span>As vistorias, no celular.</span></div>
+          <div class="papel"><strong>Proprietário</strong><span>De fora, só leitura, só o que é dele.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="seguranca">
+      <div class="largura duas">
+        <div>
+          <h2>Os dados são da imobiliária. E ficam na imobiliária.</h2>
+          <p class="introducao">Nada de nuvem no caminho do trabalho. O banco fica no servidor da loja, cifrado: um PC
+            roubado ou um pendrive perdido não entregam a sua carteira a ninguém.</p>
+          <ul class="lista">
+            <li><strong>Backup duas vezes por dia</strong>, sete dias guardados no servidor e cada cópia levada ao pendrive ou
+              à pasta sincronizada — sempre cifrado.</li>
+            <li><strong>Conexão protegida</strong> dentro da loja: ninguém no Wi-Fi lê a tela do gerente.</li>
+            <li><strong>Atualização sozinha</strong>, na hora que o gerente escolher, e volta atrás se algo der errado.
+            </li>
+            <li><strong>Licença vencida nunca tranca a base</strong>: o sistema fica só para leitura e deixa exportar
+              tudo.</li>
+          </ul>
+        </div>
+        <div>
+          <table class="comparacao">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Caderno e planilha</th>
+                <th>Kobi Imobiliária</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Casa livre?</th>
+                <td>Folhear e torcer</td>
+                <td>Uma consulta, com o preço</td>
+              </tr>
+              <tr>
+                <th>Reserva dupla</th>
+                <td>Acontece</td>
+                <td>O sistema recusa</td>
+              </tr>
+              <tr>
+                <th>Recibo</th>
+                <td>Talão à mão</td>
+                <td>PDF em duas vias</td>
+              </tr>
+              <tr>
+                <th>Repasse</th>
+                <td>Calculadora no fim do mês</td>
+                <td>Lançado no check-out</td>
+              </tr>
+              <tr>
+                <th>Internet caiu</th>
+                <td>—</td>
+                <td>Continua funcionando</td>
+              </tr>
+              <tr>
+                <th>Quem mexeu?</th>
+                <td>Ninguém sabe</td>
+                <td>Tudo registrado</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="fundo-2">
+      <div class="largura">
+        <h2>Instalado e atendido perto de você</h2>
+        <p class="introducao">O Kobi é vendido, instalado e atendido por um parceiro da sua região. Ele leva o servidor,
+          prepara as máquinas e os celulares, ensina a equipe e é quem você chama quando precisa.</p>
+        <div class="grade">
+          <div class="cartao">
+            <h3>1. Demonstração</h3>
+            <p>O parceiro mostra o sistema com uma loja de exemplo, em plena temporada.</p>
+          </div>
+          <div class="cartao">
+            <h3>2. Instalação</h3>
+            <p>O servidor e as máquinas, montados na loja.</p>
+          </div>
+          <div class="cartao">
+            <h3>3. Começo</h3>
+            <p>As casas e as reservas do caderno entram; a equipe aprende com a Ajuda de cada papel, dentro do sistema.
+            </p>
+          </div>
+          <div class="cartao">
+            <h3>4. Mensalidade</h3>
+            <p>Uma mensalidade com as atualizações e o suporte. Sem contrato de fidelidade à nuvem de ninguém.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nao-faz">
+      <div class="largura">
+        <h2>O que o Kobi Imobiliária não faz</h2>
+        <p>Melhor saber agora. E o sistema mora no servidor da loja: sem ele ligado, não há sistema.</p>
+        <div class="dores">
+          <div class="dor"><strong>Nota fiscal</strong><span>O recibo não é nota: ela continua com a prefeitura ou o contador.</span></div>
+          <div class="dor"><strong>Booking, Airbnb e motor de reservas</strong><span>A temporada se reserva no sistema, por quem atende. Ela não vai aos portais.</span></div>
+          <div class="dor"><strong>Assinatura eletrônica e leads dos portais</strong><span>O imóvel vai ao portal, mas o interessado não volta sozinho para o sistema.</span></div>
+          <div class="dor"><strong>Robô no WhatsApp</strong><span>Ele abre a conversa com o texto pronto, e uma pessoa envia.</span></div>
+          <div class="dor"><strong>Importar o sistema antigo sozinho</strong><span>A carteira entra à mão, com a ajuda do parceiro.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="perguntas">
+      <div class="largura">
+        <h2>Perguntas frequentes</h2>
+        <details>
+          <summary>Precisa de internet?</summary>
+          <p>Não para trabalhar. O sistema roda no servidor dentro da loja, e as máquinas e os celulares o abrem pela
+            rede da loja. A internet serve para o backup externo, a atualização, o WhatsApp, os portais e o acesso de
+            fora.</p>
+        </details>
+        <details>
+          <summary>Funciona no celular?</summary>
+          <p>Sim, pelo navegador, no Wi-Fi da loja — é assim que se faz a vistoria. Com a porta de fora ligada, também
+            pelo 4G, com usuário e senha, quem o gerente liberar.</p>
+        </details>
+        <details>
+          <summary>Que computador precisa?</summary>
+          <p>Um PC com Windows como servidor, um nobreak e as máquinas que a loja já tem,
+            com Windows e um navegador.</p>
+        </details>
+        <details>
+          <summary>E as reservas que já estão no caderno?</summary>
+          <p>Entram à mão, com o sinal no dia em que foi pago. O mapa fica igual ao caderno, e daí em diante o caderno
+            se aposenta.</p>
+        </details>
+        <details>
+          <summary>Quantos usuários?</summary>
+          <p>O número de usuários vem na licença. O proprietário que entra pelo portal não conta como usuário.</p>
+        </details>
+        <details>
+          <summary>E se eu quiser parar de usar?</summary>
+          <p>Os dados são seus. Com a licença vencida o sistema não tranca: fica só para leitura e exporta tudo.</p>
+        </details>
+        <details>
+          <summary>Quem dá o suporte?</summary>
+          <p>O parceiro que instalou atende o primeiro chamado. O que ele não resolve vai direto ao autor do sistema.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="largura">
+        <div class="contato">
+          <div>
+            <h2>Veja a sua temporada no Kobi</h2>
+            <p>Uma demonstração de meia hora, na sua loja ou por vídeo, com uma imobiliária de exemplo em plena alta
+              temporada. Sem compromisso.</p>
+            <a class="botao"
+              href="https://wa.me/55DDDNUMERO?text=Ol%C3%A1!%20Quero%20ver%20uma%20demonstra%C3%A7%C3%A3o%20do%20Kobi%20Imobili%C3%A1ria.">Chamar
+              no WhatsApp</a>
+          </div>
+          <div class="contato__parceiro">
+            <strong>[PARCEIRO: nome da empresa]</strong>
+            <p>Revenda autorizada Kobi Imobiliária<br>[PARCEIRO: cidade] · WhatsApp [PARCEIRO: (DDD) número]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="largura">
+      <span>Kobi Imobiliária — software proprietário, licenciado por parceiro revendedor.</span>
+      <span>Uma linha Kobi Loja.</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>
